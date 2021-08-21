@@ -1,3 +1,6 @@
+import spidev
+import time
+
 class Screen:
     def __init__(self):
         spi0 = spidev.SpiDev()
@@ -35,8 +38,7 @@ class Screen:
             set_temp_comp_curve2,
             enable_display
         ]
+        print(startup_commands)
         
-        spi.xfer2(startup_commands)
-
-            
-    
+        values_transferred = spi0.xfer2(startup_commands)
+        print(startup_commands)
