@@ -1,30 +1,42 @@
-class screen:
+class Screen:
     def __init__(self):
-        #Uint16 sdata[13];
-        #sdata[0] = "40";       //display start line at 0
-        #sdata[1] = "A1";       //set SEG to bottom view
-        #sdata[2] = "C0";       //set normal direction com0-com63
-        #sdata[3] = "A4";       //set all pixels off
-        #sdata[4] = "A6";       //set inverse display off
-        #sdata[5] = "A2";       //set bias 1/9 (duty 1/65)
-        #sdata[6] = "2F";       //set power control, booster, regulator and follower on
-        #sdata[7] = "27";       //set contrast
-        #sdata[8] = "81";
-        #sdata[9] = "10";
-        #sdata[10] = "FA";       //set temperature compensation curve to -0.11 %/C
-        #sdata[11] = "90";
-        #sdata[12] = "AF";       //set display on
+        spi0 = spidev.SpiDev()
+        spi0.open(0,0)                #spi bus 0 with chip select 0
+        spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
+        #spi0.mode = 0 
         
-        # for(i = 0; i < 13; i++)
-        #{
-        #   // Transmit data
-        #   spi_xmit(sdata[i]);
-        #   // Wait until data is received
-        #   while(SpiaRegs.SPIFFRX.bit.RXFFST !=1) { }
-        #   // Check against sent data
-        #   rdata = SpiaRegs.SPIRXBUF;
-        #   if(rdata != sdata[i]) error();
-        #}
-        pass
-    
+        #send commands
+        display_start_line = int("40", 16)    #start line at 0
+        set_SEG_bottom = int("A1", 16)        #bottom (normal) view
+        set_direction_normal = int("C0", 16)  #com0-com63
+        disable_all_pixels = int("A4",16)       
+        disable_inverse_display = int("A6",16)
+        set_bias = int("A2",16)                 # bias 1/9 (duty 1/65)
+        set_power_control = int("2F",16)        #set power control, booster, regulator and follower on
+        set_contrast1 = int("27", 16)
+        set_contrast2 = int("81", 16)
+        set_contrast3 = int("10", 16)
+        set_temp_comp_curve1 = int("FA", 16)     #set to -0.11 %/C
+        set_temp_comp_curve2 = int("90", 16)
+        enable_display = int("AF", 16)
+        
+        startup_commands = [
+            display_start_line,
+            set_SEG_bottom,
+            set_direction_normal,
+            disable_all_pixels,
+            disable_inverse_display,
+            set_bias,
+            set_power_control,
+            set_contrast1,
+            set_contrast2,
+            set_contrast3,
+            set_temp_comp_curve1,
+            set_temp_comp_curve2,
+            enable_display
+        ]
+        
+        spi.xfer2(startup_commands)
+
+            
     

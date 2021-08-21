@@ -1,8 +1,9 @@
-from keyboard import Keyboard
+from screen import Screen
+import spidev
+import time
 
 def main():
-    keyboard = Keyboard()
-    keyboard.get_message()
+    screen = Screen()
     
 if __name__ == "__main__":
     main()
