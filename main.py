@@ -1,6 +1,4 @@
 from screen import Screen
-import spidev
-import time
 
 def main():
     screen = Screen()
