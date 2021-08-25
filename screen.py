@@ -1,12 +1,15 @@
 import spidev
-import time
+import RPi.GPIO as GPIO
+
 
 class Screen:
     def __init__(self):
         spi0 = spidev.SpiDev()
         spi0.open(0,0)                #spi bus 0 with chip select 0
         spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
-        #spi0.mode = 0 
+        #spi0.mode = 0                #not sure what the modes are. Some examples have this, some dont
+        GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
+        GPIO.setup(3,GPIO.out)   #set pin 3 (GPIO 2) as output for CD pin
         
         #send commands
         display_start_line = int("40", 16)    #start line at 0
@@ -38,7 +41,10 @@ class Screen:
             set_temp_comp_curve2,
             enable_display
         ]
-        print(startup_commands)
-        
-        values_transferred = spi0.xfer2(startup_commands)
-        print(startup_commands)
+    
+
+        GPIO.output(3, GPIO.LOW)    #set CD pin low for command mode
+        spi.xfer2(startup_commands) #send initialization commands
+        GPIO.output(3, GPIO.High)   #set CD pin high for data mode
+           
+    
