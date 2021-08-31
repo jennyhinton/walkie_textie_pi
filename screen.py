@@ -1,6 +1,7 @@
 import spidev
 import RPi.GPIO as GPIO
 
+#figure out why/where spidev changes list to 0s
 
 class Screen:
     def __init__(self):
@@ -41,10 +42,11 @@ class Screen:
             set_temp_comp_curve2,
             enable_display
         ]
-    
 
         GPIO.output(37, GPIO.LOW)    #set CD pin low for command mode
-        print(spi0.xfer2(startup_commands)) #send initialization commands
-        GPIO.output(37, GPIO.HIGH)   #set CD pin high for data mode
+        print(startup_commands)
+        spi0.xfer2(startup_commands) #send initialization commands
+        print(startup_commands)
+        GPIO.output(37, GPIO.High)   #set CD pin high for data mode
+        
         GPIO.cleanup()
-    
