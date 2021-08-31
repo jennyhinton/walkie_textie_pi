@@ -1,6 +1,8 @@
 import spidev
 import RPi.GPIO as GPIO
 
+#figure out why/where spidev changes list to 0s
+
 class Screen:
     def __init__(self):
         spi0 = spidev.SpiDev()
@@ -8,7 +10,7 @@ class Screen:
         spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
         #spi0.mode = 0                #not sure what the modes are. Some examples have this, some dont
         GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
-        GPIO.setup(3,GPIO.out)   #set pin 3 (GPIO 2) as output for CD pin
+        GPIO.setup(37,GPIO.out)   #set pin 3 (GPIO 2) as output for CD pin
         
         #send commands
         display_start_line = int("40", 16)    #start line at 0
@@ -41,8 +43,11 @@ class Screen:
             enable_display
         ]
         
-        GPIO.output(3, GPIO.LOW)    #set CD pin low for command mode
-        spi.xfer2(startup_commands) #send initialization commands
-        GPIO.output(3, GPIO.High)   #set CD pin high for data mode
-            
+        GPIO.output(37, GPIO.LOW)    #set CD pin low for command mode
+        print(startup_commands)
+        spi0.xfer2(startup_commands) #send initialization commands
+        print(startup_commands)
+        GPIO.output(37, GPIO.High)   #set CD pin high for data mode
+        
+        GPIO.cleanup()
     

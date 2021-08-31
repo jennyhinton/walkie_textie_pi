@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 
-
 #need to assign GPIOs
 #need to set up storing messages/deleting and such
 #need to check col 5 row 5
