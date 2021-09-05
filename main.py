@@ -5,8 +5,7 @@ def main():
     buttons = Buttons()
     #screen = Screen()
     print("back in main")
-    while (True):
-        pass
+    
     
 if __name__ == "__main__":
     main()

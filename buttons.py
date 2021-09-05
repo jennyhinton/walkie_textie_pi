@@ -70,5 +70,5 @@ class Buttons:
         #microphone?
         #rumbler?
         #mode switch?
-        print("end of screen file")
+        message = input ("Press enter to quit")
         GPIO.cleanup()
