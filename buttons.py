@@ -4,71 +4,71 @@ import RPi.GPIO as GPIO
 #need to define button actions
 #need to check on extra inputs
 
-class buttons:
-    def power_callback(channel):
-        pass #button actions  
-    def ptt_callback(channel):
-        pass #button actions 
-    def up_callback(channel):
-        pass #button actions 
-    def down_callback(channel):
-        pass #button actions
-    def left_callback(channel):
-        pass #button actions
-    def right_callback(channel):
-        pass #button actions
-    def center_callback(channel):
-        pass #button actions
-    def vol_up_callback(channel):
-        pass #button actions
-    def vol_down_callback(channel):
-        pass #button actions
+class Buttons:
+    def power_callback(self, channel):
+        print ("power ")  #button actions  
+    def ptt_callback(self, channel):
+        print ("ptt ")  #button actions  
+    def up_callback(self, channel):
+        print ("up ")  #button actions  
+    def down_callback(self, channel):
+        print ("down ")  #button actions  
+    def left_callback(self, channel):
+        print ("left ")  #button actions  
+    def right_callback(self, channel):
+        print ("right ")  #button actions  
+    def center_callback(self, channel):
+        print ("center ")  #button actions  
+    def vol_up_callback(self, channel):
+        print ("volume up ")  #button actions  
+    def vol_down_callback(self, channel):
+        print ("volume down ")  #button actions  
     
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
-        power = #GPIO = power button
-        PTT = #GPIO = PTT button
-        up = #GPIO = up button
-        down = #GPIO = down button
-        left = #GPIO = left button
-        right = #GPIO = right button
-        center = #GPIO = center button
-        vol_up = #GPIO = volume up button
-        vol_down = #GPIO = volume down button
+        self.power = 5#GPIO = power button
+        self.ptt = 3#GPIO = PTT button
+        self.up = 7#GPIO = up button
+        self.down = 15#GPIO = down button
+        self.left = 11#GPIO = left button
+        self.right = 19#GPIO = right button
+        self.center = 13#GPIO = center button
+        #vol_up = #GPIO = volume up button
+        #vol_down = #GPIO = volume down button
         
         #set each button pin as input pulled low
-        GPIO.setup(power, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         #check for rising edge trigger and perform event
-        GPIO.add_event_detect(power,GPIO.RISING,callback=power_callback)
+        GPIO.add_event_detect(self.power, GPIO.RISING, callback=self.power_callback)
         
-        GPIO.setup(ptt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=ptt_callback)
+        GPIO.setup(self.ptt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.ptt, GPIO.RISING, callback=self.ptt_callback)
 
-        GPIO.setup(up, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=up_callback)
+        GPIO.setup(self.up, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.up, GPIO.RISING, callback=self.up_callback)
         
-        GPIO.setup(down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=down_callback)
+        GPIO.setup(self.down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.down, GPIO.RISING, callback=self.down_callback)
 
-        GPIO.setup(left, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=left_callback)
+        GPIO.setup(self.left, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.left, GPIO.RISING, callback=self.left_callback)
 
-        GPIO.setup(right, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=right_callback)
+        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback)
 
-        GPIO.setup(center, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=center_callback)
+        GPIO.setup(self.center, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.center, GPIO.RISING, callback=self.center_callback)
 
-        GPIO.setup(vol_up, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=vol_up_callback)
+        #GPIO.setup(self.vol_up, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        #GPIO.add_event_detect(self.vol_up, GPIO.RISING, callback=self.vol_up_callback)
 
-        GPIO.setup(vol_down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(power,GPIO.RISING,callback=vol_down_callback)
+        #GPIO.setup(self.vol_down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        #GPIO.add_event_detect(self.vol_down, GPIO.RISING, callback=self.vol_down_callback)
 
         
         #speaker?
         #microphone?
         #rumbler?
         #mode switch?
-        
+        print("end of screen file")
         GPIO.cleanup()
