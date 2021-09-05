@@ -42,7 +42,7 @@ class Screen:
             set_temp_comp_curve2,
             enable_display
         ]
-        
+
         GPIO.output(37, GPIO.LOW)    #set CD pin low for command mode
         print(startup_commands)
         spi0.xfer2(startup_commands) #send initialization commands
@@ -50,4 +50,3 @@ class Screen:
         GPIO.output(37, GPIO.HIGH)   #set CD pin high for data mode
         
         GPIO.cleanup()
-    
