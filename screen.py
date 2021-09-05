@@ -47,7 +47,7 @@ class Screen:
         print(startup_commands)
         spi0.xfer2(startup_commands) #send initialization commands
         print(startup_commands)
-        GPIO.output(37, GPIO.High)   #set CD pin high for data mode
+        GPIO.output(37, GPIO.HIGH)   #set CD pin high for data mode
         
         GPIO.cleanup()
     
