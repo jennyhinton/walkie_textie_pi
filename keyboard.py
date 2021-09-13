@@ -13,19 +13,19 @@ class Keyboard:
         self.message = ['\0'] * 160  # message array initialized
         
         #Configure rows/cols with each pin
-        row1 =  #GPIO  = row 1
-        row2 =  #GPIO  = row 2
-        row3 =  #GPIO  = row 3
-        row4 =  #GPIO  = row 4
-        row5 =  #GPIO  = row 5
-        row6 =  #GPIO  = row 6
-        row7 =  #GPIO  = row 7
+        col4=3;
+        row3=5;
+        col5=7;
+        row4=11;
+        row5=13;
+        row6=15;
+        row7=19;
         
-        col1 =  #GPIO  = col 1
-        col2 =  #GPIO  = col 2
-        col3 =  #GPIO  = col 3
-        col4 =  #GPIO  = col 4
-        col5 =  #GPIO  = col 5
+        col3=21;
+        col2=23;
+        row2=27;
+        col1=29;
+        row1=31;
         
         #configure rows active low input and colums output
         #pull col low and check which row is low. get corresponding
