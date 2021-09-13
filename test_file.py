@@ -7,9 +7,9 @@ def power_callback(channel):
         
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(16, GPIO.FALLING, callback=power_callback, bouncetime=500)
 
 while (True):
-    GPIO.add_event_detect(16, GPIO.RISING, callback=power_callback)
-
+    pass
         
                 

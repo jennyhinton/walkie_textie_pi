@@ -58,11 +58,7 @@ class Buttons:
 #        GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback)
 
         GPIO.setup(self.center, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        while True:
-            if GPIO.inptu(self.center) == GPIO.HIGH:
-                print("center button")
-
-#        GPIO.add_event_detect(self.center, GPIO.RISING, callback=self.center_callback)
+        GPIO.add_event_detect(self.center, GPIO.RISING, callback=self.center_callback)
 
         #GPIO.setup(self.vol_up, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         #GPIO.add_event_detect(self.vol_up, GPIO.RISING, callback=self.vol_up_callback)
@@ -70,6 +66,8 @@ class Buttons:
         #GPIO.setup(self.vol_down, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         #GPIO.add_event_detect(self.vol_down, GPIO.RISING, callback=self.vol_down_callback)
 
+        while True:
+            pass
         
         #speaker?
         #microphone?
