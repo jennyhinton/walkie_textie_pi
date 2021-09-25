@@ -4,8 +4,8 @@ from buttons import Buttons
 
 def main():
     #keyboard = Keyboard()
-    buttons = Buttons()
-    #screen = Screen()
+    #buttons = Buttons()
+    screen = Screen()
     print("back in main")
     
     

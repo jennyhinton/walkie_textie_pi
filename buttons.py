@@ -26,10 +26,10 @@ class Buttons:
     
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
-        self.ptt = 3#GPIO = PTT button
-        self.power = 5#GPIO = power button
-        self.up = 7#GPIO = up button
-        self.left = 15#GPIO = down button
+        self.ptt = 10#GPIO = PTT button
+        self.power = 8#GPIO = power button
+        self.up = 12#GPIO = up button
+        self.left = 21#GPIO = down button
         self.center = 13#GPIO = left button
         self.down = 15#GPIO = right button
         self.right = 19#GPIO = center button
@@ -70,5 +70,6 @@ class Buttons:
         #microphone?
         #rumbler?
         #mode switch?
-        message = input ("Press enter to quit")
+        print("Press enter to quit")
+        message = input ()
         GPIO.cleanup()
