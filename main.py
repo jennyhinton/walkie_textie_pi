@@ -1,6 +1,6 @@
 from screen import Screen
 from buttons import Buttons
-from keyboard import Keyboard
+#from keyboard import Keyboard
 
 def main():
     #keyboard = Keyboard()
