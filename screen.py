@@ -1,5 +1,6 @@
 import spidev
 import RPi.GPIO as GPIO
+import time
 
 #figure out why/where spidev changes list to 0s
 
@@ -11,8 +12,10 @@ class Screen:
         #spi0.mode = 0                #not sure what the modes are. Some examples have this, some dont
         GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
         GPIO.setup(37,GPIO.OUT)   #set pin 3 (GPIO 2) as output for CD pin
+        GPIO.setup(33,GPIO.OUT)   #reset pin
         
         #send commands
+        
         display_start_line = int("40", 16)    #start line at 0
         set_SEG_bottom = int("A1", 16)        #bottom (normal) view
         set_direction_normal = int("C0", 16)  #com0-com63
@@ -26,6 +29,9 @@ class Screen:
         set_temp_comp_curve1 = int("FA", 16)     #set to -0.11 %/C
         set_temp_comp_curve2 = int("90", 16)
         enable_display = int("AF", 16)
+        
+        #
+        
         
         startup_commands = [
             display_start_line,
@@ -43,6 +49,13 @@ class Screen:
             enable_display
         ]
 
+        GPIO.output(33, GPIO.LOW)
+        wait(1)
+        GPIO.output(33, GPIO.HIGH)
+        wait(5)
+        
+        
+        
         GPIO.output(37, GPIO.LOW)    #set CD pin low for command mode
         print(startup_commands)
         spi0.xfer3(startup_commands) #send initialization commands

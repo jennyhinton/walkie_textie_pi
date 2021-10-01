@@ -6,8 +6,9 @@ def main():
     #keyboard = Keyboard()
     #buttons = Buttons()
     screen = Screen()
-    print("back in main")
     
+    print "Hit enter to end"
+    input()
     
 if __name__ == "__main__":
     main()
