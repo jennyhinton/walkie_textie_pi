@@ -32,7 +32,13 @@ class Screen:
         enable_display = int("AF", 16)
         
         #
-        
+        smaller_commands = [
+            set_contrast1,
+            set_contrast2,
+            set_contrast3,
+            int("A5", 16),
+            enable_dislplay
+        ]
         
         startup_commands = [
             display_start_line,
@@ -58,9 +64,6 @@ class Screen:
         
         
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        print(startup_commands)
-        spi0.xfer3(startup_commands) #send initialization commands
-        print(startup_commands)
+        spi0.xfer3(smaller_commands) #send initialization commands
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
-        GPIO.cleanup()

@@ -9,6 +9,8 @@ def main():
     
     print "Hit enter to end"
     input()
+    GPIO.cleanup()
+
     
 if __name__ == "__main__":
     main()
