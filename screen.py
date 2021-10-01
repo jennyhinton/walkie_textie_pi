@@ -37,7 +37,7 @@ class Screen:
             set_contrast2,
             set_contrast3,
             int("A5", 16),
-            enable_dislplay
+            enable_display
         ]
         
         startup_commands = [
