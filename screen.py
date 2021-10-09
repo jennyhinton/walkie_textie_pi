@@ -11,7 +11,7 @@ class Screen:
         spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
         #spi0.mode = 0                #not sure what the modes are. Some examples have this, some dont
         GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
-        CD = 8
+        CD = 10
         GPIO.setup(CD,GPIO.OUT)   #set pin 3 (GPIO 2) as output for CD pin
         GPIO.setup(33,GPIO.OUT)   #reset pin
         
@@ -64,6 +64,14 @@ class Screen:
         
         
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        spi0.xfer3(smaller_commands) #send initialization commands
+        time.sleep(1)
+        spi0.xfer3(startup_commands) #send initialization commands
+        time.sleep(1)
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
+        time.sleep(1)
+        GPIO.output(CD, GPIO.LOW)
+        time.sleep(1)
+        spi0.xfer3(enable_display)
+        time.sleep(1)
+        GPIO.output(CD, GPIO.HIGH)
         
