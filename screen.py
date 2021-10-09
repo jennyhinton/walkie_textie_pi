@@ -53,7 +53,6 @@ class Screen:
             set_contrast3,
             set_temp_comp_curve1,
             set_temp_comp_curve2,
-            enable_display
         ]
 
         GPIO.output(33, GPIO.LOW)
@@ -62,6 +61,9 @@ class Screen:
         time.sleep(5)
         
         
+        display_commands = [
+            enable_display
+        ]
         
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
         time.sleep(1)
@@ -71,7 +73,7 @@ class Screen:
         time.sleep(1)
         GPIO.output(CD, GPIO.LOW)
         time.sleep(1)
-        spi0.xfer3(enable_display)
+        spi0.xfer3(display_commands)
         time.sleep(1)
         GPIO.output(CD, GPIO.HIGH)
         
