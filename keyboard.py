@@ -181,11 +181,11 @@ class Keyboard:
         #idk what im doing with alt or mic yet so rn nothing
         if alt:
             return ""
-        if current_char = "mic":
-            return ""
+        #if current_char = "mic":
+        #    return ""
          
-        if backspace:
-            return "backspace"
+        #if backspace:
+        #    return "backspace"
         if ret:
             return "\n"
         if shiftl and shiftr:
@@ -210,12 +210,12 @@ class Keyboard:
                 index = i;
                 break
             
-        if input == "backspace":
-            if index == 0:
-                return
-            else:
-                message[index - 1] = '\0'
-                return
+        #if input == "backspace":
+        #    if index == 0:
+        #        return
+        #    else:
+        #        message[index - 1] = '\0'
+        #        return
         
         if index == 160:
             pass         #this will need taken care of
