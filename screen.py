@@ -138,3 +138,5 @@ class Screen:
         time.sleep(1)
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
+        GPIO.output(RST, GPIO.LOW)
+        
