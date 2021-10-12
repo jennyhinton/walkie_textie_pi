@@ -49,7 +49,7 @@ class Screen:
             set_contrast2,
             set_contrast3
         ]
-            display_commands = [
+        display_commands = [
             enable_display
         ]
         
