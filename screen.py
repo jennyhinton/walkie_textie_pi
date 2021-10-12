@@ -12,15 +12,18 @@ class Screen:
         #spi0.mode = 0                #not sure what the modes are. Some examples have this, some dont
         GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
         CD = 10
+        RST = 33 
         GPIO.setup(CD,GPIO.OUT)   #set pin 3 (GPIO 2) as output for CD pin
-        GPIO.setup(33,GPIO.OUT)   #reset pin
+        GPIO.setup(RST,GPIO.OUT)   #reset pin
+
         
         #send commands
         
         display_start_line = int("40", 16)    #start line at 0
         set_SEG_bottom = int("A1", 16)        #bottom (normal) view
         set_direction_normal = int("C0", 16)  #com0-com63
-        disable_all_pixels = int("A4",16)       
+        disable_all_pixels = int("A4",16)
+        enable_all_pixels = int("A5",16)
         disable_inverse_display = int("A6",16)
         set_bias = int("A2",16)                 # bias 1/9 (duty 1/65)
         set_power_control = int("2F",16)        #set power control, booster, regulator and follower on
@@ -31,12 +34,22 @@ class Screen:
         set_temp_comp_curve2 = int("90", 16)
         enable_display = int("AF", 16)
         
-        #
-        smaller_commands = [
+        
+        startup_commands1 = [
+            display_start_line,
+            set_SEG_bottom,
+            set_direction_normal,
+            disable_all_pixels,
+            disable_inverse_display
+        ]
+        startup_commands2 = [
+            set_bias,
+            set_power_control,
             set_contrast1,
             set_contrast2,
-            set_contrast3,
-            int("A5", 16),
+            set_contrast3
+        ]
+            display_commands = [
             enable_display
         ]
         
@@ -44,36 +57,84 @@ class Screen:
             display_start_line,
             set_SEG_bottom,
             set_direction_normal,
+            
             disable_all_pixels,
             disable_inverse_display,
+            
             set_bias,
             set_power_control,
             set_contrast1,
             set_contrast2,
             set_contrast3,
+            
             set_temp_comp_curve1,
             set_temp_comp_curve2,
-        ]
-
-        GPIO.output(33, GPIO.LOW)
-        time.sleep(1)
-        GPIO.output(33, GPIO.HIGH)
-        time.sleep(5)
-        
-        
-        display_commands = [
+            
             enable_display
         ]
+
+        #power on, set reset low and wait a sec then set reset high and wait 5 sec
+        GPIO.output(RST, GPIO.LOW)
+        time.sleep(1)
+        GPIO.output(RST, GPIO.HIGH)
+        time.sleep(5)
         
+        #issue commands and wait a second
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
         time.sleep(1)
-        spi0.xfer3(startup_commands) #send initialization commands
+        spi0.xfer3(startup_commands1) #send initialization commands
+        time.sleep(1)
+        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
+        time.sleep(5)
+        
+        #set BR adn PM
+        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
+        time.sleep(1)
+        spi0.xfer3(startup_commands2) #send initialization commands
         time.sleep(1)
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         time.sleep(1)
-        GPIO.output(CD, GPIO.LOW)
+        
+        #enable display
+        
+        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
         time.sleep(1)
-        spi0.xfer3(display_commands)
+        spi0.xfer3(display_commands) #send initialization commands
         time.sleep(1)
-        GPIO.output(CD, GPIO.HIGH)
+        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
+        
+        print("all pixels off")
+        
+        time.sleep(10)
+        
+        print("all pixels on")
+        
+        GPIO.output(RST, GPIO.LOW)
+        time.sleep(1)
+        GPIO.output(RST, GPIO.HIGH)
+        time.sleep(5)
+        
+                #issue commands and wait a second
+        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
+        time.sleep(1)
+        spi0.xfer3(startup_commands1) #send initialization commands
+        time.sleep(1)
+        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
+        time.sleep(5)
+        
+        #set BR adn PM
+        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
+        time.sleep(1)
+        spi0.xfer3(startup_commands2) #send initialization commands
+        time.sleep(1)
+        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
+        time.sleep(1)
+        
+        #enable display
+        
+        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
+        time.sleep(1)
+        spi0.xfer3(display_commands) #send initialization commands
+        time.sleep(1)
+        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
