@@ -12,6 +12,8 @@ class Keyboard:
         self.caps_lock = False       # track capslock
         self.message = ['\0'] * 160  # message array initialized
         
+        GPIO.setwarnings(False)
+        
         #Configure rows/cols with each pin
         col4=3;
         row3=5;
