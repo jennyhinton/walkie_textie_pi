@@ -15,19 +15,19 @@ class Keyboard:
         GPIO.setwarnings(False)
         
         #Configure rows/cols with each pin
-        col4 = 3;
-        row3 = 5;
-        col5 = 7;
-        row4 = 11;
-        row5 = 13;
-        row6 = 15;
-        row7 = 29;
+        self.col4 = 3;
+        self.row3 = 5;
+        self.col5 = 7;
+        self.row4 = 11;
+        self.row5 = 13;
+        self.row6 = 15;
+        self.row7 = 29;
         
-        col3 = 8;
-        col2 = 10;
-        row2 = 12;
-        col1 = 16;
-        row1 = 18;
+        self.col3 = 8;
+        self.col2 = 10;
+        self.row2 = 12;
+        self.col1 = 16;
+        self.row1 = 18;
         
         #configure rows active low input and colums output
         #pull col low and check which row is low. get corresponding
