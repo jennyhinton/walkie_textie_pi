@@ -63,118 +63,118 @@ class Keyboard:
         #set col low
         GPIO.output(self.col1, GPIO.LOW)
         # check which row is low and get each char/symbol for key
-        if GPIO.input(self.row1) == LOW:
+        if GPIO.input(self.row1) == 0:
             current_char = "q"
             current_symb = "#"
-        if GPIO.intput(self.row2) == LOW:
+        if GPIO.intput(self.row2) == 0:
             current_char = "w"
             current_symb = "1"
-        if GPIO.intput(self.row3) == LOW:
+        if GPIO.intput(self.row3) == 0:
             sym = True
-        if GPIO.intput(self.row4) == LOW:
+        if GPIO.intput(self.row4) == 0:
             current_char = "a"
             current_symb = "*"
-        if GPIO.intput(self.row5) == LOW:
+        if GPIO.intput(self.row5) == 0:
             alt = True
-        if GPIO.intput(self.row6) == LOW:
+        if GPIO.intput(self.row6) == 0:
             current_char = " "
             current_symb = " "
-        if GPIO.intput(self.row7) == LOW:
+        if GPIO.intput(self.row7) == 0:
             current_char = "mic"
             current_symb = "0"
         #reset col high and move through each col
         GPIO.output(self.col1, GPIO.High)
         
         GPIO.output(self.col2, GPIO.LOW)
-        if GPIO.input(self.row1) == LOW:
+        if GPIO.input(self.row1) == 0:
             current_char = "e"
             current_symb = "2"
-        if GPIO.intput(self.row2) == LOW:
+        if GPIO.intput(self.row2) == 0:
             current_char = "s"
             current_symb = "4"
-        if GPIO.intput(self.row3) == LOW:
+        if GPIO.intput(self.row3) == 0:
             current_char = "d"
             current_symb = "5"
-        if GPIO.intput(self.row4) == LOW:
+        if GPIO.intput(self.row4) == 0:
             current_char = "p"
             current_symb = "@"
-        if GPIO.intput(self.row5) == LOW:
+        if GPIO.intput(self.row5) == 0:
             current_char = "x"
             current_symb = "8"
-        if GPIO.intput(self.row6) == LOW:
+        if GPIO.intput(self.row6) == 0:
             current_char = "z"
             current_symb = "7"
-        if GPIO.intput(self.row7) == LOW:
+        if GPIO.intput(self.row7) == 0:
             shift = True
             shiftl = True
         GPIO.output(self.col2, GPIO.High)
 
         GPIO.output(self.col3, GPIO.LOW)
-        if GPIO.input(self.row1) == LOW:
+        if GPIO.input(self.row1) == 0:
             current_char = "r"
             current_symb = "3"
-        if GPIO.intput(self.row2) == LOW:
+        if GPIO.intput(self.row2) == 0:
             current_char = "g"
             current_symb = "/"
-        if GPIO.intput(self.row3) == LOW:
+        if GPIO.intput(self.row3) == 0:
             current_char = "t"
             current_symb = "("
-        if GPIO.intput(self.row4) == LOW:
+        if GPIO.intput(self.row4) == 0:
             shift = True
             shiftr = True
-        if GPIO.intput(self.row5) == LOW:
+        if GPIO.intput(self.row5) == 0:
             current_char = "v"
             current_symb = "?"
-        if GPIO.intput(self.row6) == LOW:
+        if GPIO.intput(self.row6) == 0:
             current_char = "c"
             current_symb = "9"
-        if GPIO.intput(self.row7) == LOW:
+        if GPIO.intput(self.row7) == 0:
             current_char = "f"
             current_symb = "6"
         GPIO.output(self.col3, GPIO.High)       
         
         GPIO.output(self.col4, GPIO.LOW)
-        if GPIO.input(self.row1) == LOW:
+        if GPIO.input(self.row1) == 0:
             current_char = "u"
             current_symb = "_"
-        if GPIO.intput(self.row2) == LOW:
+        if GPIO.intput(self.row2) == 0:
             current_char = "h"
             current_symb = ":"
-        if GPIO.intput(self.row3) == LOW:
+        if GPIO.intput(self.row3) == 0:
             current_char = "y"
             current_symb = ")"
-        if GPIO.intput(self.row4) == LOW:
+        if GPIO.intput(self.row4) == 0:
             ret = True
-        if GPIO.intput(self.row5) == LOW:
+        if GPIO.intput(self.row5) == 0:
             current_char = "b"
             current_symb = "!"
-        if GPIO.intput(self.row6) == LOW:
+        if GPIO.intput(self.row6) == 0:
             current_char = "n"
             current_symb = ","
-        if GPIO.intput(self.row7) == LOW:
+        if GPIO.intput(self.row7) == 0:
             current_char = "j"
             current_symb = ";"
         GPIO.output(self.col4, GPIO.High) 
 
         GPIO.output(self.col3, GPIO.LOW)
-        if GPIO.input(self.row1) == LOW:
+        if GPIO.input(self.row1) == 0:
             current_char = "o"
             current_symb = "+"
-        if GPIO.intput(self.row2) == LOW:
+        if GPIO.intput(self.row2) == 0:
             current_char = "l"
             current_symb = "\""
-        if GPIO.intput(self.row3) == LOW:
+        if GPIO.intput(self.row3) == 0:
             current_char = "i"
             current_symb = "-"
-        if GPIO.intput(self.row4) == LOW:
+        if GPIO.intput(self.row4) == 0:
             backspace = True
-        if GPIO.intput(self.row5) == LOW:
+        if GPIO.intput(self.row5) == 0:
             current_char = "$"
             current_symb = ""
-        if GPIO.intput(self.row6) == LOW:
+        if GPIO.intput(self.row6) == 0:
             current_char = "m"
             current_symb = "."
-        if GPIO.intput(self.row7) == LOW:
+        if GPIO.intput(self.row7) == 0:
             current_char = "k"
             current_symb = "\'"
         GPIO.output(self.col5, GPIO.High)
