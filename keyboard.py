@@ -19,13 +19,13 @@ class Keyboard:
         row4=11;
         row5=13;
         row6=15;
-        row7=19;
+        row7=29;
         
-        col3=21;
-        col2=23;
-        row2=27;#invalid ig
-        col1=29;
-        row1=31;
+        col3=8;
+        col2=10;
+        row2=12;
+        col1=16;
+        row1=18;
         
         #configure rows active low input and colums output
         #pull col low and check which row is low. get corresponding
