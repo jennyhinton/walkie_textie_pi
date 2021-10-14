@@ -82,8 +82,8 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "mic"
             current_symb = "0"
-        #reset col high and move through each col
-        GPIO.output(self.col1, GPIO.High)
+        #reset col HIGH and move through each col
+        GPIO.output(self.col1, GPIO.HIGH)
         
         GPIO.output(self.col2, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
@@ -107,7 +107,7 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             shift = True
             shiftl = True
-        GPIO.output(self.col2, GPIO.High)
+        GPIO.output(self.col2, GPIO.HIGH)
 
         GPIO.output(self.col3, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
@@ -131,7 +131,7 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "f"
             current_symb = "6"
-        GPIO.output(self.col3, GPIO.High)       
+        GPIO.output(self.col3, GPIO.HIGH)       
         
         GPIO.output(self.col4, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
@@ -154,7 +154,7 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "j"
             current_symb = ";"
-        GPIO.output(self.col4, GPIO.High) 
+        GPIO.output(self.col4, GPIO.HIGH) 
 
         GPIO.output(self.col3, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
@@ -177,7 +177,7 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "k"
             current_symb = "\'"
-        GPIO.output(self.col5, GPIO.High)
+        GPIO.output(self.col5, GPIO.HIGH)
         
         
         #idk what im doing with alt or mic yet so rn nothing
