@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 
 #need to assign GPIOs
 #need to set up storing messages/deleting and such
@@ -179,7 +180,7 @@ class Keyboard:
             current_symb = "\'"
         GPIO.output(self.col5, GPIO.HIGH)
         
-        
+        time.sleep(1)
         #idk what im doing with alt or mic yet so rn nothing
         if alt:
             return ""
