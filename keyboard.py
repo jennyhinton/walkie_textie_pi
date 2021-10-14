@@ -33,19 +33,19 @@ class Keyboard:
         #pull col low and check which row is low. get corresponding
         #key then reset col and move on
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(row1 , GPIO.IN, pull_up_down=GPIO.PUD_UP) 
-        GPIO.setup(row2 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(row3 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(row4 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(row5 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(row6 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(row7 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.row1 , GPIO.IN, pull_up_down=GPIO.PUD_UP) 
+        GPIO.setup(self.row2 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.row3 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.row4 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.row5 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.row6 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.row7 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-        GPIO.setup(col1 , GPIO.OUT)
-        GPIO.setup(col2 , GPIO.OUT)
-        GPIO.setup(col3 , GPIO.OUT)
-        GPIO.setup(col4 , GPIO.OUT)
-        GPIO.setup(col5 , GPIO.OUT)
+        GPIO.setup(self.col1 , GPIO.OUT)
+        GPIO.setup(self.col2 , GPIO.OUT)
+        GPIO.setup(self.col3 , GPIO.OUT)
+        GPIO.setup(self.col4 , GPIO.OUT)
+        GPIO.setup(self.col5 , GPIO.OUT)
     
     def key_scan(self):
         sym = False        #character vs symbol
