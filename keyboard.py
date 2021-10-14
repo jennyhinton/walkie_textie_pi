@@ -61,7 +61,7 @@ class Keyboard:
         ret = False        #track return key
         
         #set col low
-        GPIO.output(col1, GPIO.LOW)
+        GPIO.output(16, GPIO.LOW)
         # check which row is low and get each char/symbol for key
         if GPIO.input(row1) == LOW:
             current_char = "q"
@@ -83,7 +83,7 @@ class Keyboard:
             current_char = "mic"
             current_symb = "0"
         #reset col high and move through each col
-        GPIO.output(col1, GPIO.High)
+        GPIO.output(16, GPIO.High)
         
         GPIO.output(col2, GPIO.LOW)
         if GPIO.input(row1) == LOW:
