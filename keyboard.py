@@ -42,11 +42,11 @@ class Keyboard:
         GPIO.setup(self.row6 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self.row7 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-        GPIO.setup(self.col1 , GPIO.OUT)
-        GPIO.setup(self.col2 , GPIO.OUT)
-        GPIO.setup(self.col3 , GPIO.OUT)
-        GPIO.setup(self.col4 , GPIO.OUT)
-        GPIO.setup(self.col5 , GPIO.OUT)
+        GPIO.setup(self.col1 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
+        GPIO.setup(self.col2 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
+        GPIO.setup(self.col3 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
+        GPIO.setup(self.col4 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
+        GPIO.setup(self.col5 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
     
     def key_scan(self):
         sym = False        #character vs symbol
@@ -62,6 +62,7 @@ class Keyboard:
         ret = False        #track return key
         
         #set col low
+        GPIO.setup(self.col1, GPIO.OUT)
         GPIO.output(self.col1, GPIO.LOW)
         # check which row is low and get each char/symbol for key
         if GPIO.input(self.row1) == 0:
@@ -84,8 +85,9 @@ class Keyboard:
             current_char = "mic"
             current_symb = "0"
         #reset col HIGH and move through each col
-        GPIO.output(self.col1, GPIO.HIGH)
+        GPIO.setup(self.col1, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
         
+        GPIO.setup(self.col2, GPIO.OUT)
         GPIO.output(self.col2, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
             current_char = "e"
@@ -108,8 +110,9 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             shift = True
             shiftl = True
-        GPIO.output(self.col2, GPIO.HIGH)
+        GPIO.setup(self.col2, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
 
+        GPIO.setup(self.col3, GPIO.OUT)
         GPIO.output(self.col3, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
             current_char = "r"
@@ -132,8 +135,9 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "f"
             current_symb = "6"
-        GPIO.output(self.col3, GPIO.HIGH)       
+        GPIO.setup(self.col3, GPIO.IN, pull_up_down=GPIO.PUD_OFF)       
         
+        GPIO.setup(self.col4, GPIO.OUT)
         GPIO.output(self.col4, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
             current_char = "u"
@@ -155,9 +159,10 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "j"
             current_symb = ";"
-        GPIO.output(self.col4, GPIO.HIGH) 
+        GPIO.setup(self.col4, GPIO.IN, pull_up_down=GPIO.PUD_OFF) 
 
-        GPIO.output(self.col3, GPIO.LOW)
+        GPIO.setup(self.col5, GPIO.OUT)
+        GPIO.output(self.col5, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
             current_char = "o"
             current_symb = "+"
@@ -178,7 +183,7 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "k"
             current_symb = "\'"
-        GPIO.output(self.col5, GPIO.HIGH)
+        GPIO.setup(self.col5, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
         
         time.sleep(1)
         #idk what im doing with alt or mic yet so rn nothing
