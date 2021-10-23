@@ -94,6 +94,7 @@ class Keyboard:
         GPIO.setup(self.col2, GPIO.OUT)
         GPIO.output(self.col2, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
+            print(current_char)
             current_char = "e"
             current_symb = "2"
         if GPIO.input(self.row2) == 0:
@@ -122,6 +123,7 @@ class Keyboard:
             current_char = "r"
             current_symb = "3"
         if GPIO.input(self.row2) == 0:
+            print(current_char)
             current_char = "g"
             current_symb = "/"
         if GPIO.input(self.row3) == 0:
@@ -150,6 +152,7 @@ class Keyboard:
             current_char = "h"
             current_symb = ":"
         if GPIO.input(self.row3) == 0:
+            print(current_char)
             current_char = "y"
             current_symb = ")"
         if GPIO.input(self.row4) == 0:
