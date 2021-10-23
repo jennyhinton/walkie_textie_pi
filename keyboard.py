@@ -175,7 +175,7 @@ class Keyboard:
             current_char = "l"
             current_symb = "\""
         if GPIO.input(self.row3) == 0:
-            print("5-3")
+            print("current_char")
             current_char = "i"
             current_symb = "-"
         if GPIO.input(self.row4) == 0:
@@ -217,7 +217,6 @@ class Keyboard:
         #if shift:
         #    print("capital")
         #    current_char = current_char - 32
-        print(backspace)
         if sym:
             print("symbol")
             return current_symb
