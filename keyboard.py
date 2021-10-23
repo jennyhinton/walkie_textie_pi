@@ -176,7 +176,7 @@ class Keyboard:
         if GPIO.input(self.row3) == 0:
             print(current_char)
             current_char = "i"
-            current_symb = "-"
+            #current_symb = "-"
         if GPIO.input(self.row4) == 0:
             backspace = True
         if GPIO.input(self.row5) == 0:
