@@ -195,6 +195,7 @@ class Keyboard:
         print("5 second wait")
         time.sleep(5)
         #idk what im doing with alt or mic yet so rn nothing
+        
         if alt:
             print("alt is set")
             return ""
@@ -221,7 +222,7 @@ class Keyboard:
         else:
             print("good return")
             return current_char
-    
+        print("past returns")
     def update_message(input):
         if input == "":   #do nothing
             pass
