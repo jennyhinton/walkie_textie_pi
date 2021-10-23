@@ -61,9 +61,6 @@ class Keyboard:
         shiftr = False     #1/2 capslock
         ret = False        #track return key
         
-        print("backspace value: ")
-        print(backspace)
-        print(current_char)
         
         #set col low
         GPIO.setup(self.col1, GPIO.OUT)
@@ -150,9 +147,11 @@ class Keyboard:
             current_char = "h"
             current_symb = ":"
         if GPIO.input(self.row3) == 0:
+            print("Row 3 Column 4")
             current_char = "y"
             current_symb = ")"
         if GPIO.input(self.row4) == 0:
+            print("Row 4 Column 4")
             ret = True
         if GPIO.input(self.row5) == 0:
             current_char = "b"
@@ -174,10 +173,11 @@ class Keyboard:
             current_char = "l"
             current_symb = "\""
         if GPIO.input(self.row3) == 0:
-            print(current_char)
+            print("Row 3 Column 5")
             current_char = "i"
-            #current_symb = "-"
+            current_symb = "-"
         if GPIO.input(self.row4) == 0:
+            print("Row 4 Column 5")
             backspace = True
         if GPIO.input(self.row5) == 0:
             current_char = "$"
@@ -215,10 +215,8 @@ class Keyboard:
         #    print("capital")
         #    current_char = current_char - 32
         if sym:
-            print("symbol")
             return current_symb
         else:
-            print(current_char)
             return current_char
         
     def update_message(input):
