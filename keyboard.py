@@ -61,6 +61,7 @@ class Keyboard:
         shiftr = False     #1/2 capslock
         ret = False        #track return key
         
+        print("backspace value: ")
         print(backspace)
         
         #set col low
