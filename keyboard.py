@@ -168,6 +168,7 @@ class Keyboard:
             current_char = "o"
             current_symb = "+"
         if GPIO.input(self.row2) == 0:
+            print("5-2")
             current_char = "l"
             current_symb = "\""
         if GPIO.input(self.row3) == 0:
@@ -175,11 +176,13 @@ class Keyboard:
             current_char = "i"
             current_symb = "-"
         if GPIO.input(self.row4) == 0:
+            print("5-4")
             backspace = True
         if GPIO.input(self.row5) == 0:
             current_char = "$"
             current_symb = ""
         if GPIO.input(self.row6) == 0:
+            print("5-6")
             current_char = "m"
             current_symb = "."
         if GPIO.input(self.row7) == 0:
