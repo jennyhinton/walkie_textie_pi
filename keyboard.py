@@ -196,27 +196,27 @@ class Keyboard:
         time.sleep(5)
         #idk what im doing with alt or mic yet so rn nothing
         
-        if alt:
-            print("alt is set")
-            return ""
+        #if alt:
+        #    print("alt is set")
+        #    return ""
         #if current_char = "mic":
         #    return ""
          
         #if backspace:
         #    return "backspace"
-        if ret:
-            print("return")
-            return "\n"
-        if shiftl and shiftr:
-            print("shifts")
-            self.capslock = not self.capslock
-            return ""
-        if self.capslock:
-            print("capslock")
-            shift = True
-        if shift:
-            print("capital")
-            current_char = current_char - 32
+        #if ret:
+        #    print("return")
+        #    return "\n"
+        #if shiftl and shiftr:
+        #    print("shifts")
+        #    self.capslock = not self.capslock
+        #    return ""
+        #if self.capslock:
+        #    print("capslock")
+        #    shift = True
+        #if shift:
+        #    print("capital")
+        #    current_char = current_char - 32
         if sym:
             print("symbol")
             return current_symb
