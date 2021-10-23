@@ -12,6 +12,7 @@ def main():
     print (keyboard.key_scan())
     print (keyboard.key_scan())
     print (keyboard.key_scan())
+    print ("halfway")
     print (keyboard.key_scan())
     print (keyboard.key_scan())
     print (keyboard.key_scan())

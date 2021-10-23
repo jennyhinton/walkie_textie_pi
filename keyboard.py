@@ -22,7 +22,7 @@ class Keyboard:
         self.row4 = 11;
         self.row5 = 13;
         self.row6 = 15;
-        self.row7 = 29;
+        self.row7 = 37;
         
         self.col3 = 8;
         self.col2 = 10;
@@ -30,7 +30,7 @@ class Keyboard:
         self.col1 = 16;
         self.row1 = 18;
         
-        #configure rows active low input and colums output
+        #configure rows active low input and colums high impedance output
         #pull col low and check which row is low. get corresponding
         #key then reset col and move on
         GPIO.setmode(GPIO.BOARD)
@@ -50,8 +50,8 @@ class Keyboard:
     
     def key_scan(self):
         sym = False        #character vs symbol
-        current_char = 0   #current character
-        current_symb = 0   #current symbol
+        current_char = None   #current character
+        current_symb = None   #current symbol
         
         shift = False      #track shift key
         alt = False        #track alt key...idk the purpose of this yet
@@ -65,13 +65,16 @@ class Keyboard:
         GPIO.setup(self.col1, GPIO.OUT)
         GPIO.output(self.col1, GPIO.LOW)
         # check which row is low and get each char/symbol for key
-        if GPIO.input(self.row1) == 0:
+        if GPIO.input(self.row1) == 1:
+            print("row 1 col 1 1st spot")
             current_char = "q"
             current_symb = "#"
-        if GPIO.input(self.row2) == 0:
+            print("row 1 col 1 2nd spot")
+        if GPIO.input(self.row2) == 1:
+            print("row 2 col 1 1st spot")
             current_char = "w"
             current_symb = "1"
-        if GPIO.input(self.row3) == 0:
+        if GPIO.input(self.row3) == 1:
             sym = True
         if GPIO.input(self.row4) == 0:
             current_char = "a"
@@ -184,10 +187,11 @@ class Keyboard:
             current_char = "k"
             current_symb = "\'"
         GPIO.setup(self.col5, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
-        
-        time.sleep(1)
+        print("5 second wait")
+        time.sleep(5)
         #idk what im doing with alt or mic yet so rn nothing
         if alt:
+            print("alt is set")
             return ""
         #if current_char = "mic":
         #    return ""
@@ -197,15 +201,20 @@ class Keyboard:
         if ret:
             return "\n"
         if shiftl and shiftr:
+            print("shifts")
             self.capslock = not self.capslock
             return ""
         if self.capslock:
+            print("capslock")
             shift = True
         if shift:
+            print("capital")
             current_char = current_char - 32
         if sym:
+            print("symbol")
             return current_symb
         else:
+            print("good return")
             return current_char
     
     def update_message(input):
