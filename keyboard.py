@@ -205,6 +205,7 @@ class Keyboard:
         #if backspace:
         #    return "backspace"
         if ret:
+            print("return")
             return "\n"
         if shiftl and shiftr:
             print("shifts")
