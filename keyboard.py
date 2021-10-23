@@ -61,10 +61,11 @@ class Keyboard:
         shiftr = False     #1/2 capslock
         ret = False        #track return key
         
+        print(backspace)
+        
         #set col low
         GPIO.setup(self.col1, GPIO.OUT)
         GPIO.output(self.col1, GPIO.LOW)
-        time.sleep(3)
         # check which row is low and get each char/symbol for key
         if GPIO.input(self.row1) == 0:
             current_char = "q"
@@ -214,6 +215,7 @@ class Keyboard:
         #if shift:
         #    print("capital")
         #    current_char = current_char - 32
+        print(backspace)
         if sym:
             print("symbol")
             return current_symb
