@@ -49,7 +49,7 @@ class Keyboard:
         GPIO.setup(self.col5 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
     
     def key_scan(self):
-        sym = True        #character vs symbol
+        sym = False        #character vs symbol
         current_char = "nothing"   #current character
         current_symb = None   #current symbol
         
@@ -141,9 +141,11 @@ class Keyboard:
         GPIO.setup(self.col4, GPIO.OUT)
         GPIO.output(self.col4, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
+            print("Row 1 Column 4")
             current_char = "u"
             current_symb = "_"
         if GPIO.input(self.row2) == 0:
+            print("Row 2 Column 4")
             current_char = "h"
             current_symb = ":"
         if GPIO.input(self.row3) == 0:
