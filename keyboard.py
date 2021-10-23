@@ -67,13 +67,9 @@ class Keyboard:
         time.sleep(3)
         # check which row is low and get each char/symbol for key
         if GPIO.input(self.row1) == 0:
-            print("row 1 col 1 1st spot")
             current_char = "q"
             current_symb = "#"
-            print("row 1 col 1 2nd spot")
-        ("after 1st row")
         if GPIO.input(self.row2) == 0:
-            print("row 2 col 1 1st spot")
             current_char = "w"
             current_symb = "1"
         if GPIO.input(self.row3) == 0:
@@ -90,16 +86,13 @@ class Keyboard:
             current_char = "mic"
             current_symb = "0"
         #reset col HIGH and move through each col
-        print("after 1st col")
         GPIO.setup(self.col1, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
         
         GPIO.setup(self.col2, GPIO.OUT)
         GPIO.output(self.col2, GPIO.LOW)
-        print("in 2nd col")
         if GPIO.input(self.row1) == 0:
             current_char = "e"
             current_symb = "2"
-            print ("1st row")
         if GPIO.input(self.row2) == 0:
             current_char = "s"
             current_symb = "4"
@@ -221,9 +214,9 @@ class Keyboard:
             print("symbol")
             return current_symb
         else:
-            print("good return")
+            print(current_char)
             return current_char
-        print("past returns")
+        
     def update_message(input):
         if input == "":   #do nothing
             pass
