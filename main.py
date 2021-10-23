@@ -7,8 +7,6 @@ def main():
     #buttons = Buttons()
     #screen = Screen()
     print ("10 things")
-    variable = keyboard.key_scan()
-    print (variable)
     print (keyboard.key_scan())
     print (keyboard.key_scan())
     print (keyboard.key_scan())

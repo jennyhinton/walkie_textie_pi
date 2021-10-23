@@ -63,6 +63,7 @@ class Keyboard:
         
         print("backspace value: ")
         print(backspace)
+        print(current_char)
         
         #set col low
         GPIO.setup(self.col1, GPIO.OUT)
