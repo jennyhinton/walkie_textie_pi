@@ -49,7 +49,7 @@ class Keyboard:
         GPIO.setup(self.col5 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
     
     def key_scan(self):
-        sym = False        #character vs symbol
+        sym = True        #character vs symbol
         current_char = "nothing"   #current character
         current_symb = None   #current symbol
         
@@ -94,7 +94,6 @@ class Keyboard:
         GPIO.setup(self.col2, GPIO.OUT)
         GPIO.output(self.col2, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
-            print(current_char)
             current_char = "e"
             current_symb = "2"
         if GPIO.input(self.row2) == 0:
@@ -123,7 +122,6 @@ class Keyboard:
             current_char = "r"
             current_symb = "3"
         if GPIO.input(self.row2) == 0:
-            print(current_char)
             current_char = "g"
             current_symb = "/"
         if GPIO.input(self.row3) == 0:
@@ -152,7 +150,6 @@ class Keyboard:
             current_char = "h"
             current_symb = ":"
         if GPIO.input(self.row3) == 0:
-            print(current_char)
             current_char = "y"
             current_symb = ")"
         if GPIO.input(self.row4) == 0:
