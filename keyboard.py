@@ -49,7 +49,7 @@ class Keyboard:
         GPIO.setup(self.col5 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
     
     def key_scan(self):
-        print(GPIO.input(self.row3))
+        print(f'first Row 3 State: {GPIO.input(self.row3)}')
         
         sym = False        #character vs symbol
         current_char = "nothing"   #current character
@@ -74,6 +74,7 @@ class Keyboard:
         if GPIO.input(self.row2) == 0:
             current_char = "w"
             current_symb = "1"
+        print(f'Col 1 Row 3 State: {GPIO.input(self.row3)}')
         if GPIO.input(self.row3) == 0:
             sym = True
         if GPIO.input(self.row4) == 0:
@@ -98,6 +99,7 @@ class Keyboard:
         if GPIO.input(self.row2) == 0:
             current_char = "s"
             current_symb = "4"
+        print(f'Col 2 Row 3 State: {GPIO.input(self.row3)}')
         if GPIO.input(self.row3) == 0:
             current_char = "d"
             current_symb = "5"
@@ -123,6 +125,7 @@ class Keyboard:
         if GPIO.input(self.row2) == 0:
             current_char = "g"
             current_symb = "/"
+        print(f'col 3 Row 3 State: {GPIO.input(self.row3)}')
         if GPIO.input(self.row3) == 0:
             current_char = "t"
             current_symb = "("
@@ -148,9 +151,11 @@ class Keyboard:
         if GPIO.input(self.row2) == 0:
             current_char = "h"
             current_symb = ":"
+        print(f'COl4 before Row 3 State: {GPIO.input(self.row3)}')
         if GPIO.input(self.row3) == 0:
             current_char = "y"
             current_symb = ")"
+        print(f'Col 4 after Row 3 State: {GPIO.input(self.row3)}')
         if GPIO.input(self.row4) == 0:
             ret = True
         if GPIO.input(self.row5) == 0:
@@ -172,10 +177,12 @@ class Keyboard:
         if GPIO.input(self.row2) == 0:
             current_char = "l"
             current_symb = "\""
+        print(f'col 5 before Row 3 State: {GPIO.input(self.row3)}')
         if GPIO.input(self.row3) == 0:
             print("Row 3 Column 5")
             current_char = "i"
             current_symb = "-"
+        print(f'Col5 after Row 3 State: {GPIO.input(self.row3)}')
         if GPIO.input(self.row4) == 0:
             print("Row 4 Column 5")
             backspace = True
