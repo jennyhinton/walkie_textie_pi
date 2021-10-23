@@ -171,6 +171,7 @@ class Keyboard:
             current_char = "l"
             current_symb = "\""
         if GPIO.input(self.row3) == 0:
+            print("5-3")
             current_char = "i"
             current_symb = "-"
         if GPIO.input(self.row4) == 0:
