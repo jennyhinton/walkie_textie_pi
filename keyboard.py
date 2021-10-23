@@ -50,7 +50,7 @@ class Keyboard:
     
     def key_scan(self):
         sym = False        #character vs symbol
-        current_char = None   #current character
+        current_char = "nothing"   #current character
         current_symb = None   #current symbol
         
         shift = False      #track shift key
@@ -65,16 +65,16 @@ class Keyboard:
         GPIO.setup(self.col1, GPIO.OUT)
         GPIO.output(self.col1, GPIO.LOW)
         # check which row is low and get each char/symbol for key
-        if GPIO.input(self.row1) == 1:
+        if GPIO.input(self.row1) == 0:
             print("row 1 col 1 1st spot")
             current_char = "q"
             current_symb = "#"
             print("row 1 col 1 2nd spot")
-        if GPIO.input(self.row2) == 1:
+        if GPIO.input(self.row2) == 0:
             print("row 2 col 1 1st spot")
             current_char = "w"
             current_symb = "1"
-        if GPIO.input(self.row3) == 1:
+        if GPIO.input(self.row3) == 0:
             sym = True
         if GPIO.input(self.row4) == 0:
             current_char = "a"
