@@ -34,7 +34,7 @@ class Screen:
         set_temp_comp_curve1 = int("FA", 16)     #set to -0.11 %/C
         set_temp_comp_curve2 = int("90", 16)
         enable_display = int("AF", 16)
-        
+        disable_display = int("AE", 16)
         
         startup_commands1 = [
             display_start_line,
@@ -82,10 +82,29 @@ class Screen:
         
         #issue commands and wait a second
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        #time.sleep(1)
         spi0.xfer3(startup_commands) #send initialization commands
-        #time.sleep(1)
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
+        
+        startup_commands = [
+            disable_display
+            enable_all_pixels
+        ]
+        wakeup_commands = [
+            disable_all_pixels
+            enable_display
+        ]
+        
+        #try sleep mode
+        GPIO.output(CD, GPIO.LOW)
+        spi0.xfer3(sleep_commands) 
+        GPIO.output(CD, GPIO.HIGH)
+        print("sleeping 5 secs")
+        time.sleep(5)
+        print ("wake up")
+        GPIO.output(CD, GPIO.LOW)
+        spi0.xfer3(wakeup_commands) 
+        GPIO.output(CD, GPIO.HIGH)
+        
         
         #trying rectangle thing
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode

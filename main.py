@@ -9,6 +9,10 @@ def main():
     
     print "Hit enter to end"
     input()
+    
+    GPIO.output(RST, GPIO.LOW)
+    time.sleep(1)
+    print "unplug now"
     GPIO.cleanup()
 
     
