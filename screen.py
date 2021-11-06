@@ -89,7 +89,8 @@ class Screen:
         spi0.xfer3(wakeup_commands) 
         GPIO.output(CD, GPIO.HIGH)
         
-        
+        time.sleep(5)
+
         #trying rectangle thing
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
         startcol = 0
