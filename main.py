@@ -7,8 +7,7 @@ def main():
     #buttons = Buttons()
     screen = Screen()
     
-    print "Hit enter to end"
-    message = input()
+    message = input("Hit enter to end")
     
     GPIO.output(RST, GPIO.LOW)
     time.sleep(1)

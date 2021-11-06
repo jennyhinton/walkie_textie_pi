@@ -67,6 +67,8 @@ class Screen:
         spi0.xfer3(startup_commands) #send initialization commands
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
+        print ("started")
+        
         sleep_commands = [
             disable_display,
             enable_all_pixels
@@ -101,7 +103,8 @@ class Screen:
         
         for y in range(startpg, endpg+1):
             for x in range(startcol, endcol+1):
-                spi0.xfer3(pattern_commands)
+                #spi0.xfer3(pattern_commands)
+                pass
                 
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
