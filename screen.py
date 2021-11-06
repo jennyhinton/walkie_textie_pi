@@ -136,7 +136,7 @@ class Screen:
                 var1 = '0' + temp1
                 temp = colmsb(x)
                 var = '0' + temp
-                location commands = [
+                location_commands = [
                     int(var1,16)  #set LSB col address
                     int(var,16)  #set MSB col address
                     page[y]  #set page address
