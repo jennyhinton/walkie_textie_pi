@@ -115,13 +115,13 @@ class Screen:
             col0,
         ]
         off_commands = [
-            col1
+            col0
         ]
         
         spi0.xfer3(location_commands)
         GPIO.output(CD, GPIO.HIGH)
         spi0.xfer3(off_commands)
-        
+        print("00")
         location_commands = [
             page1,
             col1,
@@ -130,7 +130,7 @@ class Screen:
         spi0.xfer3(location_commands)
         GPIO.output(CD, GPIO.HIGH)
         spi0.xfer3(off_commands)
-        
+        print("11")
         location_commands = [
             page2,
             col2,
@@ -139,7 +139,7 @@ class Screen:
         spi0.xfer3(location_commands)
         GPIO.output(CD, GPIO.HIGH)
         spi0.xfer3(off_commands)
-        
+        print("22")
         location_commands = [
             page3,
             col3,
@@ -148,7 +148,7 @@ class Screen:
         spi0.xfer3(location_commands)
         GPIO.output(CD, GPIO.HIGH)
         spi0.xfer3(off_commands)
-        
+        print("33")
         
         
         print("anything?")
