@@ -130,8 +130,8 @@ class Screen:
             int("01",16)
         ]
         
-        for y in range(0, 8)
-            for x in range(0, 132)
+        for y in range(8):
+            for x in range(132):
                 location commands = [
                     temp = collsb(x)
                     var = '0' + temp
