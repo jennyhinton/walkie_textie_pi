@@ -95,17 +95,13 @@ class Screen:
         endpg = 7
         pattern = 0x55
         
-        char x,y
         for y in range(startpg, endpg+1):
             for x in range(startcol, endcol+1):
                 spi0.xfer3(pattern)
                 
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
-        print("unplug in a sec")
+        print("anything?")
         
-        GPIO.output(RST, GPIO.LOW)
-        time.sleep(1)
-        GPIO.output(RST, GPIO.HIGH)
         time.sleep(5)
                 
