@@ -7,11 +7,7 @@ def main():
     #buttons = Buttons()
     screen = Screen()
     
-    message = input("Hit enter to end")
     
-    GPIO.output(RST, GPIO.LOW)
-    time.sleep(1)
-    print "unplug now"
     GPIO.cleanup()
 
     

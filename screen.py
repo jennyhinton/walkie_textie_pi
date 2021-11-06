@@ -41,7 +41,7 @@ class Screen:
             set_SEG_bottom,
             set_direction_normal,
             
-            disable_all_pixels,
+            enable_all_pixels,
             disable_inverse_display,
             
             set_bias,
@@ -112,4 +112,11 @@ class Screen:
         print("anything?")
         
         time.sleep(5)
+        
+        message = input("Hit enter to end")
+        print(message)
+        
+        GPIO.output(RST, GPIO.LOW)
+        time.sleep(1)
+        print "unplug now"
                 
