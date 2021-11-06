@@ -67,6 +67,7 @@ class Screen:
         spi0.xfer3(startup_commands) #send initialization commands
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
+        time.sleep(5)
         print ("started")
         
         sleep_commands = [
@@ -113,8 +114,7 @@ class Screen:
         
         time.sleep(5)
         
-        message = input("Hit enter to end")
-        print(message)
+        raw_input("Hit enter to end")
         
         GPIO.output(RST, GPIO.LOW)
         time.sleep(1)
