@@ -41,7 +41,7 @@ class Screen:
             set_SEG_bottom,
             set_direction_normal,
             
-            enable_all_pixels,
+            disable_all_pixels,
             disable_inverse_display,
             
             set_bias,
