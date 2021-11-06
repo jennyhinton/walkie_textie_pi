@@ -41,7 +41,7 @@ class Screen:
             set_SEG_bottom,
             set_direction_normal,
             
-            enable_all_pixels,
+            disable_all_pixels,
             disable_inverse_display,
             
             set_bias,
@@ -95,18 +95,19 @@ class Screen:
         #trying rectangle thing
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
         startcol = 0
-        startpg = 1
-        endcol = 50
+        startpg = 0
+        endcol = 101
         endpg = 7
-        pattern = int("55", 16)
+        pattern = int("00", 16)
         pattern_commands = [
             pattern
         ]
         
         for y in range(startpg, endpg+1):
             for x in range(startcol, endcol+1):
-                #spi0.xfer3(pattern_commands)
+                spi0.xfer3(pattern_commands)
                 pass
+                
                 
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
@@ -119,4 +120,6 @@ class Screen:
         GPIO.output(RST, GPIO.LOW)
         time.sleep(1)
         print "unplug now"
+        GPIO.cleanup()
+
                 

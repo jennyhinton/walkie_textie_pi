@@ -7,9 +7,5 @@ def main():
     #buttons = Buttons()
     screen = Screen()
     
-    
-    GPIO.cleanup()
-
-    
 if __name__ == "__main__":
     main()
