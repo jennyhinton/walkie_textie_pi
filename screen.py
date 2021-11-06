@@ -68,11 +68,11 @@ class Screen:
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
         sleep_commands = [
-            disable_display
+            disable_display,
             enable_all_pixels
         ]
         wakeup_commands = [
-            disable_all_pixels
+            disable_all_pixels,
             enable_display
         ]
         
