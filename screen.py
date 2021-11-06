@@ -78,7 +78,7 @@ class Screen:
         GPIO.output(RST, GPIO.LOW)
         time.sleep(1)
         GPIO.output(RST, GPIO.HIGH)
-        time.sleep(1)
+        time.sleep(5)
         
         #issue commands and wait a second
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
@@ -91,7 +91,7 @@ class Screen:
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
         startcol = 0
         startpg = 1
-        endcol = 101
+        endcol = 50
         endpg = 7
         pattern = int("55", 16)
         pattern_commands = [
