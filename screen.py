@@ -36,6 +36,7 @@ class Screen:
         enable_display = int("AF", 16)
         disable_display = int("AE", 16)
         
+        
         startup_commands = [
             display_start_line,
             set_SEG_bottom,
@@ -98,18 +99,57 @@ class Screen:
         startpg = 0
         endcol = 101
         endpg = 7
+        
+        page0 = int("B0",16)  #page 0
+        page1 = int("B1",16)  #page 1
+        page2 = int("B2",16)  #page 2
+        page3 = int("B3",16)  
+        col0 = int("00",16)  #column 0
+        col1 = int("01",16)  #column 1
+        col2 = int("02",16)  #column 2
+        col3 = int("03",16)  #column 3
+        
         pattern = int("00", 16)
-        pattern_commands = [
-            pattern
+        location_commands = [
+            page0,
+            col0,
+        ]
+        off_commands = [
+            col0
         ]
         
-        for y in range(startpg, endpg+1):
-            for x in range(startcol, endcol+1):
-                spi0.xfer3(pattern_commands)
-                pass
-                
-                
-        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
+        spi0.xfer3(location_commands)
+        GPIO.output(CD, GPIO.HIGH)
+        spi0.xfer3(off_commands)
+        
+        location_commands = [
+            page1,
+            col1,
+        ]
+        GPIO.output(CD, GPIO.LOW)
+        spi0.xfer3(location_commands)
+        GPIO.output(CD, GPIO.HIGH)
+        spi0.xfer3(off_commands)
+        
+        location_commands = [
+            page2,
+            col2,
+        ]
+        GPIO.output(CD, GPIO.LOW)
+        spi0.xfer3(location_commands)
+        GPIO.output(CD, GPIO.HIGH)
+        spi0.xfer3(off_commands)
+        
+        location_commands = [
+            page3,
+            col3,
+        ]
+        GPIO.output(CD, GPIO.LOW)
+        spi0.xfer3(location_commands)
+        GPIO.output(CD, GPIO.HIGH)
+        spi0.xfer3(off_commands)
+        
+        
         
         print("anything?")
         
