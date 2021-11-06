@@ -93,63 +93,58 @@ class Screen:
         
         time.sleep(5)
 
-        #trying rectangle thing
-        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
+
         startcol = 0
         startpg = 0
         endcol = 101
         endpg = 7
         
-        page0 = int("B0",16)  #page 0
-        page1 = int("B1",16)  #page 1
-        page2 = int("B2",16)  #page 2
-        page3 = int("B3",16)  
-        col0 = int("00",16)  #column 0
-        col1 = int("01",16)  #column 1
-        col2 = int("02",16)  #column 2
-        col3 = int("03",16)  #column 3
-        
-        pattern = int("00", 16)
-        location_commands = [
-            page0,
-            col0,
-        ]
-        off_commands = [
-            col1
+        page = [
+            int("B0",16),
+            int("B1",16),
+            int("B2",16),
+            int("B3",16),  
+            int("B4",16),  
+            int("B5",16), 
+            int("B6",16), 
+            int("B7",16)  
         ]
         
-        spi0.xfer3(location_commands)
-        GPIO.output(CD, GPIO.HIGH)
-        spi0.xfer3(off_commands)
-        print("00")
-        location_commands = [
-            page0,
-            col1,
-        ]
-        GPIO.output(CD, GPIO.LOW)
-        spi0.xfer3(location_commands)
-        GPIO.output(CD, GPIO.HIGH)
-        spi0.xfer3(off_commands)
-        print("11")
-        location_commands = [
-            page0,
-            col2,
-        ]
-        GPIO.output(CD, GPIO.LOW)
-        spi0.xfer3(location_commands)
-        GPIO.output(CD, GPIO.HIGH)
-        spi0.xfer3(off_commands)
-        print("22")
-        location_commands = [
-            page0,
-            col3,
-        ]
-        GPIO.output(CD, GPIO.LOW)
-        spi0.xfer3(location_commands)
-        GPIO.output(CD, GPIO.HIGH)
-        spi0.xfer3(off_commands)
-        print("33")
+        collsb = [0]*132
+        colmsb = [0]*132
+        for x in range(132):
+            index = x
+            if x in range(16):
+                x = hex(x)
+                collsb[index] = x[-1]
+                colmsb[index] = '0'
+            else:
+                x = hex(x)
+                collsb[index] = x[-1]
+                colmsb[index] = x[-2]
         
+        pixeloff_commands = [
+            int("00",16)
+        ]
+        pixelon_commands = [
+            int("01",16)
+        ]
+        
+        for y in range(8)
+            for x in range(132)
+                location commands = [
+                    temp = collsb(x)
+                    var = '0' + temp
+                    int(var,16)  #set LSB col address
+                    temp = colmsb(x)
+                    var = '0' + temp
+                    int(var,16)  #set MSB col address
+                    page[y]  #set page address
+                ]
+                GPIO.output(CD, GPIO.LOW)
+                spi0.xfer3(location_commands)
+                GPIO.output(CD, GPIO.HIGH)
+                spi0.xfer3(pixeloff_commands)
         
         print("anything?")
         
