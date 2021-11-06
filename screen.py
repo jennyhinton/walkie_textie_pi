@@ -115,7 +115,7 @@ class Screen:
             col0,
         ]
         off_commands = [
-            col0
+            col1
         ]
         
         spi0.xfer3(location_commands)
