@@ -36,24 +36,6 @@ class Screen:
         enable_display = int("AF", 16)
         disable_display = int("AE", 16)
         
-        startup_commands1 = [
-            display_start_line,
-            set_SEG_bottom,
-            set_direction_normal,
-            disable_all_pixels,
-            disable_inverse_display
-        ]
-        startup_commands2 = [
-            set_bias,
-            set_power_control,
-            set_contrast1,
-            set_contrast2,
-            set_contrast3
-        ]
-        display_commands = [
-            enable_display
-        ]
-        
         startup_commands = [
             display_start_line,
             set_SEG_bottom,
@@ -85,7 +67,7 @@ class Screen:
         spi0.xfer3(startup_commands) #send initialization commands
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
-        startup_commands = [
+        sleep_commands = [
             disable_display
             enable_all_pixels
         ]
