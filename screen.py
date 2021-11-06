@@ -93,11 +93,14 @@ class Screen:
         startpg = 1
         endcol = 101
         endpg = 7
-        pattern = 0x55
+        pattern = int("55", 16)
+        pattern_commands = [
+            pattern
+        ]
         
         for y in range(startpg, endpg+1):
             for x in range(startcol, endcol+1):
-                spi0.xfer3(pattern)
+                spi0.xfer3(pattern_commands)
                 
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
         
