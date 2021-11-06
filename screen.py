@@ -132,12 +132,12 @@ class Screen:
         
         for y in range(8):
             for x in range(132):
+                temp1 = collsb(x)
+                var1 = '0' + temp1
+                temp = colmsb(x)
+                var = '0' + temp
                 location commands = [
-                    temp = collsb(x)
-                    var = '0' + temp
-                    int(var,16)  #set LSB col address
-                    temp = colmsb(x)
-                    var = '0' + temp
+                    int(var1,16)  #set LSB col address
                     int(var,16)  #set MSB col address
                     page[y]  #set page address
                 ]
