@@ -6,6 +6,9 @@ import time
 
 class Screen:
     def __init__(self):
+        
+        GPIO.setwarnings(False)
+
         spi0 = spidev.SpiDev()
         spi0.open(0,0)                #spi bus 0 with chip select 0
         spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
@@ -16,9 +19,7 @@ class Screen:
         GPIO.setup(CD,GPIO.OUT)   #set pin 3 (GPIO 2) as output for CD pin
         GPIO.setup(RST,GPIO.OUT)   #reset pin
 
-        
-        #send commands
-        
+        #Screen commands as uint16        
         display_start_line = int("40", 16)    #start line at 0
         set_SEG_bottom = int("A1", 16)        #bottom (normal) view
         set_direction_normal = int("C0", 16)  #com0-com63
@@ -77,66 +78,34 @@ class Screen:
         GPIO.output(RST, GPIO.LOW)
         time.sleep(1)
         GPIO.output(RST, GPIO.HIGH)
-        time.sleep(5)
+        time.sleep(1)
         
         #issue commands and wait a second
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        time.sleep(1)
-        spi0.xfer3(startup_commands1) #send initialization commands
-        time.sleep(1)
+        #time.sleep(1)
+        spi0.xfer3(startup_commands) #send initialization commands
+        #time.sleep(1)
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
-        time.sleep(5)
         
-        #set BR adn PM
+        #trying rectangle thing
         GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        time.sleep(1)
-        spi0.xfer3(startup_commands2) #send initialization commands
-        time.sleep(1)
+        startcol = 0
+        startpg = 1
+        endcol = 101
+        endpg = 7
+        pattern = 0x55
+        
+        char x,y
+        for y in range(startpg, endpg+1):
+            for x in range(startcol, endcol+1):
+                spi0.xfer3(pattern)
+                
         GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
-        time.sleep(1)
         
-        #enable display
-        
-        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        time.sleep(1)
-        spi0.xfer3(display_commands) #send initialization commands
-        time.sleep(1)
-        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
-        
-        print("all pixels off")
-        
-        time.sleep(10)
-        
-        print("all pixels on")
+        print("unplug in a sec")
         
         GPIO.output(RST, GPIO.LOW)
         time.sleep(1)
         GPIO.output(RST, GPIO.HIGH)
         time.sleep(5)
-        
-                #issue commands and wait a second
-        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        time.sleep(1)
-        spi0.xfer3(startup_commands1) #send initialization commands
-        time.sleep(1)
-        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
-        time.sleep(5)
-        
-        #set BR adn PM
-        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        time.sleep(1)
-        spi0.xfer3(startup_commands2) #send initialization commands
-        time.sleep(1)
-        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
-        time.sleep(1)
-        
-        #enable display
-        
-        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        time.sleep(1)
-        spi0.xfer3(display_commands) #send initialization commands
-        time.sleep(1)
-        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
-        
-        GPIO.output(RST, GPIO.LOW)
-        
+                

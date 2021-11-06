@@ -3,29 +3,10 @@ from buttons import Buttons
 from keyboard import Keyboard
 
 def main():
-    keyboard = Keyboard()
+    #keyboard = Keyboard()
     #buttons = Buttons()
-    #screen = Screen()
-    print ("10 things")
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
-    print (keyboard.key_scan())
+    screen = Screen()
     
-    print("5 things before print")
-    keyboard.update_message(keyboard.key_scan())
-    keyboard.update_message(keyboard.key_scan())
-    keyboard.update_message(keyboard.key_scan())
-    keyboard.update_message(keyboard.key_scan())
-    keyboard.update_message(keyboard.key_scan())
-    print (Keyboard.message)
-
     print "Hit enter to end"
     input()
     GPIO.cleanup()
