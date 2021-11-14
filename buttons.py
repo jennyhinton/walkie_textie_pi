@@ -27,7 +27,7 @@ class Buttons:
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
         self.ptt = 10#GPIO = PTT button
-        self.power = 8#GPIO = power button
+        self.power = 5#GPIO = power button
         self.up = 12#GPIO = up button
         self.left = 21#GPIO = down button
         self.center = 13#GPIO = left button

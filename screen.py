@@ -8,16 +8,14 @@ class Screen:
     def __init__(self):
         
         GPIO.setwarnings(False)
-
         spi0 = spidev.SpiDev()
         spi0.open(0,0)                #spi bus 0 with chip select 0
         spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
-        #spi0.mode = 0                #not sure what the modes are. Some examples have this, some dont
         GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
-        CD = 10
-        RST = 33 
-        GPIO.setup(CD,GPIO.OUT)   #set pin 3 (GPIO 2) as output for CD pin
-        GPIO.setup(RST,GPIO.OUT)   #reset pin
+        self.CD = 10
+        self.RST = 33 
+        GPIO.setup(self.CD,GPIO.OUT)   #set pin 3 (GPIO 2) as output for CD pin
+        GPIO.setup(self.RST,GPIO.OUT)   #reset pin
 
         #Screen commands as uint16        
         display_start_line = int("40", 16)    #start line at 0
@@ -37,7 +35,7 @@ class Screen:
         disable_display = int("AE", 16)
         
         
-        startup_commands = [
+        self.startup_commands = [
             display_start_line,
             set_SEG_bottom,
             set_direction_normal,
@@ -56,58 +54,63 @@ class Screen:
             
             enable_display
         ]
-
-        #power on, set reset low and wait a sec then set reset high and wait 5 sec
-        GPIO.output(RST, GPIO.LOW)
-        time.sleep(1)
-        GPIO.output(RST, GPIO.HIGH)
-        time.sleep(5)
-        
-        #issue commands and wait a second
-        GPIO.output(CD, GPIO.LOW)    #set CD pin low for command mode
-        spi0.xfer3(startup_commands) #send initialization commands
-        GPIO.output(CD, GPIO.HIGH)   #set CD pin high for data mode
-        
-        time.sleep(5)
-        print ("started")
-        
-        sleep_commands = [
+        self.sleep_commands = [
             disable_display,
             enable_all_pixels
         ]
-        wakeup_commands = [
+        self.wakeup_commands = [
             disable_all_pixels,
             enable_display
         ]
-        
-        #try sleep mode
-        GPIO.output(CD, GPIO.LOW)
-        spi0.xfer3(sleep_commands) 
-        GPIO.output(CD, GPIO.HIGH)
-        print("sleeping 5 secs")
-        time.sleep(5)
-        print ("wake up")
-        GPIO.output(CD, GPIO.LOW)
-        spi0.xfer3(wakeup_commands) 
-        GPIO.output(CD, GPIO.HIGH)
-        
-        time.sleep(5)
 
-
-        startcol = 0
-        startpg = 0
-        endcol = 101
-        endpg = 7
+        #power on, set reset low and wait a sec then set reset high and wait 5 sec
+        GPIO.output(self.RST, GPIO.LOW)
+        time.sleep(1)
+        GPIO.output(self.RST, GPIO.HIGH)
+        time.sleep(5)
         
-        page = [
-            int("B0",16),
-            int("B1",16),
-            int("B2",16),
-            int("B3",16),  
-            int("B4",16),  
-            int("B5",16), 
-            int("B6",16), 
-            int("B7",16)  
+        #issue commands and wait a second
+        GPIO.output(self.CD, GPIO.LOW)    #set CD pin low for command mode
+        spi0.xfer3(self.startup_commands) #send initialization commands
+        GPIO.output(self.CD, GPIO.HIGH)   #set CD pin high for data mode
+        
+        
+    def sleep_mode(self):
+        GPIO.output(self.CD, GPIO.LOW)
+        spi0.xfer3(self.sleep_commands) 
+        GPIO.output(self.CD, GPIO.HIGH)
+    
+    def wake_up(self):
+        GPIO.output(self.CD, GPIO.LOW)
+        spi0.xfer3(self.wakeup_commands) 
+        GPIO.output(self.CD, GPIO.HIGH)
+
+    def turn_off(self):
+        raw_input("Hit enter to turn off screen")
+        GPIO.output(self.RST, GPIO.LOW)
+        time.sleep(1)
+        print "unplug now"
+        GPIO.cleanup()
+        
+    def letters(self):
+        page1 = int("B0",16)
+        page2 = int("B1",16)
+        page3 = int("B2",16)
+        page4 = int("B3",16)
+        page5 = int("B4",16)
+        page6 = int("B5",16)
+        page7 = int("B6",16)
+        page8 = int("B7",16)
+            
+        all_pages = [
+            page1,
+            page2,
+            page3,
+            page4,
+            page5,
+            page6,
+            page7,
+            page8
         ]
         
         collsb = [0]*132
@@ -141,20 +144,12 @@ class Screen:
                     int(var,16),  #set MSB col address
                     page[y]  #set page address
                 ]
-                GPIO.output(CD, GPIO.LOW)
+                GPIO.output(self.CD, GPIO.LOW)
                 spi0.xfer3(location_commands)
-                GPIO.output(CD, GPIO.HIGH)
+                GPIO.output(self.CD, GPIO.HIGH)
                 spi0.xfer3(pixeloff_commands)
         
-        print("anything?")
-        
-        time.sleep(5)
-        
-        raw_input("Hit enter to end")
-        
-        GPIO.output(RST, GPIO.LOW)
-        time.sleep(1)
-        print "unplug now"
-        GPIO.cleanup()
+    
+    
 
                 
