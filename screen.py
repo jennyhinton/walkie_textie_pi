@@ -133,10 +133,10 @@ class Screen:
             int("FF",16)
         ]
         
-        colL = '0' + 'C'
-        colM = '1' + '3'
+        colL = '0' + '4'
+        colM = '1' + '6'
         location_commands = [
-            page8,
+            page1,
             int(colL,16),
             int(colM,16)
             #00000011,
