@@ -74,6 +74,25 @@ class Screen:
         self.spi0.xfer3(self.startup_commands) #send initialization commands
         GPIO.output(self.CD, GPIO.HIGH)   #set CD pin high for data mode
         
+        self.page1 = int("B0",16)
+        self.page2 = int("B1",16)
+        self.page3 = int("B2",16)
+        self.page4 = int("B3",16)
+        self.page5 = int("B4",16)
+        self.page6 = int("B5",16)
+        self.page7 = int("B6",16)
+        self.page8 = int("B7",16)
+            
+        self.all_pages = [
+            self.page1,
+            self.page2,
+            self.page3,
+            self.page4,
+            self.page5,
+            self.page6,
+            self.page7,
+            self.page8
+        ]
         
     def sleep_mode(self):
         GPIO.output(self.CD, GPIO.LOW)
@@ -92,27 +111,30 @@ class Screen:
         print "unplug now"
         GPIO.cleanup()
         
-    def letters(self):
-        page1 = int("B0",16)
-        page2 = int("B1",16)
-        page3 = int("B2",16)
-        page4 = int("B3",16)
-        page5 = int("B4",16)
-        page6 = int("B5",16)
-        page7 = int("B6",16)
-        page8 = int("B7",16)
-            
-        all_pages = [
-            page1,
-            page2,
-            page3,
-            page4,
-            page5,
-            page6,
-            page7,
-            page8
+    def letters(self, page, row):     
+        pixelon_commands = [
+            int("FF",16)
         ]
         
+        row = hex(row)
+        colL = '0' + x[-1]
+        colM = '1' + x[0]
+        location_commands = [
+            self.allpages[page-1],
+            int(colL,16),
+            int(colM,16)
+            ]
+        GPIO.output(self.CD, GPIO.LOW)
+        self.spi0.xfer3(location_commands)
+        GPIO.output(self.CD, GPIO.HIGH)
+        self.spi0.xfer3(pixelon_commands)
+    
+    
+    
+    def all_pixels_off(self):
+        pixeloff_commands = [
+            int("00",16)
+        ]
         collsb = [0]*132
         colmsb = [0]*132
         for x in range(132):
@@ -125,28 +147,6 @@ class Screen:
                 x = hex(x)
                 collsb[index] = x[-1]
                 colmsb[index] = x[-2]
-        
-        pixeloff_commands = [
-            int("00",16)
-        ]
-        pixelon_commands = [
-            int("FF",16)
-        ]
-        
-        colL = '0' + '5'
-        colM = '1' + '6'
-        location_commands = [
-            page5,
-            int(colL,16),
-            int(colM,16)
-            #00000011,
-            #00011000
-            ]
-        GPIO.output(self.CD, GPIO.LOW)
-        self.spi0.xfer3(location_commands)
-        GPIO.output(self.CD, GPIO.HIGH)
-        self.spi0.xfer3(pixelon_commands)
-        
         for y in range(8):
             for x in range(102):
                 temp1 = collsb[x]
@@ -156,12 +156,12 @@ class Screen:
                 location_commands = [
                     int(var1,16),  #set LSB col address
                     int(var,16),  #set MSB col address
-                    all_pages[y]  #set page address
+                    self.all_pages[y]  #set self.page address
                 ]
                 GPIO.output(self.CD, GPIO.LOW)
                 self.spi0.xfer3(location_commands)
                 GPIO.output(self.CD, GPIO.HIGH)
-                self.spi0.xfer3(pixelon_commands)
+                self.spi0.xfer3(pixeloff_commands)
         
     
     
