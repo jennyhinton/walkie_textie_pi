@@ -133,12 +133,14 @@ class Screen:
             int("FF",16)
         ]
         
-        colL = '0' + '4'
-        colM = '1' + '8'
+        colL = '0' + 'C'
+        colM = '1' + '3'
         location_commands = [
             page8,
-            00000011,
-            00011000
+            int(colL,16),
+            int(colM,16)
+            #00000011,
+            #00011000
             ]
         GPIO.output(self.CD, GPIO.LOW)
         self.spi0.xfer3(location_commands)
