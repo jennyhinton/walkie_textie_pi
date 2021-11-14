@@ -120,7 +120,7 @@ class Screen:
         colL = '0' + col[-1]
         colM = '1' + col[0]
         location_commands = [
-            self.allpages[page-1],
+            self.all_pages[page-1],
             int(colL,16),
             int(colM,16)
             ]
@@ -128,8 +128,6 @@ class Screen:
         self.spi0.xfer3(location_commands)
         GPIO.output(self.CD, GPIO.HIGH)
         self.spi0.xfer3(pixelon_commands)
-    
-    
     
     def all_pixels_off(self):
         pixeloff_commands = [
