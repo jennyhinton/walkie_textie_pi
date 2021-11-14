@@ -132,7 +132,8 @@ class Screen:
         pixelon_commands = [
             int("01",16)
         ]
-        colL = '0' + collsb[5],
+        
+        colL = '0' + collsb[5]
         colM = '1' + colmsb[1]
         location_commands = [
             page1,
