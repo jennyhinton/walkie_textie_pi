@@ -132,10 +132,12 @@ class Screen:
         pixelon_commands = [
             int("01",16)
         ]
+        colL = '0' + collsb[5],
+        colM = '1' + colmsb[1]
         location_commands = [
-            page1;
-            colL = '0' + collsb[5]
-            colM = '1' + colmsb[1]
+            page1,
+            int(colL,16),
+            int(colM,16)
             ]
         GPIO.output(self.CD, GPIO.LOW)
         self.spi0.xfer3(location_commands)
