@@ -130,7 +130,7 @@ class Screen:
             int("00",16)
         ]
         pixelon_commands = [
-            int("11111111",16)
+            int("FF",16)
         ]
         
         colL = '0' + collsb[5]
