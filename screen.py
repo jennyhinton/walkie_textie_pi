@@ -136,7 +136,7 @@ class Screen:
         colL = '0' + '4'
         colM = '1' + '8'
         location_commands = [
-            page1,
+            page2,
             00000000,
             00010000
             ]
