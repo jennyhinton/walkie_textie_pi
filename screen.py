@@ -111,14 +111,14 @@ class Screen:
         print "unplug now"
         GPIO.cleanup()
         
-    def letters(self, page, row):     
+    def letters(self, page, col):     
         pixelon_commands = [
             int("FF",16)
         ]
         
         row = hex(row)
-        colL = '0' + x[-1]
-        colM = '1' + x[0]
+        colL = '0' + col[-1]
+        colM = '1' + col[0]
         location_commands = [
             self.allpages[page-1],
             int(colL,16),
