@@ -8,9 +8,9 @@ class Screen:
     def __init__(self):
         
         GPIO.setwarnings(False)
-        spi0 = spidev.SpiDev()
-        spi0.open(0,0)                #spi bus 0 with chip select 0
-        spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
+        self.spi0 = spidev.SpiDev()
+        self.spi0.open(0,0)                #spi bus 0 with chip select 0
+        self.spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
         GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
         self.CD = 10
         self.RST = 33 
@@ -71,18 +71,18 @@ class Screen:
         
         #issue commands and wait a second
         GPIO.output(self.CD, GPIO.LOW)    #set CD pin low for command mode
-        spi0.xfer3(self.startup_commands) #send initialization commands
+        self.spi0.xfer3(self.startup_commands) #send initialization commands
         GPIO.output(self.CD, GPIO.HIGH)   #set CD pin high for data mode
         
         
     def sleep_mode(self):
         GPIO.output(self.CD, GPIO.LOW)
-        spi0.xfer3(self.sleep_commands) 
+        self.spi0.xfer3(self.sleep_commands) 
         GPIO.output(self.CD, GPIO.HIGH)
     
     def wake_up(self):
         GPIO.output(self.CD, GPIO.LOW)
-        spi0.xfer3(self.wakeup_commands) 
+        self.spi0.xfer3(self.wakeup_commands) 
         GPIO.output(self.CD, GPIO.HIGH)
 
     def turn_off(self):
@@ -145,9 +145,9 @@ class Screen:
                     all_pages[y]  #set page address
                 ]
                 GPIO.output(self.CD, GPIO.LOW)
-                spi0.xfer3(location_commands)
+                self.spi0.xfer3(location_commands)
                 GPIO.output(self.CD, GPIO.HIGH)
-                spi0.xfer3(pixeloff_commands)
+                self.spi0.xfer3(pixeloff_commands)
         
     
     
