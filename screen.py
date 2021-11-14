@@ -133,7 +133,7 @@ class Screen:
             11111111
         ]
         
-        for y in range(9):
+        for y in range(8):
             for x in range(132):
                 temp1 = collsb[x]
                 var1 = '0' + temp1
@@ -147,7 +147,7 @@ class Screen:
                 GPIO.output(self.CD, GPIO.LOW)
                 self.spi0.xfer3(location_commands)
                 GPIO.output(self.CD, GPIO.HIGH)
-                self.spi0.xfer3(pixelon_commands)
+                self.spi0.xfer3(pixeloff_commands)
         
     
     
