@@ -130,24 +130,33 @@ class Screen:
             int("00",16)
         ]
         pixelon_commands = [
-            11111111
+            int("01",16)
         ]
+        location_commands = [
+            page1;
+            colL = '0' + collsb[5]
+            colM = '1' + colmsb[1]
+            ]
+        GPIO.output(self.CD, GPIO.LOW)
+        self.spi0.xfer3(location_commands)
+        GPIO.output(self.CD, GPIO.High)
+        self.spi0.xfer3(pixelon_commands)
         
-        for y in range(8):
-            for x in range(132):
-                temp1 = collsb[x]
-                var1 = '0' + temp1
-                temp = colmsb[x]
-                var = '1' + temp
-                location_commands = [
-                    int(var1,16),  #set LSB col address
-                    int(var,16),  #set MSB col address
-                    all_pages[y]  #set page address
-                ]
-                GPIO.output(self.CD, GPIO.LOW)
-                self.spi0.xfer3(location_commands)
-                GPIO.output(self.CD, GPIO.HIGH)
-                self.spi0.xfer3(pixeloff_commands)
+#        for y in range(8):
+#            for x in range(132):
+#                temp1 = collsb[x]
+#                var1 = '0' + temp1
+#                temp = colmsb[x]
+#                var = '1' + temp
+#                location_commands = [
+#                    int(var1,16),  #set LSB col address
+#                    int(var,16),  #set MSB col address
+#                    all_pages[y]  #set page address
+#                ]
+#                GPIO.output(self.CD, GPIO.LOW)
+#                self.spi0.xfer3(location_commands)
+#                GPIO.output(self.CD, GPIO.HIGH)
+#                self.spi0.xfer3(pixeloff_commands)
         
     
     
