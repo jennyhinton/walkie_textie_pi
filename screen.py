@@ -130,7 +130,7 @@ class Screen:
             int("00",16)
         ]
         pixelon_commands = [
-            int("11111111",16)
+            11111111
         ]
         
         for y in range(8):
