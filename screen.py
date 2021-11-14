@@ -118,7 +118,7 @@ class Screen:
         
         col = hex(col)
         colL = '0' + col[-1]
-        colM = '1' + col[0]
+        colM = '1' + col[-2]
         print(col+ ': ' + colL + ' ' + colM)
         location_commands = [
             self.all_pages[page-1],
