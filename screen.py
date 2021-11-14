@@ -130,10 +130,10 @@ class Screen:
             int("00",16)
         ]
         pixelon_commands = [
-            00011111
+            11111111
         ]
         
-        for y in range(8):
+        for y in range(9):
             for x in range(132):
                 temp1 = collsb[x]
                 var1 = '0' + temp1
