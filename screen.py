@@ -116,7 +116,7 @@ class Screen:
             int("FF",16)
         ]
         
-        row = hex(row)
+        col = hex(col)
         colL = '0' + col[-1]
         colM = '1' + col[0]
         location_commands = [

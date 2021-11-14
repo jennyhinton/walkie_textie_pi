@@ -6,6 +6,7 @@ def main():
     #keyboard = Keyboard()
     #buttons = Buttons()
     screen = Screen()
+    screen.all_pixels_off()
     screen.letters(1, 100)
     
 if __name__ == "__main__":
