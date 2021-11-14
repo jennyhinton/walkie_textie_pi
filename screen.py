@@ -142,7 +142,7 @@ class Screen:
                 location_commands = [
                     int(var1,16),  #set LSB col address
                     int(var,16),  #set MSB col address
-                    page[y]  #set page address
+                    all_pages[y]  #set page address
                 ]
                 GPIO.output(self.CD, GPIO.LOW)
                 spi0.xfer3(location_commands)
