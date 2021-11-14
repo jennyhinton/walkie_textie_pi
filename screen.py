@@ -113,8 +113,7 @@ class Screen:
         
     def letters(self, page, col):     
         pixelon_commands = [
-            #int("FF",16)
-            00000111
+            int("33",16)
         ]
         
         col = hex(col)
