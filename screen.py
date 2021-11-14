@@ -133,8 +133,8 @@ class Screen:
             int("FF",16)
         ]
         
-        colL = '0' + collsb[5]
-        colM = '1' + colmsb[1]
+        colL = '0' + '4'
+        colM = '1' + '8'
         location_commands = [
             page1,
             int(colL,16),
