@@ -7,7 +7,7 @@ def main():
     #buttons = Buttons()
     screen = Screen()
     screen.all_pixels_off()
-    screen.letters(1, 100)
+    screen.turn_off()
     
 if __name__ == "__main__":
     main()

@@ -1,11 +1,15 @@
 import spidev
 import RPi.GPIO as GPIO
 import time
+from letter import Alphabet
 
 #figure out why/where spidev changes list to 0s
 
 class Screen:
     def __init__(self):
+        self.width = 102
+        self.height = 64
+        self.screen = [[0] * self.width] * self.height
         
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
@@ -94,6 +98,10 @@ class Screen:
             self.page8
         ]
         
+        #starting location for pixels
+        self.colptr = 0
+        self.rowptr = 0
+  
     def sleep_mode(self):
         GPIO.output(self.CD, GPIO.LOW)
         self.spi0.xfer3(self.sleep_commands) 
@@ -111,17 +119,45 @@ class Screen:
         print "unplug now"
         GPIO.cleanup()
         
-    def letters(self, page, col):     
+    def get_page_and_bit(self, row):
+        page = row // 8
+        bit row % 8
+        return page, bit
+    
+    def read_binary_from_screen(self):
+        for page_id in range(8): #[0, 1, 2, 3, 4, 5, 6, 7]
+            start_idx = page_id * 8
+            end_idx = start_idx + 7
+            page = self.screen[start_idx:end_idx]
+            for pixel_group in range(102):
+                bin_number = []
+                
+    def set_pixel(self, row, col, on_off):     
+        #bottom -> top : [0-F][0-F]
+        
+        # OR with 0 gives old value and OR with 1 sets a 1
+        bit_to_binary = {
+                0: int(00000001, 2)
+                1: int(00000010, 2),
+                2: int(00000100, 2),
+                3: int(00001000, 2),
+                4: int(00010000, 2),
+                5: int(00100000, 2),
+                6: int(01000000, 2),
+                7: int(10000000, 2)
+            }
+        
+        # AND with 
+                
+        page, bit = get_page_and_bit(row)
+        
         pixelon_commands = [
-            int("33",16)
+            bit_to_binary[bit]
         ]
         
         col = hex(col)
-        print(col)
-        print(col[-2] + col[-1])
         colL = '0' + col[-1]
         colM = '1' + col[-2]
-        print(colL + ' ' + colM)
         location_commands = [
             self.all_pages[page-1],
             int(colL,16),
@@ -164,7 +200,41 @@ class Screen:
                 GPIO.output(self.CD, GPIO.HIGH)
                 self.spi0.xfer3(pixeloff_commands)
         
-    
-    
-
-                
+    def insert_character(self, character):
+        char_width = len(character[0])
+        char_height = len(character)
+        
+        # check horizontal bounds - push character to next row as needed
+        if char_width + self.colptr > self.width:
+            self.colptr = 0
+            self.rowptr = self.rowptr + char_height + 1
+        
+        # check vertical bounds - push all rows up
+        if self.rowptr + char_height > self.height:
+            self.rowptr = self.rowptr - char_height - 1
+            #for the whole screen move pixels up if valid then turn off old pixel...
+            #play with self.height and self.width when end of text row is known
+            for col in range(self.height): 
+                for row in range(self.width):
+                    if self.screen[col][row] == 1:
+                        if row > char_height:
+                            self.screen[col][row-char_height -1] = 1
+                        self.screen[col][row] = 0;
+            
+        for col in range(char_width): 
+            for row in range(char_height):
+                if character[row][col]:
+                    #col ptr and row ptr are the top left position of character inserting
+                    #col and row are the position of the specific character inserting
+                    screen[self.colptr + col][self.rowptr + row] = 1;
+        self.colptr = self.colptr + char_width
+        
+        
+            
+            
+            
+            
+            
+            
+            
+            
