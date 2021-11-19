@@ -137,7 +137,7 @@ class Screen:
         
         # OR with 0 gives old value and OR with 1 sets a 1
         bit_to_binary = {
-                0: int(00000001, 2)
+                0: int(00000001, 2),
                 1: int(00000010, 2),
                 2: int(00000100, 2),
                 3: int(00001000, 2),
