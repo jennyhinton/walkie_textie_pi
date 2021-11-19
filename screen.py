@@ -145,10 +145,7 @@ class Screen:
                 5: int(00100000, 2),
                 6: int(01000000, 2),
                 7: int(10000000, 2)
-            }
-        
-        # AND with 
-                
+            }   
         page, bit = get_page_and_bit(row)
         
         pixelon_commands = [
