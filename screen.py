@@ -121,7 +121,7 @@ class Screen:
         
     def get_page_and_bit(self, row):
         page = row // 8
-        bit row % 8
+        bit = row % 8
         return page, bit
     
     def read_binary_from_screen(self):
