@@ -5,6 +5,8 @@ import RPi.GPIO as GPIO
 #need to check on extra inputs
 
 class Buttons:
+    GPIO.setwarnings(False)
+
     def power_callback(self, channel):
         print ("power ")  #button actions  
     def ptt_callback(self, channel):
