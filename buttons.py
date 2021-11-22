@@ -72,6 +72,5 @@ class Buttons:
         #microphone?
         #rumbler?
         #mode switch?
-        print("Press enter to quit")
-        message = input ()
+        raw_input("Hit enter to turn off screen")
         GPIO.cleanup()
