@@ -149,15 +149,15 @@ class Screen:
             bits
         ]
         
-        print("Col before hex conversion: " + col)
+        print("Col before hex conversion: " + str(col))
         col = hex(col)
-        print("Col after hex conversion: " + col)
+        print("Col after hex conversion: " + str(col))
         colL = '0' + col[-1]
-        print("Col last char: " + col[-1])
-        print("Col least sig bit: " + colL)
+        print("Col last char: " + str(col[-1]))
+        print("Col least sig bit: " + str(colL))
         colM = '1' + col[-2]
-        print("Col 2nd to last char: " + col[-2])
-        print("Col most sig bit: " + colM)
+        print("Col 2nd to last char: " + str(col[-2]))
+        print("Col most sig bit: " + str(colM))
         location_commands = [
             self.all_pages[page-1],
             int(colL, 16),
