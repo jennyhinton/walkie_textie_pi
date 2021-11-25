@@ -149,13 +149,19 @@ class Screen:
             bits
         ]
         
+        print(f'Col before hex conversion: {col}')
         col = hex(col)
+        print(f'Col after hex conversion: {col}')
         colL = '0' + col[-1]
+        print(f'Col last char: {col[-1]}')
+        print(f'Col least sig bit: {colL}')
         colM = '1' + col[-2]
+        print(f'Col 2nd to last char: {col[-2]}')
+        print(f'Col most sig bit: {colM}')
         location_commands = [
             self.all_pages[page-1],
-            int(colL,16),
-            int(colM,16)
+            int(colL, 16),
+            int(colM, 16)
             ]
         GPIO.output(self.CD, GPIO.LOW)
         self.spi0.xfer3(location_commands)
