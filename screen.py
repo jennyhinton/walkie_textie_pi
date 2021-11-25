@@ -220,5 +220,5 @@ class Screen:
                 if character[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
-                    screen[self.colptr + col][self.rowptr + row] = 1
+                    self.screen[self.colptr + col][self.rowptr + row] = 1
         self.colptr = self.colptr + char_width
