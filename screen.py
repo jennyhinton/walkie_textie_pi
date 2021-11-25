@@ -143,7 +143,7 @@ class Screen:
 
     def set_pixel(self, row, col, bits):     #bits is decimal value of bits to set
         #bottom -> top : [0-F][0-F]
-        col = 1
+        col = 15
         page, bit = self.get_page_and_bit(row)
         
         pixelon_commands = [
@@ -151,7 +151,9 @@ class Screen:
         ]
         
         print("Col before hex conversion: " + str(col))
+        leading_zero = '0' if col < 16 else ''
         col = hex(col)
+        col = col[:-1] + leading_zero + col[-1:]
         print("Col after hex conversion: " + str(col))
         colL = '0' + col[-1]
         print("Col last char: " + str(col[-1]))
