@@ -134,7 +134,7 @@ class Screen:
 
     def render_pixels(self):
         for row in range(0,64,8): 
-            for col in range(132):
+            for col in range(102):
                 dummy_screen_cols = []
                 dummy_screen_cols.append([str(r[col]) for r in self.screen[row:row + 8]])
                 dummy_screen_cols[-1] = ''.join(dummy_screen_cols[-1])
