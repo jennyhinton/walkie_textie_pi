@@ -136,7 +136,7 @@ class Screen:
         for row in range(0,64,8): 
             for col in range(132):
                 dummy_screen_cols = []
-                dummy_screen_cols.append([str(row[col]) for row in self.screen[row:row + 8]])
+                dummy_screen_cols.append([str(r[col]) for r in self.screen[row:row + 8]])
                 dummy_screen_cols[-1] = ''.join(dummy_screen_cols[-1])
                 bits = int(dummy_screen_cols[0], 2)
                 self.set_pixel(row, col, bits)
