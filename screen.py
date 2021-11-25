@@ -116,7 +116,7 @@ class Screen:
         raw_input("Hit enter to turn off screen")
         GPIO.output(self.RST, GPIO.LOW)
         time.sleep(1)
-        print "unplug now"
+        print("unplug now")
         GPIO.cleanup()
         
     def get_page_and_bit(self, row):
@@ -130,26 +130,23 @@ class Screen:
             end_idx = start_idx + 7
             page = self.screen[start_idx:end_idx]
             for pixel_group in range(102):
-                bin_number = []
-                
-    def set_pixel(self, row, col, on_off):     
+                bin_number = []      
+
+    def render_pixels(self):
+        for row in range(0,64,8): 
+            for col in range(132):
+                dummy_screen_cols = []
+                dummy_screen_cols.append([str(row[col]) for row in self.screen[row:row + 8]])
+                dummy_screen_cols[-1] = ''.join(dummy_screen_cols[-1])
+                bits = int(dummy_screen_cols[0], 2)
+                set_pixel(row, col, bits)
+
+    def set_pixel(self, row, col, bits):     #bits is decimal value of bits to set
         #bottom -> top : [0-F][0-F]
-        
-        # OR with 0 gives old value and OR with 1 sets a 1
-        bit_to_binary = {
-                0: int(00000001, 2),
-                1: int(00000010, 2),
-                2: int(00000100, 2),
-                3: int(00001000, 2),
-                4: int(00010000, 2),
-                5: int(00100000, 2),
-                6: int(01000000, 2),
-                7: int(10000000, 2)
-            }   
         page, bit = get_page_and_bit(row)
         
         pixelon_commands = [
-            bit_to_binary[bit]
+            bits
         ]
         
         col = hex(col)
@@ -216,22 +213,12 @@ class Screen:
                     if self.screen[col][row] == 1:
                         if row > char_height:
                             self.screen[col][row-char_height -1] = 1
-                        self.screen[col][row] = 0;
+                        self.screen[col][row] = 0
             
         for col in range(char_width): 
             for row in range(char_height):
                 if character[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
-                    screen[self.colptr + col][self.rowptr + row] = 1;
+                    screen[self.colptr + col][self.rowptr + row] = 1
         self.colptr = self.colptr + char_width
-        
-        
-            
-            
-            
-            
-            
-            
-            
-            

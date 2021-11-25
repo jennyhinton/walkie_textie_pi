@@ -7,5 +7,7 @@ arr1_cols = []
 for i in range(len(arr1[0])):
     arr1_cols.append([str(row[i]) for row in arr1])
     arr1_cols[-1] = ''.join(arr1_cols[-1])
+    print(arr1_cols[-1])
 
-decimal_val = int(arr1_cols[0], 2))
+decimal_val = int(arr1_cols[0], 2)
+print(decimal_val)
