@@ -139,7 +139,7 @@ class Screen:
                 dummy_screen_cols.append([str(row[col]) for row in self.screen[row:row + 8]])
                 dummy_screen_cols[-1] = ''.join(dummy_screen_cols[-1])
                 bits = int(dummy_screen_cols[0], 2)
-                set_pixel(row, col, bits)
+                self.set_pixel(row, col, bits)
 
     def set_pixel(self, row, col, bits):     #bits is decimal value of bits to set
         #bottom -> top : [0-F][0-F]
