@@ -143,7 +143,7 @@ class Screen:
 
     def set_pixel(self, row, col, bits):     #bits is decimal value of bits to set
         #bottom -> top : [0-F][0-F]
-        page, bit = get_page_and_bit(row)
+        page, bit = self.get_page_and_bit(row)
         
         pixelon_commands = [
             bits
