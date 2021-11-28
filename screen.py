@@ -141,8 +141,9 @@ class Screen:
                     curr_binary_num.append(str(r[col_number]))
                 
                 self.all_binary_nums[page_num][col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
-                print(''.join(curr_binary_num[-1]))
-                print("all_binary_nums value = " + str(self.all_binary_nums[page_num][col_number]))
+                if ''.join(curr_binary_num[-1]) != '0':
+                    print(''.join(curr_binary_num[-1]))
+                    print("all_binary_nums value = " + str(self.all_binary_nums[page_num][col_number]))
             row = row + 8
 
     def render_pixels(self):
