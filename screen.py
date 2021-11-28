@@ -135,9 +135,6 @@ class Screen:
             row = page * 8
             for col_number in page:                                                 # col is an element within the page array
                 curr_binary_num = []
-                for r in self.screen[row:row + 8]:
-                    # curr_binary_num.append(str(r[col_number]))
-                    pass
                 
                 page[col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
 
