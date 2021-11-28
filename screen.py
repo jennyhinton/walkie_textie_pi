@@ -140,9 +140,6 @@ class Screen:
                 curr_binary_num.append([str(r[col_number]) for r in self.screen[row:row + 8]])
                 curr_binary_num[-1] = ''.join(curr_binary_num[-1])
                 self.all_binary_nums[page_num][col_number] = curr_binary_num[-1]     # Turns the binary number for the page and col into string
-                if curr_binary_num[-1] != '0':
-                    print(''.join(curr_binary_num[-1]))
-                    print("all_binary_nums value = " + str(self.all_binary_nums[page_num][col_number]))
             row = row + 8
 
     def render_pixels(self):
@@ -243,16 +240,8 @@ class Screen:
 
         self.colptr = self.colptr + char_width
 
-        with open("screen.csv","w+") as my_csv:
-            csvWriter = csv.writer(my_csv,delimiter=',')
-            csvWriter.writerows(self.screen)
-
         # Update our binary values array
         self.update_binary_values()
-
-        with open("binaries.csv","w+") as my_csv:
-            csvWriter = csv.writer(my_csv,delimiter=',')
-            csvWriter.writerows(self.all_binary_nums)
 
         # Render the screen
         self.render_pixels()
