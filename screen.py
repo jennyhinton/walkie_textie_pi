@@ -229,17 +229,17 @@ class Screen:
             #play with self.height and self.width when end of text row is known
             for col in range(self.height): 
                 for row in range(self.width):
-                    if self.screen[col][row] == 1:
+                    if self.screen[row][col] == 1:
                         if row > char_height:
-                            self.screen[col][row-char_height -1] = 1
-                        self.screen[col][row] = 0
+                            self.screen[row - char_height - 1][col] = 1
+                        self.screen[row][col] = 0
             
         for col in range(char_width):
             for row in range(char_height):
                 if character[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
-                    self.screen[self.colptr + col][self.rowptr + row] = 1
+                    self.screen[self.rowptr + row][self.colptr + col] = 1
 
         self.colptr = self.colptr + char_width
 
