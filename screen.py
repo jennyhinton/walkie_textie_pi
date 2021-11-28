@@ -212,9 +212,9 @@ class Screen:
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
         char_width = len(character[0])
-        print("Char_width = " + char_width)
+        print("Char_width = " + str(char_width))
         char_height = len(character)
-        print("Char_height = " + char_height)
+        print("Char_height = " + str(char_height))
         
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
@@ -236,15 +236,15 @@ class Screen:
                         self.screen[col][row] = 0
             
         for col in range(char_width):
-            print("col = " + col)
+            print("col = " + str(col))
             for row in range(char_height):
-                print("row = " + row)
+                print("row = " + str(row))
                 if character[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
                     self.screen[self.colptr + col][self.rowptr + row] = 1
         self.colptr = self.colptr + char_width
-        print("self.colptr = " + self.colptr)
+        print("self.colptr = " + str(self.colptr))
 
         with open("screen.csv","w+") as my_csv:
             csvWriter = csv.writer(my_csv,delimiter=',')
