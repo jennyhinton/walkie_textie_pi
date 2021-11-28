@@ -137,6 +137,7 @@ class Screen:
                 curr_binary_num = []
                 print(self.screen)
                 for r in self.screen[row:row + 8]:
+                    print("DO I even get herE?" + r)
                     curr_binary_num.append(str(r[col_number]))
                 
                 page[col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
