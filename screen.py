@@ -141,6 +141,8 @@ class Screen:
                     curr_binary_num.append(str(r[col_number]))
                 
                 self.all_binary_nums[page_num][col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
+                print(''.join(curr_binary_num[-1]))
+                print("all_binary_nums value = " + str(self.all_binary_nums[page_num][col_number]))
             row = row + 8
 
     def render_pixels(self):
@@ -240,7 +242,6 @@ class Screen:
                     self.screen[self.colptr + col][self.rowptr + row] = 1
 
         self.colptr = self.colptr + char_width
-        print("self.colptr = " + str(self.colptr))
 
         with open("screen.csv","w+") as my_csv:
             csvWriter = csv.writer(my_csv,delimiter=',')
