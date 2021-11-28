@@ -220,7 +220,6 @@ class Screen:
         
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
-            print("Next row")
             self.colptr = 0
             self.rowptr = self.rowptr + char_height + 10
         
@@ -243,6 +242,7 @@ class Screen:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
                     self.screen[self.rowptr + row][self.colptr + col] = 1
+                    print("(row, col) = (" + str(self.rowptr + row) + ", " + str(self.colptr + col) + ")")
 
         self.colptr = self.colptr + char_width
 
