@@ -133,7 +133,7 @@ class Screen:
     def update_binary_values(self):
         row = 0
         for page in self.all_binary_nums:                                           # page is an array within all_binary_nums
-            for col_number in page:                                                 # col is an element within the page array
+            for col_number in range(len(page)):                                     # col is an element within the page array
                 curr_binary_num = []
                 for r in self.screen[row:row + 8]:
                     curr_binary_num.append(str(r[col_number]))
