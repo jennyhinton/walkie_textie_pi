@@ -11,8 +11,8 @@ class Screen:
         self.width = 102
         self.height = 64
         self.num_pages = self.height / 8
-        self.screen = [[0] * self.width] * self.height
-        self.all_binary_nums = [[0] * self.width] * self.num_pages
+        self.screen = [[0] * self.width for _ in range(self.height)]
+        self.all_binary_nums = [[0] * self.width for _ in range(self.num_pages)]
         
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
@@ -213,19 +213,15 @@ class Screen:
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
         char_width = len(character[0])
-        print("Char_width = " + str(char_width))
         char_height = len(character)
-        print("Char_height = " + str(char_height))
         
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
-            print("I am in here uh oh daddy ;(( :)")
             self.colptr = 0
             self.rowptr = self.rowptr + char_height + 1
         
         # check vertical bounds - push all rows up
         if self.rowptr + char_height > self.height:
-            print("I am in here #2 uh oh daddy ;(( :)")
             self.rowptr = self.rowptr - char_height - 1
             #for the whole screen move pixels up if valid then turn off old pixel...
             #play with self.height and self.width when end of text row is known
@@ -237,13 +233,12 @@ class Screen:
                         self.screen[col][row] = 0
             
         for col in range(char_width):
-            print("col = " + str(col))
             for row in range(char_height):
-                print("row = " + str(row))
                 if character[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
                     self.screen[self.colptr + col][self.rowptr + row] = 1
+
         self.colptr = self.colptr + char_width
         print("self.colptr = " + str(self.colptr))
 

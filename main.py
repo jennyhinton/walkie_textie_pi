@@ -10,7 +10,7 @@ def main():
     screen = Screen()
     screen.all_pixels_off()
 
-    screen.insert_character(Alphabet['Space'])
+    screen.insert_character(Alphabet['A'])
     
 if __name__ == "__main__":
     main()
