@@ -244,8 +244,16 @@ class Screen:
 
         self.colptr = self.colptr + char_width
 
+        with open("screen.csv","w+") as my_csv:
+            csvWriter = csv.writer(my_csv,delimiter=',')
+            csvWriter.writerows(self.screen)
+
         # Update our binary values array
         self.update_binary_values()
+
+        with open("binaries.csv","w+") as my_csv:
+            csvWriter = csv.writer(my_csv,delimiter=',')
+            csvWriter.writerows(self.all_binary_nums)
 
         # Render the screen
         self.render_pixels()
