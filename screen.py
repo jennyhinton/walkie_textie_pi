@@ -135,7 +135,6 @@ class Screen:
             row = page * 8
             for col_number in page:                                                 # col is an element within the page array
                 curr_binary_num = []
-                print(self.screen)
                 for r in self.screen[row:row + 8]:
                     print("DO I even get herE?" + r)
                     curr_binary_num.append(str(r[col_number]))
