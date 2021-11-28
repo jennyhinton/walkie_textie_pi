@@ -137,11 +137,10 @@ class Screen:
             page = self.all_binary_nums[page_num]
             for col_number in range(len(page)):                                     # col is an element within the page array
                 curr_binary_num = []
-                for r in self.screen[row:row + 8]:
-                    curr_binary_num.append(str(r[col_number]))
-                
-                self.all_binary_nums[page_num][col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
-                if ''.join(curr_binary_num[-1]) != '0':
+                curr_binary_num.append([str(r[col_number]) for r in self.screen[row:row + 8]])
+                curr_binary_num[-1] = ''.join(curr_binary_num[-1])
+                self.all_binary_nums[page_num][col_number] = curr_binary_num[-1]     # Turns the binary number for the page and col into string
+                if curr_binary_num[-1] != '0':
                     print(''.join(curr_binary_num[-1]))
                     print("all_binary_nums value = " + str(self.all_binary_nums[page_num][col_number]))
             row = row + 8
