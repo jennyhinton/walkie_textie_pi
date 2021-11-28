@@ -9,7 +9,9 @@ class Screen:
     def __init__(self):
         self.width = 102
         self.height = 64
+        self.num_pages = self.height / 8
         self.screen = [[0] * self.width] * self.height
+        self.all_binary_nums = [[0] * self.width] * self.num_pages]
         
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
@@ -78,6 +80,7 @@ class Screen:
         self.spi0.xfer3(self.startup_commands) #send initialization commands
         GPIO.output(self.CD, GPIO.HIGH)   #set CD pin high for data mode
         
+        #define page address commands
         self.page1 = int("B0",16)
         self.page2 = int("B1",16)
         self.page3 = int("B2",16)
@@ -98,7 +101,7 @@ class Screen:
             self.page8
         ]
         
-        #starting location for pixels
+        #starting location for pixels top left
         self.colptr = 0
         self.rowptr = 0
   
@@ -112,54 +115,56 @@ class Screen:
         self.spi0.xfer3(self.wakeup_commands) 
         GPIO.output(self.CD, GPIO.HIGH)
 
+    #for testing purposes
     def turn_off(self):
         raw_input("Hit enter to turn off screen")
         GPIO.output(self.RST, GPIO.LOW)
         time.sleep(1)
         print("unplug now")
         GPIO.cleanup()
-        
+    
+    # 64 rows are split into 8 pits in 8 pages
     def get_page_and_bit(self, row):
         page = row // 8
         bit = row % 8
         return page, bit
-    
-    def read_binary_from_screen(self):
-        for page_id in range(8): #[0, 1, 2, 3, 4, 5, 6, 7]
-            start_idx = page_id * 8
-            end_idx = start_idx + 7
-            page = self.screen[start_idx:end_idx]
-            for pixel_group in range(102):
-                bin_number = []      
+
+    # Update array of binary values
+    def update_binary_values(self):
+        for page in self.all_binary_nums:                                           # page is an array within all_binary_nums
+            row = page * 8
+            for col_number in page:                                                 # col is an element within the page array
+                curr_binary_num = []
+                for r in self.screen[row:row + 8]:
+                    curr_binary_num.append(str(r[col_number]))
+                
+                page[col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
 
     def render_pixels(self):
-        for row in range(0,64,8): 
-            for col in range(102):
+        for page_num in range(len(self.all_binary_nums)):
+            for col_num in range(len(self.all_binary_nums[i])):
+                bits = int(self.all_binary_nums[page_num][col_num], 2)
+                self.set_pixel(page_num + 1, col_num, bits)
+
+        
+    def render_pixels_temp(self):
+        for row in range(0,64,8):                       #64 rows in increments of 8 (pages)
+            for col in range(102):                      #all 102 columns
                 dummy_screen_cols = []
-                dummy_screen_cols.append([str(r[col]) for r in self.screen[row:row + 8]])
+                dummy_screen_cols.append([str(r[col]) for r in self.screen[row:row + 8]]) # 
                 dummy_screen_cols[-1] = ''.join(dummy_screen_cols[-1])
                 bits = int(dummy_screen_cols[0], 2)
                 self.set_pixel(row, col, bits)
 
-    def set_pixel(self, row, col, bits):     #bits is decimal value of bits to set
+    #
+    def set_pixel(self, page, col, bits):     #bits is decimal value of bits to set
         #bottom -> top : [0-F][0-F]
-        page, bit = self.get_page_and_bit(row)
-        
-        pixelon_commands = [
-            bits
-        ]
-        
-        print("Col before hex conversion: " + str(col))
+
         leading_zero = '0' if col < 16 else ''
         col = hex(col)
         col = col[:-1] + leading_zero + col[-1:]
-        print("Col after hex conversion: " + str(col))
         colL = '0' + col[-1]
-        print("Col last char: " + str(col[-1]))
-        print("Col least sig bit: " + str(colL))
         colM = '1' + col[-2]
-        print("Col 2nd to last char: " + str(col[-2]))
-        print("Col most sig bit: " + str(colM))
         location_commands = [
             self.all_pages[page-1],
             int(colL, 16),
@@ -168,7 +173,7 @@ class Screen:
         GPIO.output(self.CD, GPIO.LOW)
         self.spi0.xfer3(location_commands)
         GPIO.output(self.CD, GPIO.HIGH)
-        self.spi0.xfer3(pixelon_commands)
+        self.spi0.xfer3([bits])
     
     def all_pixels_off(self):
         pixeloff_commands = [
@@ -202,6 +207,7 @@ class Screen:
                 GPIO.output(self.CD, GPIO.HIGH)
                 self.spi0.xfer3(pixeloff_commands)
         
+    #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
         char_width = len(character[0])
         char_height = len(character)
@@ -230,3 +236,9 @@ class Screen:
                     #col and row are the position of the specific character inserting
                     self.screen[self.colptr + col][self.rowptr + row] = 1
         self.colptr = self.colptr + char_width
+
+        # Update our binary values array
+        self.update_binary_values()
+
+        # Render the screen
+        self.render_pixels()

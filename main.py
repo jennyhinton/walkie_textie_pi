@@ -11,7 +11,6 @@ def main():
     screen.all_pixels_off()
 
     screen.insert_character(Alphabet['A'])
-    screen.render_pixels()
     
 if __name__ == "__main__":
     main()
