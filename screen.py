@@ -136,13 +136,14 @@ class Screen:
             for col_number in page:                                                 # col is an element within the page array
                 curr_binary_num = []
                 for r in self.screen[row:row + 8]:
-                    curr_binary_num.append(str(r[col_number]))
+                    # curr_binary_num.append(str(r[col_number]))
+                    pass
                 
                 page[col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
 
     def render_pixels(self):
         for page_num in range(len(self.all_binary_nums)):
-            for col_num in range(len(self.all_binary_nums[i])):
+            for col_num in range(len(self.all_binary_nums[page_num])):
                 bits = int(self.all_binary_nums[page_num][col_num], 2)
                 self.set_pixel(page_num + 1, col_num, bits)
 
