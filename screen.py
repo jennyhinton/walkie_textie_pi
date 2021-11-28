@@ -237,8 +237,8 @@ class Screen:
                             self.screen[row - char_height - 1][col] = 1
                         self.screen[row][col] = 0
             
-        for col in range(char_width):
-            for row in range(char_height):
+        for row in range(char_height):
+            for col in range(char_width):
                 if flipped_char[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
