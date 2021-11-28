@@ -11,7 +11,7 @@ class Screen:
         self.height = 64
         self.num_pages = self.height / 8
         self.screen = [[0] * self.width] * self.height
-        self.all_binary_nums = [[0] * self.width] * self.num_pages]
+        self.all_binary_nums = [[0] * self.width] * self.num_pages
         
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
