@@ -133,13 +133,14 @@ class Screen:
     # Update array of binary values
     def update_binary_values(self):
         row = 0
-        for page in self.all_binary_nums:                                           # page is an array within all_binary_nums
+        for page_num in range(len(self.all_binary_nums)):                           # page is an array within all_binary_nums
+            page = self.all_binary_nums[page_num]
             for col_number in range(len(page)):                                     # col is an element within the page array
                 curr_binary_num = []
                 for r in self.screen[row:row + 8]:
                     curr_binary_num.append(str(r[col_number]))
                 
-                page[col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
+                self.all_binary_nums[page_num][col_number] = ''.join(curr_binary_num[-1])     # Turns the binary number for the page and col into string
             row = row + 8
 
     def render_pixels(self):
