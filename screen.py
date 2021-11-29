@@ -138,8 +138,8 @@ class Screen:
             for col_number in range(len(page)):                                     # col is an element within the page array
                 curr_binary_num = []
                 curr_binary_num.append([str(r[col_number]) for r in self.screen[row:row + 8]])
-                curr_binary_num[-1] = ''.join(curr_binary_num[-1])
-                self.all_binary_nums[page_num][col_number] = curr_binary_num[-1]     # Turns the binary number for the page and col into string
+                curr_binary_num[-1] = ''.join(curr_binary_num[-1])[::-1]
+                self.all_binary_nums[page_num][col_number] = curr_binary_num[-1]    # Turns the binary number for the page and col into string
             row = row + 8
 
     def render_pixels(self):
@@ -147,16 +147,6 @@ class Screen:
             for col_num in range(len(self.all_binary_nums[page_num])):
                 bits = int(self.all_binary_nums[page_num][col_num], 2)
                 self.set_pixel(page_num + 1, col_num, bits)
-
-        
-    def render_pixels_temp(self):
-        for row in range(0,64,8):                       #64 rows in increments of 8 (pages)
-            for col in range(102):                      #all 102 columns
-                dummy_screen_cols = []
-                dummy_screen_cols.append([str(r[col]) for r in self.screen[row:row + 8]]) # 
-                dummy_screen_cols[-1] = ''.join(dummy_screen_cols[-1])
-                bits = int(dummy_screen_cols[0], 2)
-                self.set_pixel(row, col, bits)
 
     #
     def set_pixel(self, page, col, bits):     #bits is decimal value of bits to set
@@ -168,9 +158,9 @@ class Screen:
         colL = '0' + col[-1]
         colM = '1' + col[-2]
         location_commands = [
-            self.all_pages[page-1],
-            int(colL, 16),
-            int(colM, 16)
+                self.all_pages[page-1],
+                int(colL, 16),
+                int(colM, 16)
             ]
         GPIO.output(self.CD, GPIO.LOW)
         self.spi0.xfer3(location_commands)
