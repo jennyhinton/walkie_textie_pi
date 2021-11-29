@@ -203,10 +203,6 @@ class Screen:
     def insert_character(self, character):
         char_width = len(character[0])
         char_height = len(character)
-
-        flipped_char = []
-        for row in character:
-            flipped_char.insert(0, row)
         
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
@@ -228,7 +224,7 @@ class Screen:
             
         for row in range(char_height):
             for col in range(char_width):
-                if flipped_char[row][col]:
+                if character[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
                     self.screen[self.rowptr + row][self.colptr + col] = 1
