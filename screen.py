@@ -207,11 +207,10 @@ class Screen:
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
             self.colptr = 0
-            self.rowptr = self.rowptr + char_height + 10
+            self.rowptr = self.rowptr + char_height + 1
         
         # check vertical bounds - push all rows up
         if self.rowptr + char_height > self.height:
-            print("Hitting here")
             self.rowptr = self.rowptr - char_height - 1
             #for the whole screen move pixels up if valid then turn off old pixel...
             #play with self.height and self.width when end of text row is known
@@ -228,20 +227,12 @@ class Screen:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
                     self.screen[self.rowptr + row][self.colptr + col] = 1
-                    print("(row, col) = (" + str(self.rowptr + row) + ", " + str(self.colptr + col) + ")")
 
         self.colptr = self.colptr + char_width
 
-        with open("screen.csv","w+") as my_csv:
-            csvWriter = csv.writer(my_csv,delimiter=',')
-            csvWriter.writerows(self.screen)
 
         # Update our binary values array
         self.update_binary_values()
-
-        with open("binaries.csv","w+") as my_csv:
-            csvWriter = csv.writer(my_csv,delimiter=',')
-            csvWriter.writerows(self.all_binary_nums)
 
         # Render the screen
         self.render_pixels()
