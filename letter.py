@@ -264,6 +264,6 @@ Alphabet = {
         ',': COMMA,
         '!': EXCLAMATION,
         '?': QUESTION,
-        '(': OPEN_PARENTHESIS
+        '(': OPEN_PARENTHESIS,
         ')': CLOSE_PARENTHESIS
     }
