@@ -9,6 +9,8 @@ def main():
     #buttons = Buttons()
     screen = Screen()
     screen.all_pixels_off()
+    
+    print("letters")
 
     for _ in range(50):
         screen.insert_character(Alphabet['A'])
