@@ -19,8 +19,8 @@ class Screen:
         self.spi0.open(0,0)                #spi bus 0 with chip select 0
         self.spi0.max_speed_hz = 31200000  #speeds up to 33 MHz. This is 31.2MHz
         GPIO.setmode(GPIO.BOARD) #Use pin numbers to identify gpio
-        self.CD = 10
-        self.RST = 33 
+        self.CD = 37
+        self.RST = 40
         GPIO.setup(self.CD,GPIO.OUT)   #set pin 3 (GPIO 2) as output for CD pin
         GPIO.setup(self.RST,GPIO.OUT)   #reset pin
 
