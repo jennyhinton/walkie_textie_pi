@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 import time
+from letter import Alphabet
+from screen import Screen
+
 
 #need to assign GPIOs
 #need to set up storing messages/deleting and such
@@ -12,45 +15,10 @@ class Keyboard:
         # Keyboard initialization stuff goes here
         self.caps_lock = False       # track capslock
         self.message = ['\0'] * 160  # message array initialized
+        self.screen = Screen()
         
-        GPIO.setwarnings(False)
-        
-        #Configure rows/cols with each pin
-        self.col4 = 3;
-        self.row3 = 5;
-        self.col5 = 7;
-        self.row4 = 11;
-        self.row5 = 13;
-        self.row6 = 15;
-        self.row7 = 37;
-        
-        self.col3 = 8;
-        self.col2 = 10;
-        self.row2 = 12;
-        self.col1 = 16;
-        self.row1 = 18;
-        
-        #configure rows active low input and colums high impedance output
-        #pull col low and check which row is low. get corresponding
-        #key then reset col and move on
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.row1 , GPIO.IN, pull_up_down=GPIO.PUD_UP) 
-        GPIO.setup(self.row2 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(self.row3 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(self.row4 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(self.row5 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(self.row6 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.setup(self.row7 , GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
-        GPIO.setup(self.col1 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
-        GPIO.setup(self.col2 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
-        GPIO.setup(self.col3 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
-        GPIO.setup(self.col4 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
-        GPIO.setup(self.col5 , GPIO.IN, pull_up_down=GPIO.PUD_OFF)
     
-    def key_scan(self):
-        print("first Row 3 State: ", GPIO.input(self.row3))
-        
+    def key_scan(self):       
         sym = False        #character vs symbol
         current_char = "nothing"   #current character
         current_symb = None   #current symbol
@@ -63,6 +31,11 @@ class Keyboard:
         shiftr = False     #1/2 capslock
         ret = False        #track return key
         
+        if input == 'a':
+            self.screen.insert_character(Alphabet['A'])
+        
+
+
         
         #set col low
         GPIO.setup(self.col1, GPIO.OUT)
@@ -125,7 +98,6 @@ class Keyboard:
         if GPIO.input(self.row2) == 0:
             current_char = "g"
             current_symb = "/"
-        print("col 3 Row 3 State: ", GPIO.input(self.row3))
         if GPIO.input(self.row3) == 0:
             current_char = "t"
             current_symb = "("
@@ -141,21 +113,16 @@ class Keyboard:
         if GPIO.input(self.row7) == 0:
             current_char = "f"
             current_symb = "6"
-        GPIO.setup(self.col3, GPIO.IN, pull_up_down=GPIO.PUD_OFF)       
         
-        GPIO.setup(self.col4, GPIO.OUT)
-        GPIO.output(self.col4, GPIO.LOW)
         if GPIO.input(self.row1) == 0:
             current_char = "u"
             current_symb = "_"
         if GPIO.input(self.row2) == 0:
             current_char = "h"
             current_symb = ":"
-        print("COl4 before Row 3 State: ", GPIO.input(self.row3))
         if GPIO.input(self.row3) == 0:
             current_char = "y"
             current_symb = ")"
-        print("Col 4 after Row 3 State: ", GPIO.input(self.row3))
         if GPIO.input(self.row4) == 0:
             ret = True
         if GPIO.input(self.row5) == 0:
@@ -177,12 +144,10 @@ class Keyboard:
         if GPIO.input(self.row2) == 0:
             current_char = "l"
             current_symb = "\""
-        print("col 5 before Row 3 State: ", GPIO.input(self.row3))
         if GPIO.input(self.row3) == 0:
             print("Row 3 Column 5")
             current_char = "i"
             current_symb = "-"
-        print("Col5 after Row 3 State: ", GPIO.input(self.row3))
         if GPIO.input(self.row4) == 0:
             print("Row 4 Column 5")
             backspace = True

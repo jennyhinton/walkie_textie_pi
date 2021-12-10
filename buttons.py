@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-
+from screen import Screen
 #active low GPIO buttons-connected to ground
 #need to define GPIOs
 #need to define button actions
@@ -9,8 +9,10 @@ class Buttons:
     GPIO.setwarnings(False)
 
     def power_callback(self, channel):
+        #shut down screen
         print ("power ")  #button actions  
     def ptt_callback(self, channel):
+        #self.screen
         print ("ptt ")  #button actions  
     def up_callback(self, channel):
         print ("up ")  #button actions  
@@ -29,6 +31,7 @@ class Buttons:
     
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
+        self.screen = Screen()
         self.ptt = 10#GPIO = PTT button
         self.power = 5#GPIO = power button
         self.up = 12#GPIO = up button

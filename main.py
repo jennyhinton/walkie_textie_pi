@@ -12,6 +12,8 @@ def main():
 
     for _ in range(50):
         screen.insert_character(Alphabet['A'])
+        screen.insert_character(Alphabet['B'])
+        screen.insert_character(Alphabet['C'])
     
 if __name__ == "__main__":
     main()
