@@ -17,10 +17,10 @@ def on_release (key):
     if key == keyboard.Key.esc:
         return False
 
-with keyboard.Listener(
+listener = keyboard.Listener(
         on_press = on_press,
-        on_release = on_release) as listener:
-    listener.start()
+        on_release = on_release) 
+listener.start()
 
 
 def main():
