@@ -14,6 +14,8 @@ def on_press (key):
         print("key is:")
         print(key)
     except AttributeError:
+        print("key is:")
+        print(key)
         print("Key not defined yet/ keyboard error")
 
 def on_release (key):
