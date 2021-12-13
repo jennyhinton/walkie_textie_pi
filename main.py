@@ -3,6 +3,7 @@ from buttons import Buttons
 #from keyboard import Keyboard
 from letter import Alphabet
 from pynput import keyboard
+import time
 
 screen = Screen()
 
@@ -28,9 +29,10 @@ def main():
     #buttons = Buttons()
     screen.all_pixels_off()
 
-    while True:
-        pass
-
+    time.sleep(5)
+    print ("5 secs")
+    time.sleep(5)
+    time.sleep(100)
     
 if __name__ == "__main__":
     main()
