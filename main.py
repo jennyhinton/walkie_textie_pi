@@ -10,6 +10,8 @@ screen = Screen()
 #pip install pynput
 def on_press (key):
     try:
+        print("key is:")
+        print(key)
         screen.insert_character(Alphabet[key.char])
     except AttributeError:
         print("key is:")
