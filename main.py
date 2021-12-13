@@ -11,6 +11,8 @@ screen = Screen()
 def on_press (key):
     try:
         screen.insert_character(Alphabet[key.char])
+        print("key is:")
+        print(key)
     except AttributeError:
         print("Key not defined yet/ keyboard error")
 
@@ -29,10 +31,7 @@ def main():
     #buttons = Buttons()
     screen.all_pixels_off()
 
-    time.sleep(5)
-    print ("5 secs")
-    time.sleep(5)
-    time.sleep(100)
-    
+    time.sleep(300)
+
 if __name__ == "__main__":
     main()
