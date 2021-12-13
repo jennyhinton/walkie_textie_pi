@@ -3,6 +3,7 @@ from buttons import Buttons
 #from keyboard import Keyboard
 from letter import Alphabet
 from pynput import keyboard
+from pynput.keyboard import Key
 import time
 
 screen = Screen()
@@ -10,7 +11,7 @@ screen = Screen()
 #pip install pynput
 def on_press (key):
     try:
-        if key.char == ' ':
+        if key == Key.space:
             screen.insert_character(Alphabet['SPACE'])
         else:
             screen.insert_character(Alphabet[key.char])
