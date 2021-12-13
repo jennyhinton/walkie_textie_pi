@@ -10,12 +10,12 @@ screen = Screen()
 #pip install pynput
 def on_press (key):
     try:
-        if key.char == 'space':
+        if key == Key.space:
             pass
         screen.insert_character(Alphabet[key.char])
     except AttributeError:
         print("key is:")
-        print(key)
+        print(key.char)
         print("Key not defined yet/ keyboard error")
 
 def on_release (key):
