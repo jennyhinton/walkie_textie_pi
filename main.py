@@ -28,6 +28,9 @@ def main():
     #buttons = Buttons()
     screen.all_pixels_off()
 
+    while True:
+        pass
+
     
 if __name__ == "__main__":
     main()
