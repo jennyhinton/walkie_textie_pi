@@ -13,8 +13,13 @@ def on_press (key):
     except AttributeError:
         print("Key not defined yet/ keyboard error")
 
+def on_release (key):
+    if key == keyboard.Key.esc:
+        return False
+
 with keyboard.Listener(
-        on_press= on_press) as listener:
+        on_press = on_press,
+        on_release = on_release) as listener:
     listener.start()
 
 
