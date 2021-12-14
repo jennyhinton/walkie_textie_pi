@@ -15,14 +15,20 @@ class Buttons:
         #self.screen
         print ("ptt ")  #button actions  
     def up_callback(self, channel):
+        self.isButtonSelected = True
         print ("up ")  #button actions  
     def down_callback(self, channel):
+        self.isButtonSelected = False
         print ("down ")  #button actions  
     def left_callback(self, channel):
+        self.isHomeSelected = False
         print ("left ")  #button actions  
     def right_callback(self, channel):
+        self.isHomeSelected = True
         print ("right ")  #button actions  
     def center_callback(self, channel):
+        # check which bools 
+        # silent mode/switch screen
         print ("center ")  #button actions  
     def vol_up_callback(self, channel):
         print ("volume up ")  #button actions  
@@ -41,6 +47,13 @@ class Buttons:
         self.right = 19#GPIO = center button
         #vol_up = #GPIO = volume up button
         #vol_down = #GPIO = volume down button
+
+        # no buttons selected when false
+        # home selected when both true
+        # silent selected when button true home false
+        self.isButtonSelected = False
+        self.isHomeSelected = False
+
         
         #set each button pin as input pulled low
         GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_UP)

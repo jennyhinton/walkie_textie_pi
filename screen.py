@@ -104,7 +104,8 @@ class Screen:
         
         #starting location for pixels top left
         self.colptr = 0
-        self.rowptr = 0
+        self.rowptr = 10
+        self.top_row = 10
   
     def sleep_mode(self):
         GPIO.output(self.CD, GPIO.LOW)
@@ -203,7 +204,7 @@ class Screen:
     def insert_character(self, character):
         char_width = len(character[0])
         char_height = len(character)
-        
+
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
             self.colptr = 0
@@ -217,7 +218,7 @@ class Screen:
             for col in range(self.height): 
                 for row in range(self.width):
                     if self.screen[row][col] == 1:
-                        if row > char_height:
+                        if row-self.top_row > char_height:
                             self.screen[row - char_height - 1][col] = 1
                         self.screen[row][col] = 0
             
