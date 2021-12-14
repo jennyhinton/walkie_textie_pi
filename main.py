@@ -18,11 +18,11 @@ def on_press (key):
         else: 
             character = key.char 
         screen.insert_character(Alphabet[character])
-        
     except AttributeError:
-        print("key is:")
-        print(key)
         print("Key not defined yet/ keyboard error")
+    
+    except Exception as e:
+        print("exception happened. Keeping program running")
 
 def on_release (key):
     if key == keyboard.Key.esc:
