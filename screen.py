@@ -104,7 +104,7 @@ class Screen:
         
         #starting location for pixels top left
         self.colptr = 0
-        self.rowptr = 10
+        self.rowptr = 57
         self.top_row = 10
   
     def sleep_mode(self):
@@ -217,10 +217,16 @@ class Screen:
             #play with self.height and self.width when end of text row is known
             for col in range(self.height): 
                 for row in range(self.width):
+                    print('0')
                     if self.screen[row][col] == 1:
+                        print('1')
                         if row-self.top_row > char_height:
+                            print('2')
                             self.screen[row - char_height - 1][col] = 1
+                            print('3')
+                        print('4')
                         self.screen[row][col] = 0
+                        print('5')
             
         for row in range(char_height):
             for col in range(char_width):
