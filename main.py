@@ -11,10 +11,11 @@ screen = Screen()
 #pip install pynput
 def on_press (key):
     try:
+        print(key)
         screen.insert_character(Alphabet[key.char])
     except AttributeError:
         print("key is:")
-        print(key.char)
+        print(key)
         print("Key not defined yet/ keyboard error")
 
 def on_release (key):
