@@ -22,7 +22,7 @@ def on_press (key):
         print("Key not defined yet/ keyboard error")
     
     except Exception as e:
-        print("exception happened. Keeping program running")
+        print(e)
 
 def on_release (key):
     if key == keyboard.Key.esc:
