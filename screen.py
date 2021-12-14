@@ -103,8 +103,8 @@ class Screen:
         ]
         
         #starting location for pixels top left
-        self.colptr = 90
-        self.rowptr = 57
+        self.colptr = 0
+        self.rowptr = 10
         self.top_row = 10
   
     def sleep_mode(self):
@@ -208,7 +208,7 @@ class Screen:
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
             self.colptr = 0
-            self.rowptr = self.rowptr + char_height + 1
+            self.rowptr = self.rowptr + char_height + 40
         
         # check vertical bounds - push all rows up
         if self.rowptr + char_height > self.height:
@@ -217,10 +217,6 @@ class Screen:
             #play with self.height and self.width when end of text row is known
             for col in range(self.width): 
                 for row in range(self.height):
-                    print('row=')
-                    print(row)
-                    print('col=')
-                    print(col)
                     if self.screen[row][col] == 1:
                         print('1')
                         if row-self.top_row > char_height:
