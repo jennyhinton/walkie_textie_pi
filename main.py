@@ -16,7 +16,9 @@ def on_press (key):
 
         if key == Key.space:
             print('in if')
-            screen.insert_character(Alphabet['Space'])
+            character = Alphabet['Space']
+            print(character)
+            screen.insert_character(character)
             print('after screen')
         else:
             print('in else')
