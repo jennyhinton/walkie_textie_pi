@@ -202,6 +202,7 @@ class Screen:
         
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
+        a = self.screen[64][0]
         char_width = len(character[0])
         char_height = len(character)
 
