@@ -202,7 +202,6 @@ class Screen:
         
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
-        a = self.screen[64][0]
         char_width = len(character[0])
         char_height = len(character)
 
@@ -216,8 +215,8 @@ class Screen:
             self.rowptr = self.rowptr - char_height - 1
             #for the whole screen move pixels up if valid then turn off old pixel...
             #play with self.height and self.width when end of text row is known
-            for col in range(self.height): 
-                for row in range(self.width):
+            for col in range(self.width): 
+                for row in range(self.height):
                     print('row=')
                     print(row)
                     print('col=')
