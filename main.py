@@ -3,7 +3,6 @@ from buttons import Buttons
 #from keyboard import Keyboard
 from letter import Alphabet
 from pynput import keyboard
-from pynput.keyboard import Key
 import time
 
 screen = Screen()

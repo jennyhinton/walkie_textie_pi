@@ -43,10 +43,10 @@ class Buttons:
         #vol_down = #GPIO = volume down button
         
         #set each button pin as input pulled low
-#        GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         
         #check for rising edge trigger and perform event
-#        GPIO.add_event_detect(self.power, GPIO.RISING, callback=self.power_callback, bouncetime=500)
+        GPIO.add_event_detect(self.power, GPIO.RISING, callback=self.power_callback, bouncetime=500)
         
 #        GPIO.setup(self.ptt, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #        GPIO.add_event_detect(self.ptt, GPIO.RISING, callback=self.ptt_callback, bouncetime=500)
