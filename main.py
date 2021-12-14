@@ -15,8 +15,10 @@ def on_press (key):
     try:
 
         if key == Key.space:
+            print('in if')
             screen.insert_character(Alphabet['SPACE'])
         else:
+            print('in else')
             screen.insert_character(Alphabet[key.char])
     except AttributeError:
         print("key is:")
