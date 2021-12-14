@@ -5,6 +5,7 @@ from letter import Alphabet
 from pynput import keyboard
 import time
 
+
 screen = Screen()
 
 #pip install pynput
