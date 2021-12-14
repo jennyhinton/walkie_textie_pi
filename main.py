@@ -1,9 +1,9 @@
 from screen import Screen
 from buttons import Buttons
 #from keyboard import Keyboard
-from letter import Alphabet
+from letter import Alphabet, Special
 from pynput import keyboard
-from pynput.keyboard import Key
+#from pynput.keyboard import Key
 
 import time
 
@@ -13,16 +13,12 @@ screen = Screen()
 #pip install pynput
 def on_press (key):
     try:
-
-        if key == Key.space:
-            print('in if')
-            character = Alphabet['Space']
-            print(character)
-            screen.insert_character(character)
-            print('after screen')
-        else:
-            print('in else')
-            screen.insert_character(Alphabet[key.char])
+        if key in Special:
+            character = Special[key]
+        else: 
+            character = key.char 
+        screen.insert_character(Alphabet[character])
+        
     except AttributeError:
         print("key is:")
         print(key)

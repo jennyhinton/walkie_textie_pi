@@ -1,3 +1,5 @@
+from pynput.keyboard import Key
+
 a = [
     [0, 0, 1, 0, 0],
     [0, 1, 0, 1, 0],
@@ -274,3 +276,7 @@ Alphabet = {
         '(': OPEN_PARENTHESIS,
         ')': CLOSE_PARENTHESIS
     }
+
+Special = {
+        Key.space : 'Space'
+}
