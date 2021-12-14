@@ -266,7 +266,6 @@ Alphabet = {
         'X': X,
         'Y': Y,
         'Z': Z,
-
         'Space': SPACE,
         '.': PERIOD,
         ',': COMMA,
