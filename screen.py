@@ -74,7 +74,7 @@ class Screen:
         GPIO.output(self.RST, GPIO.LOW)
         time.sleep(1)
         GPIO.output(self.RST, GPIO.HIGH)
-        time.sleep(5)
+        time.sleep(1)
         
         #issue commands and wait a second
         GPIO.output(self.CD, GPIO.LOW)    #set CD pin low for command mode
@@ -201,16 +201,20 @@ class Screen:
         
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
+        print('1')
         char_width = len(character[0])
         char_height = len(character)
+        print('2')
         
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
+            print('3')
             self.colptr = 0
             self.rowptr = self.rowptr + char_height + 1
         
         # check vertical bounds - push all rows up
         if self.rowptr + char_height > self.height:
+            print('4')
             self.rowptr = self.rowptr - char_height - 1
             #for the whole screen move pixels up if valid then turn off old pixel...
             #play with self.height and self.width when end of text row is known
@@ -230,9 +234,11 @@ class Screen:
 
         self.colptr = self.colptr + char_width
 
-
+        print('5')
         # Update our binary values array
         self.update_binary_values()
 
+        print('6')
         # Render the screen
         self.render_pixels()
+        print('7')
