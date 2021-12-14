@@ -217,7 +217,10 @@ class Screen:
             #play with self.height and self.width when end of text row is known
             for col in range(self.height): 
                 for row in range(self.width):
-                    print('0')
+                    print('row=')
+                    print(row)
+                    print('col=')
+                    print(col)
                     if self.screen[row][col] == 1:
                         print('1')
                         if row-self.top_row > char_height:
@@ -227,7 +230,7 @@ class Screen:
                         print('4')
                         self.screen[row][col] = 0
                         print('5')
-            
+        print('-1')
         for row in range(char_height):
             for col in range(char_width):
                 if character[row][col]:
