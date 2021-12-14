@@ -103,7 +103,7 @@ class Screen:
         ]
         
         #starting location for pixels top left
-        self.colptr = 0
+        self.colptr = 90
         self.rowptr = 57
         self.top_row = 10
   
