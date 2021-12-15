@@ -141,7 +141,7 @@ class Buttons:
         self.isButtonSelected = False
         self.isHomeSelected = False
 
-        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP
+        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback, bouncetime=500)
 
 
