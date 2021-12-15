@@ -207,6 +207,7 @@ class Screen:
                 self.spi0.xfer3(pixeloff_commands)
         
     def render_icons(self):
+        print('Getting in here')
         # Render the Home and Message button
         # Default to unselected buttons
         home_icon = BUTTON_ICONS['home_inactive']['icon']
