@@ -7,16 +7,15 @@ from pynput import keyboard
 
 import time
 
-screen = Screen()
-
 #pip install pynput
-def on_press (key):
+def on_press (key, screen, buttons):
     try:
         if key in Special:
             character = Special[key]
         else: 
             character = key.char 
-        screen.insert_character(Alphabet[character])
+        if not buttons.isHomeSelected:
+            screen.insert_character(Alphabet[character])
     except AttributeError:
         print("Key not defined yet/ keyboard error")
     
@@ -27,16 +26,18 @@ def on_release (key):
     if key == keyboard.Key.esc:
         return False
 
-listener = keyboard.Listener(
-        on_press = on_press,
-        on_release = on_release) 
-listener.start()
-
-
 def main():
     #keyboard = Keyboard()
+    screen = Screen()
     buttons = Buttons(screen)
     screen.all_pixels_off()
+
+    # Add the listeners
+    listener = keyboard.Listener(
+            on_press = on_press(screen, buttons),
+            on_release = on_release(screen, buttons)) 
+    listener.start()
+
     icon = BUTTON_ICONS['home_inactive']['icon']
     row = BUTTON_ICONS['home_inactive']['row']
     col = BUTTON_ICONS['home_inactive']['col']
