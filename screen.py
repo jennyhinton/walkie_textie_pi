@@ -14,9 +14,6 @@ class Screen:
         self.num_pages = self.height / 8
         self.screen = [[0] * self.width for _ in range(self.height)]
         self.all_binary_nums = [[0] * self.width for _ in range(self.num_pages)]
-        
-        self.buttons = buttons
-        self.buttons.bind(self.render_icons())
 
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
@@ -109,6 +106,10 @@ class Screen:
         self.colptr = 0
         self.rowptr = 18
         self.top_row = 18
+
+        # Define our Buttons instance - bind to the render_icons function
+        self.buttons = buttons
+        self.buttons.bind(self.render_icons())
   
     def sleep_mode(self):
         GPIO.output(self.CD, GPIO.LOW)
