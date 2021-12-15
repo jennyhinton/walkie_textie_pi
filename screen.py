@@ -210,7 +210,7 @@ class Screen:
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
             self.colptr = 0
-            self.rowptr = self.rowptr + char_height + 40
+            self.rowptr = self.rowptr + char_height + 1
         
         # check vertical bounds - push all rows up
         if self.rowptr + char_height > self.height:
@@ -222,6 +222,7 @@ class Screen:
                         if row-self.top_row > char_height:
                             self.screen[row - char_height - 1][col] = 1
                         self.screen[row][col] = 0
+
         for row in range(char_height):
             for col in range(char_width):
                 if character[row][col]:
