@@ -276,7 +276,9 @@ BACKSPACE = [
 Alphabet = {
         'a': a,
         'A': A,
+        'b': b,
         'B': B,
+        'c': C,
         'C': C,
         'D': D,
         'E': E,
