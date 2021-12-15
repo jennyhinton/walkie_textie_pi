@@ -9,15 +9,15 @@ import csv
 
 class Screen:
     def __init__(self, buttons=None):
-        self.buttons = buttons
-        self.buttons.bind(self.render_icons())
-
         self.width = 102
         self.height = 64
         self.num_pages = self.height / 8
         self.screen = [[0] * self.width for _ in range(self.height)]
         self.all_binary_nums = [[0] * self.width for _ in range(self.num_pages)]
         
+        self.buttons = buttons
+        self.buttons.bind(self.render_icons())
+
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
         self.spi0.open(0,0)                #spi bus 0 with chip select 0
@@ -44,7 +44,6 @@ class Screen:
         set_temp_comp_curve2 = int("90", 16)
         enable_display = int("AF", 16)
         disable_display = int("AE", 16)
-        
         
         self.startup_commands = [
             display_start_line,
