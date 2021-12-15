@@ -221,19 +221,19 @@ class Screen:
 
         if self.buttons.isButtonSelected:
             if self.buttons.isHomeSelected:
-                home_icon = BUTTON_ICONS['home_inactive']['icon']
-                home_row = BUTTON_ICONS['home_inactive']['row']
-                home_col = BUTTON_ICONS['home_inactive']['col']                
-                msg_icon = BUTTON_ICONS['message_active']['icon']
-                msg_row = BUTTON_ICONS['message_active']['row']
-                msg_col = BUTTON_ICONS['message_active']['col']
-            else:
                 home_icon = BUTTON_ICONS['home_active']['icon']
                 home_row = BUTTON_ICONS['home_active']['row']
-                home_col = BUTTON_ICONS['home_active']['col']
+                home_col = BUTTON_ICONS['home_active']['col']                
                 msg_icon = BUTTON_ICONS['message_inactive']['icon']
                 msg_row = BUTTON_ICONS['message_inactive']['row']
                 msg_col = BUTTON_ICONS['message_inactive']['col']
+            else:
+                home_icon = BUTTON_ICONS['home_inactive']['icon']
+                home_row = BUTTON_ICONS['home_inactive']['row']
+                home_col = BUTTON_ICONS['home_inactive']['col']
+                msg_icon = BUTTON_ICONS['message_active']['icon']
+                msg_row = BUTTON_ICONS['message_active']['row']
+                msg_col = BUTTON_ICONS['message_active']['col']
 
         # Insert the icons to the screen
         self.insert_icon(home_icon, home_row, home_col)
