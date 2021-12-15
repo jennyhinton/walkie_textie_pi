@@ -142,11 +142,6 @@ class Buttons:
         self.isButtonSelected = False
         self.isHomeSelected = False
 
-        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback, bouncetime=500)
-
-
-
 
         #set each button pin as input pulled low
 #        GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -157,20 +152,20 @@ class Buttons:
 #        GPIO.setup(self.ptt, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #        GPIO.add_event_detect(self.ptt, GPIO.RISING, callback=self.ptt_callback, bouncetime=500)
 
-#        GPIO.setup(self.up, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#        GPIO.add_event_detect(self.up, GPIO.RISING, callback=self.up_callback, bouncetime=500)
+        GPIO.setup(self.up, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self.up, GPIO.RISING, callback=self.up_callback, bouncetime=500)
        
-#        GPIO.setup(self.down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#        GPIO.add_event_detect(self.down, GPIO.RISING, callback=self.down_callback, bouncetime=500)
+        GPIO.setup(self.down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self.down, GPIO.RISING, callback=self.down_callback, bouncetime=500)
 
-#        GPIO.setup(self.left, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#        GPIO.add_event_detect(self.left, GPIO.RISING, callback=self.left_callback, bouncetime=500)
+        GPIO.setup(self.left, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self.left, GPIO.RISING, callback=self.left_callback, bouncetime=500)
 
-#        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#        GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback, bouncetime=500)
+        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback, bouncetime=500)
 
-#        GPIO.setup(self.center, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#        GPIO.add_event_detect(self.center, GPIO.RISING, callback=self.center_callback, bouncetime=500)
+        GPIO.setup(self.center, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self.center, GPIO.RISING, callback=self.center_callback, bouncetime=500)
 
         #GPIO.setup(self.vol_up, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #GPIO.add_event_detect(self.vol_up, GPIO.RISING, callback=self.vol_up_callback, bouncetime=500)
