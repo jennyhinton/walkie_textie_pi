@@ -124,7 +124,6 @@ class Buttons:
     
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
-        print('in here')
         self.screen = Screen()
         self.ptt = 3        #GPIO = PTT button
         self.power = 5      #GPIO = power button
@@ -172,6 +171,3 @@ class Buttons:
 
         #GPIO.setup(self.vol_down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #GPIO.add_event_detect(self.vol_down, GPIO.RISING, callback=self.vol_down_callback, bouncetime=500)
-     
-        raw_input("Hit enter to turn off screen")
-        GPIO.cleanup()
