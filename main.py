@@ -48,7 +48,7 @@ def main():
     col = BUTTON_ICONS['message_inactive']['col']
     screen.insert_icon(icon, row, col)
 
-    time.sleep(300)
+    time.sleep(18000)
 
 if __name__ == "__main__":
     main()

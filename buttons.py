@@ -191,11 +191,13 @@ class Buttons(object):
         print ("ptt ")  #button actions  
     def up_callback(self, channel):
         print ("up ")
+        self.vol_up_callback(channel)
         self.isButtonSelected = True
         self.button_pressed = True
 
     def down_callback(self, channel):
         print ("down ") 
+        self.vol_down_callback(channel)
         self.isButtonSelected = False
         self.button_pressed = True
          
@@ -210,8 +212,8 @@ class Buttons(object):
         self.button_pressed = True
 
     def center_callback(self, channel):
-        # check which bools 
-        # silent mode/switch screen
+        # all pixels off
+        # render icons
         print ("center ")  #button actions  
     def vol_up_callback(self, channel):
         print ("volume up ")
