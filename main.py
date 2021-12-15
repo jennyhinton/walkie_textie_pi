@@ -36,7 +36,7 @@ listener.start()
 
 def main():
     #keyboard = Keyboard()
-    #buttons = Buttons()
+    buttons = Buttons()
     screen.all_pixels_off()
     screen.insert_icon(BUTTON_ICONS['message_inactive'],1,1)
 
