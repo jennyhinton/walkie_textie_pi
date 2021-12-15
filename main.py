@@ -29,14 +29,14 @@ def on_release (key):
     if key == keyboard.Key.esc:
         return False
 
+# Add the listeners
+listener = keyboard.Listener(
+        on_press = on_press,
+        on_release = on_release) 
+listener.start()
+
 def main():
     screen.all_pixels_off()
-
-    # Add the listeners
-    listener = keyboard.Listener(
-            on_press = on_press,
-            on_release = on_release) 
-    listener.start()
 
     icon = BUTTON_ICONS['home_inactive']['icon']
     row = BUTTON_ICONS['home_inactive']['row']
