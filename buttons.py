@@ -192,22 +192,22 @@ class Buttons(object):
     def up_callback(self, channel):
         print ("up ")
         self.isButtonSelected = True
-        self.button_pressed = self.button_pressed + 0.0001
+        self.button_pressed = True
 
     def down_callback(self, channel):
         print ("down ") 
         self.isButtonSelected = False
-        self.button_pressed = self.button_pressed + 0.0001
+        self.button_pressed = True
          
     def left_callback(self, channel):
         print ("left ")  
         self.isHomeSelected = True
-        self.button_pressed = self.button_pressed + 0.0001
+        self.button_pressed = True
         
     def right_callback(self, channel):
         print ("right ")
         self.isHomeSelected = False
-        self.button_pressed = self.button_pressed + 0.0001
+        self.button_pressed = True
 
     def center_callback(self, channel):
         # check which bools 
@@ -243,7 +243,7 @@ class Buttons(object):
         self.isButtonSelected = False
         self.isHomeSelected = True
 
-        self.button_pressed = 1
+        self._button_pressed = False
         self.callbacks = []
 
 
@@ -279,12 +279,12 @@ class Buttons(object):
 
     @property
     def button_pressed(self):
-        return self.button_pressed
+        return self._button_pressed
 
     @button_pressed.setter
     def button_pressed(self, value):
         print("Daddy??")
-        self.button_pressed = value
+        self._button_pressed = value
         for callback in self.callbacks:
             callback()
 
