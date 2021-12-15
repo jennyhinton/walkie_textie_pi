@@ -180,7 +180,7 @@ BUTTON_ICONS = {
         },
 }
 
-class Buttons:
+class Buttons(object):
     GPIO.setwarnings(False)
 
     def power_callback(self, channel):
