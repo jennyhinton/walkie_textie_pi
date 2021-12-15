@@ -284,8 +284,9 @@ class Buttons(object):
     @button_pressed.setter
     def button_pressed(self, value):
         self._button_pressed = value
-        for callback in self.callbacks:
-            callback
+        callback = self.callbacks[0]
+        if callback:
+            callback()
 
     def bind(self, callback):
         print('bindingg')
