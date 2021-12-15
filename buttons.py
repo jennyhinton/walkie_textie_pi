@@ -192,22 +192,22 @@ class Buttons:
     def up_callback(self, channel):
         print ("up ")
         self.isButtonSelected = True
-        self.button_pressed = True
+        self.button_pressed = not self.button_pressed
 
     def down_callback(self, channel):
         print ("down ") 
         self.isButtonSelected = False
-        self.button_pressed = True
+        self.button_pressed = not self.button_pressed
          
     def left_callback(self, channel):
         print ("left ")  
         self.isHomeSelected = True
-        self.button_pressed = True
+        self.button_pressed = not self.button_pressed
         
     def right_callback(self, channel):
         print ("right ")
         self.isHomeSelected = False
-        self.button_pressed = True
+        self.button_pressed = not self.button_pressed
 
     def center_callback(self, channel):
         # check which bools 
