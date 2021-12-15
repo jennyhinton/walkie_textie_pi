@@ -34,8 +34,8 @@ def main():
 
     # Add the listeners
     listener = keyboard.Listener(
-            on_press = on_press(screen, buttons),
-            on_release = on_release(screen, buttons)) 
+            on_press = lambda e: on_press(e, screen, buttons),
+            on_release = lambda e: on_release(e, screen, buttons)) 
     listener.start()
 
     icon = BUTTON_ICONS['home_inactive']['icon']
