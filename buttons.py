@@ -147,7 +147,7 @@ class Buttons:
          
     def left_callback(self, channel):
         print ("left ")  
-        self.isHomeSelected = False
+        self.isHomeSelected = True
         if self.isButtonSelected:
             icon = BUTTON_ICONS['home_active']['icon']
             row = BUTTON_ICONS['home_active']['row']
@@ -161,7 +161,7 @@ class Buttons:
         
     def right_callback(self, channel):
         print ("right ")
-        self.isHomeSelected = True
+        self.isHomeSelected = False
         if self.isButtonSelected:
             icon = BUTTON_ICONS['home_inactive']['icon']
             row = BUTTON_ICONS['home_inactive']['row']
