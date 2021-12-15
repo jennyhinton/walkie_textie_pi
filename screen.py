@@ -109,7 +109,7 @@ class Screen:
 
         # Define our Buttons instance - bind to the render_icons function
         self.buttons = buttons
-        self.callback = self.render_icons()
+        print("TYPE OF: " + str(type(self.render_icons())))
         self.buttons.bind(self)
   
     def sleep_mode(self):
