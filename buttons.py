@@ -178,13 +178,19 @@ class Buttons:
         # silent mode/switch screen
         print ("center ")  #button actions  
     def vol_up_callback(self, channel):
-        print ("volume up ")  #button actions  
+        print ("volume up ")
+        if self.volume_level !=4:
+            self.volume_level = self.volume_level+1
+
     def vol_down_callback(self, channel):
-        print ("volume down ")  #button actions  
+        print ("volume down")
+        if self.volume_level !=0:
+            self.volume_level = self.volume_level-1
     
     def __init__(self, screen):
         GPIO.setmode(GPIO.BOARD)
         self.screen = screen
+        self.volume_level = 1
 
         self.ptt = 3        #GPIO = PTT button
         self.power = 5      #GPIO = power button
