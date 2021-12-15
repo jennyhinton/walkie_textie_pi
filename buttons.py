@@ -286,9 +286,8 @@ class Buttons(object):
         self._button_pressed = value
         callback = self.callbacks[0]
         print("Length of callbacks: " + str(len(self.callbacks)))
-        if callback:
-            print("Type of callback: " + type(callback))
-            callback()
+        print("Type of callback: " + type(callback))
+        callback()
 
     def bind(self, callback):
         print('bindingg')
