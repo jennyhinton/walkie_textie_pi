@@ -1,7 +1,7 @@
 import spidev
 import RPi.GPIO as GPIO
 import time
-from letter import Alphabet
+from letter import C, Alphabet
 from buttons import BUTTON_ICONS
 import csv
 
@@ -14,6 +14,8 @@ class Screen:
         self.num_pages = self.height / 8
         self.screen = [[0] * self.width for _ in range(self.height)]
         self.all_binary_nums = [[0] * self.width for _ in range(self.num_pages)]
+
+        self.last_character = None
 
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
@@ -208,7 +210,6 @@ class Screen:
                 self.spi0.xfer3(pixeloff_commands)
         
     def render_icons(self):
-        print('Getting in here')
         # Render the Home and Message button
         # Default to unselected buttons
         home_icon = BUTTON_ICONS['home_inactive']['icon']
@@ -260,6 +261,7 @@ class Screen:
 
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
+        self.last_character = character
         char_width = len(character[0])
         char_height = len(character)
 
@@ -306,3 +308,14 @@ class Screen:
         self.update_binary_values()
         self.render_pixels()
 
+    def insert_backspace(self):
+        height = len(self.last_character)
+        width = len(self.last_character[1])
+
+        for r in range(height):                             #idk ab this
+            for c in range(width):
+                self.screen[self.rowptr][self.colptr] = 0
+                self.colptr - self.colptr - 1           
+            self.rowptr = self.rowptr - 1        
+        self.update_binary_values()
+        self.render_pixels()
