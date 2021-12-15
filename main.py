@@ -53,6 +53,11 @@ def main():
     col = BUTTON_ICONS['message_inactive']['col']
     screen.insert_icon(icon, row, col)
 
+    icon = BUTTON_ICONS['vol_low']['icon']
+    row = BUTTON_ICONS['vol_low']['row']
+    col = BUTTON_ICONS['vol_low']['col']
+    screen.insert_icon(icon, row, col)
+
     time.sleep(18000)
 
 if __name__ == "__main__":

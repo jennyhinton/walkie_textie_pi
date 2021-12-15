@@ -239,10 +239,10 @@ class Screen:
         self.insert_icon(home_icon, home_row, home_col)
         self.insert_icon(msg_icon, msg_row, msg_col)
 
-        # Render the volume UI - default to silent
-        vol_icon = BUTTON_ICONS['vol_silent']['icon']
-        vol_row = BUTTON_ICONS['vol_silent']['row']
-        vol_col = BUTTON_ICONS['vol_silent']['col']
+        # Render the volume UI - default to low volume
+        vol_icon = BUTTON_ICONS['vol_low']['icon']
+        vol_row = BUTTON_ICONS['vol_low']['row']
+        vol_col = BUTTON_ICONS['vol_low']['col']
         if self.buttons.volume_level == 1:
             vol_icon = BUTTON_ICONS['vol_low']['icon']
             vol_row = BUTTON_ICONS['vol_low']['row']
