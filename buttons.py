@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-from screen import Screen
 
 HOME_inactive = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
