@@ -37,6 +37,15 @@ def main():
     #keyboard = Keyboard()
     buttons = Buttons(screen)
     screen.all_pixels_off()
+    icon = BUTTON_ICONS['home_inactive']['icon']
+    row = BUTTON_ICONS['home_inactive']['row']
+    col = BUTTON_ICONS['home_inactive']['col']
+    screen.insert_icon(icon, row, col)
+            
+    icon = BUTTON_ICONS['message_inactive']['icon']
+    row = BUTTON_ICONS['message_inactive']['row']
+    col = BUTTON_ICONS['message_inactive']['col']
+    screen.insert_icon(icon, row, col)
 
     time.sleep(300)
 
