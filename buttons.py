@@ -86,10 +86,26 @@ VOLUME_LOW = [
 SILENT = [
     ]
 BUTTON_ICONS = {
-        'home_active': HOME_active,
-        'home_inactive': HOME_inactive,
-        'message_active': MESSAGE_active,
-        'message_inactive': MESSAGE_inactive
+        'home_active': {
+            'row': 1,
+            'col': 1,
+            'icon': HOME_active
+        },
+        'home_inactive': {
+            'row': 1,
+            'col': 1,
+            'icon': HOME_inactive
+        },
+        'message_active': {
+            'row': 1,
+            'col': 85,
+            'icon': MESSAGE_active
+        },
+        'message_inactive': {
+            'row': 1,
+            'col': 85,
+            'icon': MESSAGE_inactive
+        }
 }
 
 class Buttons:
@@ -102,17 +118,61 @@ class Buttons:
         #self.screen
         print ("ptt ")  #button actions  
     def up_callback(self, channel):
+        print ("up ")
         self.isButtonSelected = True
-        print ("up ")  #button actions  
+
+        if self.isHomeSelected:
+            icon = BUTTON_ICONS['home_active']['icon']
+            row = BUTTON_ICONS['home_active']['row']
+            col = BUTTON_ICONS['home_active']['col']
+            self.screen.insert_icon(icon, row, col)
+        else:
+            icon = BUTTON_ICONS['message_active']['icon']
+            row = BUTTON_ICONS['message_active']['row']
+            col = BUTTON_ICONS['message_active']['col']
+            self.screen.insert_icon(icon, row, col)
+
     def down_callback(self, channel):
+        print ("down ") 
         self.isButtonSelected = False
-        print ("down ")  #button actions  
+        icon = BUTTON_ICONS['home_inactive']['icon']
+        row = BUTTON_ICONS['home_inactive']['row']
+        col = BUTTON_ICONS['home_inactive']['col']
+        self.screen.insert_icon(icon, row, col)
+            
+        icon = BUTTON_ICONS['message_inactive']['icon']
+        row = BUTTON_ICONS['message_inactive']['row']
+        col = BUTTON_ICONS['message_inactive']['col']
+        self.screen.insert_icon(icon, row, col)
+         
     def left_callback(self, channel):
+        print ("left ")  
         self.isHomeSelected = False
-        print ("left ")  #button actions  
+        if self.isButtonSelected:
+            icon = BUTTON_ICONS['home_active']['icon']
+            row = BUTTON_ICONS['home_active']['row']
+            col = BUTTON_ICONS['home_active']['col']
+            self.screen.insert_icon(icon, row, col)
+            
+            icon = BUTTON_ICONS['message_inactive']['icon']
+            row = BUTTON_ICONS['message_inactive']['row']
+            col = BUTTON_ICONS['message_inactive']['col']
+            self.screen.insert_icon(icon, row, col)
+        
     def right_callback(self, channel):
+        print ("right ")
         self.isHomeSelected = True
-        print ("right ")  #button actions  
+        if self.isButtonSelected:
+            icon = BUTTON_ICONS['home_inactive']['icon']
+            row = BUTTON_ICONS['home_inactive']['row']
+            col = BUTTON_ICONS['home_inactive']['col']
+            self.screen.insert_icon(icon, row, col)
+            
+            icon = BUTTON_ICONS['message_active']['icon']
+            row = BUTTON_ICONS['message_active']['row']
+            col = BUTTON_ICONS['message_active']['col']
+            self.screen.insert_icon(icon, row, col)
+
     def center_callback(self, channel):
         # check which bools 
         # silent mode/switch screen
@@ -122,9 +182,10 @@ class Buttons:
     def vol_down_callback(self, channel):
         print ("volume down ")  #button actions  
     
-    def __init__(self):
+    def __init__(self, screen):
         GPIO.setmode(GPIO.BOARD)
-        self.screen = Screen()
+        self.screen = screen
+
         self.ptt = 3        #GPIO = PTT button
         self.power = 5      #GPIO = power button
         self.up = 22        #GPIO = up button

@@ -7,7 +7,6 @@ from pynput import keyboard
 
 import time
 
-
 screen = Screen()
 
 #pip install pynput
@@ -36,9 +35,8 @@ listener.start()
 
 def main():
     #keyboard = Keyboard()
-    buttons = Buttons()
+    buttons = Buttons(screen)
     screen.all_pixels_off()
-    screen.insert_icon(BUTTON_ICONS['message_inactive'],1,1)
 
     time.sleep(300)
 
