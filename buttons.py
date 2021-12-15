@@ -206,7 +206,7 @@ class Buttons:
         # home selected when both true
         # silent selected when button true home false
         self.isButtonSelected = False
-        self.isHomeSelected = False
+        self.isHomeSelected = True
 
 
         #set each button pin as input pulled low
