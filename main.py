@@ -25,10 +25,9 @@ def on_press (key):
         print("Key not defined yet/ keyboard error")
         print('Special: ' + str(Special[key]))
         print('character: ' + str(key.char))
-        
     
     except Exception as e:
-        print(e)
+        print("Other Error: keeping program running")
 
 def on_release (key):
     if key == keyboard.Key.esc:
