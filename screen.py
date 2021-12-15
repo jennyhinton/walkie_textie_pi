@@ -104,8 +104,8 @@ class Screen:
         
         #starting location for pixels top left
         self.colptr = 0
-        self.rowptr = 10
-        self.top_row = 10
+        self.rowptr = 18
+        self.top_row = 18
   
     def sleep_mode(self):
         GPIO.output(self.CD, GPIO.LOW)
@@ -144,6 +144,8 @@ class Screen:
             row = row + 8
 
     def render_pixels(self):
+        # self.render buttons
+        # insert character for buttons 
         for page_num in range(len(self.all_binary_nums)):
             for col_num in range(len(self.all_binary_nums[page_num])):
                 bits = int(self.all_binary_nums[page_num][col_num], 2)
@@ -208,7 +210,7 @@ class Screen:
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
             self.colptr = 0
-            self.rowptr = self.rowptr + char_height + 40
+            self.rowptr = self.rowptr + char_height + 1
         
         # check vertical bounds - push all rows up
         if self.rowptr + char_height > self.height:
@@ -241,4 +243,16 @@ class Screen:
 
         # Render the screen
         self.render_pixels()
-        
+
+        # append to string and when "send " send string to output file as well
+    
+    def insert_icon(self, icon, row, col):
+        icon_height = len(icon)
+        icon_width = len(icon[1])
+
+        for r in range(icon_height):
+            for c in range(icon_width):
+                self.screen[row+r][col+c] = icon[r][c]
+        self.update_binary_values()
+        self.render_pixels()
+

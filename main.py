@@ -1,5 +1,5 @@
 from screen import Screen
-from buttons import Buttons
+from buttons import BUTTON_ICONS, Buttons
 #from keyboard import Keyboard
 from letter import Alphabet, Special
 from pynput import keyboard
@@ -38,6 +38,7 @@ def main():
     #keyboard = Keyboard()
     #buttons = Buttons()
     screen.all_pixels_off()
+    screen.insert_icon(BUTTON_ICONS['message_inactive'],1,1)
 
     time.sleep(300)
 
