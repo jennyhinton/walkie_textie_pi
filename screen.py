@@ -7,7 +7,10 @@ import csv
 #figure out why/where spidev changes list to 0s
 
 class Screen:
-    def __init__(self):
+    def __init__(self, buttons=None):
+        self.buttons = buttons
+        self.buttons.bind(self.render_icons())
+
         self.width = 102
         self.height = 64
         self.num_pages = self.height / 8
@@ -202,6 +205,56 @@ class Screen:
                 GPIO.output(self.CD, GPIO.HIGH)
                 self.spi0.xfer3(pixeloff_commands)
         
+    def render_icons(self):
+        # Render the Home and Message button
+        # Default to unselected buttons
+        home_icon = self.buttons.BUTTON_ICONS['home_inactive']['icon']
+        home_row = self.buttons.BUTTON_ICONS['home_inactive']['row']
+        home_col = self.buttons.BUTTON_ICONS['home_inactive']['col']
+        msg_icon = self.buttons.BUTTON_ICONS['message_inactive']['icon']
+        msg_row = self.buttons.BUTTON_ICONS['message_inactive']['row']
+        msg_col = self.buttons.BUTTON_ICONS['message_inactive']['col']
+
+        if self.buttons.isButtonSelected:
+            if self.buttons.isHomeSelected:
+                home_icon = self.buttons.BUTTON_ICONS['home_inactive']['icon']
+                home_row = self.buttons.BUTTON_ICONS['home_inactive']['row']
+                home_col = self.buttons.BUTTON_ICONS['home_inactive']['col']                
+                msg_icon = self.buttons.BUTTON_ICONS['message_active']['icon']
+                msg_row = self.buttons.BUTTON_ICONS['message_active']['row']
+                msg_col = self.buttons.BUTTON_ICONS['message_active']['col']
+            else:
+                home_icon = self.buttons.BUTTON_ICONS['home_active']['icon']
+                home_row = self.buttons.BUTTON_ICONS['home_active']['row']
+                home_col = self.buttons.BUTTON_ICONS['home_active']['col']
+                msg_icon = self.buttons.BUTTON_ICONS['message_inactive']['icon']
+                msg_row = self.buttons.BUTTON_ICONS['message_inactive']['row']
+                msg_col = self.buttons.BUTTON_ICONS['message_inactive']['col']
+
+        # Insert the icons to the screen
+        self.insert_icon(home_icon, home_row, home_col)
+        self.insert_icon(msg_icon, msg_row, msg_col)
+
+        # Render the volume UI - default to silent
+        vol_icon = self.buttons.BUTTON_ICONS['vol_silent']['icon']
+        vol_row = self.buttons.BUTTON_ICONS['vol_silent']['row']
+        vol_col = self.buttons.BUTTON_ICONS['vol_silent']['col']
+        if self.buttons.volume_level == 1:
+            vol_icon = self.buttons.BUTTON_ICONS['vol_low']['icon']
+            vol_row = self.buttons.BUTTON_ICONS['vol_low']['row']
+            vol_col = self.buttons.BUTTON_ICONS['vol_low']['col']
+        elif self.buttons.volume_level == 2:
+            vol_icon = self.buttons.BUTTON_ICONS['vol_med']['icon']
+            vol_row = self.buttons.BUTTON_ICONS['vol_med']['row']
+            vol_col = self.buttons.BUTTON_ICONS['vol_med']['col']
+        elif self.buttons.volume_level == 3:
+            vol_icon = self.buttons.BUTTON_ICONS['vol_high']['icon']
+            vol_row = self.buttons.BUTTON_ICONS['vol_high']['row']
+            vol_col = self.buttons.BUTTON_ICONS['vol_high']['col']
+
+        # Render the volume icons
+        self.insert_icon(vol_icon, vol_row, vol_col)
+
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
         char_width = len(character[0])

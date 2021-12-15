@@ -7,8 +7,8 @@ from pynput import keyboard
 
 import time
 
-screen = Screen()
-buttons = Buttons(screen)
+buttons = Buttons()
+screen = Screen(buttons)
 
 #pip install pynput
 def on_press (key):

@@ -75,16 +75,69 @@ MESSAGE_active = [
     ]
 
 VOLUME_HIGH = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0],
+    [0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
 VOLUME_MED = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
 VOLUME_LOW = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
 
 SILENT = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
+
 BUTTON_ICONS = {
         'home_active': {
             'row': 1,
@@ -105,7 +158,27 @@ BUTTON_ICONS = {
             'row': 1,
             'col': 85,
             'icon': MESSAGE_inactive
-        }
+        },
+        'vol_high': {
+            'row': 1,
+            'col': 42,
+            'icon': VOLUME_HIGH
+        },
+        'vol_med': {
+            'row': 1,
+            'col': 42,
+            'icon': VOLUME_MED
+        },
+        'vol_low': {
+            'row': 1,
+            'col': 42,
+            'icon': VOLUME_LOW
+        },
+        'vol_silent': {
+            'row': 1,
+            'col': 42,
+            'icon': SILENT
+        },
 }
 
 class Buttons:
@@ -120,58 +193,22 @@ class Buttons:
     def up_callback(self, channel):
         print ("up ")
         self.isButtonSelected = True
-
-        if self.isHomeSelected:
-            icon = BUTTON_ICONS['home_active']['icon']
-            row = BUTTON_ICONS['home_active']['row']
-            col = BUTTON_ICONS['home_active']['col']
-            self.screen.insert_icon(icon, row, col)
-        else:
-            icon = BUTTON_ICONS['message_active']['icon']
-            row = BUTTON_ICONS['message_active']['row']
-            col = BUTTON_ICONS['message_active']['col']
-            self.screen.insert_icon(icon, row, col)
+        self.button_pressed = True
 
     def down_callback(self, channel):
         print ("down ") 
         self.isButtonSelected = False
-        icon = BUTTON_ICONS['home_inactive']['icon']
-        row = BUTTON_ICONS['home_inactive']['row']
-        col = BUTTON_ICONS['home_inactive']['col']
-        self.screen.insert_icon(icon, row, col)
-            
-        icon = BUTTON_ICONS['message_inactive']['icon']
-        row = BUTTON_ICONS['message_inactive']['row']
-        col = BUTTON_ICONS['message_inactive']['col']
-        self.screen.insert_icon(icon, row, col)
+        self.button_pressed = True
          
     def left_callback(self, channel):
         print ("left ")  
         self.isHomeSelected = True
-        if self.isButtonSelected:
-            icon = BUTTON_ICONS['home_active']['icon']
-            row = BUTTON_ICONS['home_active']['row']
-            col = BUTTON_ICONS['home_active']['col']
-            self.screen.insert_icon(icon, row, col)
-            
-            icon = BUTTON_ICONS['message_inactive']['icon']
-            row = BUTTON_ICONS['message_inactive']['row']
-            col = BUTTON_ICONS['message_inactive']['col']
-            self.screen.insert_icon(icon, row, col)
+        self.button_pressed = True
         
     def right_callback(self, channel):
         print ("right ")
         self.isHomeSelected = False
-        if self.isButtonSelected:
-            icon = BUTTON_ICONS['home_inactive']['icon']
-            row = BUTTON_ICONS['home_inactive']['row']
-            col = BUTTON_ICONS['home_inactive']['col']
-            self.screen.insert_icon(icon, row, col)
-            
-            icon = BUTTON_ICONS['message_active']['icon']
-            row = BUTTON_ICONS['message_active']['row']
-            col = BUTTON_ICONS['message_active']['col']
-            self.screen.insert_icon(icon, row, col)
+        self.button_pressed = True
 
     def center_callback(self, channel):
         # check which bools 
@@ -187,9 +224,8 @@ class Buttons:
         if self.volume_level !=0:
             self.volume_level = self.volume_level-1
     
-    def __init__(self, screen):
+    def __init__(self):
         GPIO.setmode(GPIO.BOARD)
-        self.screen = screen
         self.volume_level = 1
 
         self.ptt = 3        #GPIO = PTT button
@@ -207,6 +243,9 @@ class Buttons:
         # silent selected when button true home false
         self.isButtonSelected = False
         self.isHomeSelected = True
+
+        self.button_pressed = False
+        self.callbacks = []
 
 
         #set each button pin as input pulled low
@@ -238,3 +277,16 @@ class Buttons:
 
         #GPIO.setup(self.vol_down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #GPIO.add_event_detect(self.vol_down, GPIO.RISING, callback=self.vol_down_callback, bouncetime=500)
+
+    @property
+    def button_pressed(self):
+        return self.button_pressed
+
+    @button_pressed.setter
+    def button_pressed(self, value):
+        self.button_pressed = value
+        for callback in self.callbacks:
+            callback()
+
+    def bind(self, callback):
+        self.callbacks.append(callback)
