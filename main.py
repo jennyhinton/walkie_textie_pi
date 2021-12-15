@@ -13,8 +13,6 @@ screen = Screen(buttons)
 #pip install pynput
 def on_press (key):
     try:
-        print('character: ' + str(key.char))
-        print('Special: ' + str(Special[key]))
         screen.insert_character(Alphabet[key.char])
         
 #        if key in Special:
