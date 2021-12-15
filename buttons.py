@@ -283,10 +283,10 @@ class Buttons(object):
 
     @button_pressed.setter
     def button_pressed(self, value):
-        print("Daddy??")
         self._button_pressed = value
         for callback in self.callbacks:
-            callback()
+            callback
 
     def bind(self, callback):
+        print('bindingg')
         self.callbacks.append(callback)
