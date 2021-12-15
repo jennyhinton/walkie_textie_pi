@@ -125,15 +125,15 @@ class Buttons:
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
         self.screen = Screen()
-        self.ptt = 10#GPIO = PTT button
-        self.power = 5#GPIO = power button
-        self.up = 12#GPIO = up button
-        self.left = 21#GPIO = down button
-        self.center = 13#GPIO = left button
-        self.down = 15#GPIO = right button
-        self.right = 19#GPIO = center button
-        #vol_up = #GPIO = volume up button
-        #vol_down = #GPIO = volume down button
+        self.ptt = 3        #GPIO = PTT button
+        self.power = 5      #GPIO = power button
+        self.up = 22        #GPIO = up button
+        self.left = 18      #GPIO = down button
+        self.center = 15    #GPIO = left button
+        self.down = 16      #GPIO = right button
+        self.right = 11     #GPIO = center button
+        #vol_up = 8         #GPIO = volume up button
+        #vol_down = 10      #GPIO = volume down button
 
         # no buttons selected when false
         # home selected when both true
@@ -141,12 +141,17 @@ class Buttons:
         self.isButtonSelected = False
         self.isHomeSelected = False
 
-        
+        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.add_event_detect(self.right, GPIO.FALLING, callback=self.right_callback, bouncetime=500)
+
+
+
+
         #set each button pin as input pulled low
-        GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+#        GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         
         #check for rising edge trigger and perform event
-        GPIO.add_event_detect(self.power, GPIO.RISING, callback=self.power_callback, bouncetime=500)
+#        GPIO.add_event_detect(self.power, GPIO.RISING, callback=self.power_callback, bouncetime=500)
         
 #        GPIO.setup(self.ptt, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #        GPIO.add_event_detect(self.ptt, GPIO.RISING, callback=self.ptt_callback, bouncetime=500)
@@ -160,8 +165,8 @@ class Buttons:
 #        GPIO.setup(self.left, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #        GPIO.add_event_detect(self.left, GPIO.RISING, callback=self.left_callback, bouncetime=500)
 
-        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback, bouncetime=500)
+#        GPIO.setup(self.right, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+#        GPIO.add_event_detect(self.right, GPIO.RISING, callback=self.right_callback, bouncetime=500)
 
 #        GPIO.setup(self.center, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #        GPIO.add_event_detect(self.center, GPIO.RISING, callback=self.center_callback, bouncetime=500)
