@@ -124,6 +124,7 @@ class Buttons:
     
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
+        print('in here')
         self.screen = Screen()
         self.ptt = 3        #GPIO = PTT button
         self.power = 5      #GPIO = power button
