@@ -289,6 +289,6 @@ class Buttons(object):
         print("Type of callback: " + str(type(callback)))
         callback()
 
-    def bind(self, callback):
-        print('bindingg')
-        self.callbacks.append(callback)
+    def bind(self, obj):
+        print("Type of callback: " + str(type(obj.render_icons())))
+        self.callbacks.append(obj.render_icons())
