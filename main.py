@@ -13,16 +13,16 @@ screen = Screen(buttons)
 #pip install pynput
 def on_press (key):
     try:
-        screen.insert_character(Alphabet[key.char])
+#        screen.insert_character(Alphabet[key.char])
         
-#        if key in Special:
-#            character = Special[key]
-#            if character == 'backspace':
-#                screen.insert_backspace()
-#        else: 
-#           character = key.char 
-#        if not buttons.isHomeSelected:
-#            screen.insert_character(Alphabet[character])
+        if key in Special:
+            character = Special[key]
+            if character == 'backspace':
+                screen.insert_backspace()
+        else: 
+           character = key.char 
+        if not buttons.isHomeSelected:
+            screen.insert_character(Alphabet[character])
     except AttributeError:
         print("Key not defined yet/ keyboard error")
     
