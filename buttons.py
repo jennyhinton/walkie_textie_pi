@@ -284,11 +284,8 @@ class Buttons(object):
     @button_pressed.setter
     def button_pressed(self, value):
         self._button_pressed = value
-        callback = self.callbacks[0]
-        print("Length of callbacks: " + str(len(self.callbacks)))
-        print("Type of callback: " + str(type(callback)))
-        callback()
+        for callback in self.callbacks:
+            callback()
 
     def bind(self, callback):
-        print("Type of callback: " + str(type(callback)))
         self.callbacks.append(callback)
