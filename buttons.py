@@ -176,10 +176,6 @@ class Buttons:
 
         #GPIO.setup(self.vol_down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #GPIO.add_event_detect(self.vol_down, GPIO.RISING, callback=self.vol_down_callback, bouncetime=500)
-        
-        #speaker?
-        #microphone?
-        #rumbler?
-        #mode switch?
+     
         raw_input("Hit enter to turn off screen")
         GPIO.cleanup()
