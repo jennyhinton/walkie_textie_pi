@@ -7,8 +7,11 @@ from pynput import keyboard
 
 import time
 
+screen = Screen()
+buttons = Buttons(screen)
+
 #pip install pynput
-def on_press (key, screen, buttons):
+def on_press (key):
     try:
         if key in Special:
             character = Special[key]
@@ -27,15 +30,12 @@ def on_release (key):
         return False
 
 def main():
-    #keyboard = Keyboard()
-    screen = Screen()
-    buttons = Buttons(screen)
     screen.all_pixels_off()
 
     # Add the listeners
     listener = keyboard.Listener(
-            on_press = lambda e: on_press(e, screen, buttons),
-            on_release = lambda e: on_release(e, screen, buttons)) 
+            on_press = on_press,
+            on_release = on_release) 
     listener.start()
 
     icon = BUTTON_ICONS['home_inactive']['icon']
