@@ -210,10 +210,10 @@ class Buttons(object):
     def center_callback(self, channel):
         print("center ")
         if self.isButtonSelected:
-            if not self.isHomeSelected:
-                #screen.send_message() 
-            #screen.all_pixels_off()
-            #screen.render_icons()
+            if self.isHomeSelected:
+                self.home_pressed = True
+            else:
+                self.message_pressed = True             
 
     def vol_up_callback(self, channel):
         print ("volume up ")

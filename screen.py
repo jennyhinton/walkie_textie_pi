@@ -112,9 +112,11 @@ class Screen:
 
         # Define our Buttons instance - bind to the render_icons function
         self.buttons = buttons
-        self.callback = self.render_icons
-        self.buttons.bind(self.callback)
-  
+        self.buttons.bind(self.render_icons)
+
+        self.buttons.bind(self.home_call,'home')
+        self.buttons.bind(self.msg_call,'msg')
+
     def sleep_mode(self):
         GPIO.output(self.CD, GPIO.LOW)
         self.spi0.xfer3(self.sleep_commands) 
@@ -337,3 +339,13 @@ class Screen:
                 pass
 #               if buttons.isHomeSelected:
 #                   screen.insert_character(Alphabet[character])
+
+  
+    def home_call(self):
+        self.all_pixels_off()
+        self.render_icons()
+
+    def msg_call(self):
+        self.send_message()
+        self.all_pixels_off()
+        self.render_icons()
