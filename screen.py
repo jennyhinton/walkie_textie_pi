@@ -322,8 +322,8 @@ class Screen:
         print('last character = ' + str(self.last_character))
         self.message = self.message[:-1]
         print('Altered message = ' + str(self.message))
-        height = len(self.last_character)
-        width = len(self.last_character[1])
+        height = len(Alphabet[self.last_character])
+        width = len(Alphabet[self.last_character][1])
         print('1')
 
         if self.colptr == 0:
