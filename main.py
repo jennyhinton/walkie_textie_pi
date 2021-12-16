@@ -25,6 +25,11 @@ def on_press (key):
             screen.insert_character(Alphabet[character])
     except AttributeError:
         print("Key not defined yet/ keyboard error")
+        if key in Special:
+            character = Special[key]
+        else: 
+           character = key.char 
+        print('character: '+ str(character))
     
     except Exception as e:
         print("Other Error: keeping program running")
