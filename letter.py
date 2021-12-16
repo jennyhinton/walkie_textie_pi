@@ -232,13 +232,7 @@ CLOSE_PARENTHESIS = [
     [0, 1, 0],
     [1, 0, 0],
 ]
-BACKSPACE = [
-    [],
-    [],
-    [],
-    [],
-    [],
-]
+
 NOTHING = [
     [],
     [],
@@ -308,7 +302,6 @@ Alphabet = {
         '?': QUESTION,
         '(': OPEN_PARENTHESIS,
         ')': CLOSE_PARENTHESIS,
-        'Backspace' : BACKSPACE,
         '': NOTHING
     }
 

@@ -18,10 +18,16 @@ def on_press (key):
             if character == 'Backspace':
                 print('in backspace if')
                 screen.insert_backspace()
-        else: 
-           character = key.char 
-        if not buttons.isHomeSelected:
-            screen.insert_character(Alphabet[character])
+                print('after backspace was pressed')
+        else:
+            print('check key.char') 
+            character = key.char
+            print('after checking key.char') 
+            
+            if not buttons.isHomeSelected:
+                print('before insert character is called')
+                screen.insert_character(Alphabet[character])
+                print('after insert character is called')
         print('end of try')    
     except AttributeError:
         print("Key not defined yet/ keyboard error")
