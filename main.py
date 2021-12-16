@@ -21,7 +21,7 @@ def on_press (key):
                 print('after backspace was pressed')
             elif character == 'Space':
                 screen.insert_character(Alphabet[character])
-                screen.message = screen.message + character
+                screen.message = screen.message + ' '
         else:
             print('check key.char') 
             character = key.char
