@@ -212,8 +212,10 @@ class Buttons(object):
         if self.isButtonSelected:
             if self.isHomeSelected:
                 self.home_pressed = True
+                print('somethign home')
             else:
-                self.message_pressed = True             
+                self.message_pressed = True   
+                print('something message')          
 
     def vol_up_callback(self, channel):
         print ("volume up ")
@@ -305,12 +307,14 @@ class Buttons(object):
 
     @home_pressed.setter
     def home_pressed(self, value):
+        print('home setter')
         self._home_pressed = value
         for callback in self.home_callbacks:
             callback()
 
     @message_pressed.setter
     def message_pressed(self, value):
+        print('message setter')
         self._message_pressed = value
         for callback in self.message_callbacks:
             callback()
@@ -319,8 +323,10 @@ class Buttons(object):
         if type == 'btn':
             self.callbacks.append(callback)
         elif type == 'home':
+            print('type of home = ' + str(type(callback)))
             self.home_callbacks.append(callback)
         elif type == 'msg':
+            print('type of message = ' + str(type(callback)))
             self.message_callbacks.append(callback)
         else:
             print('invalid type')
