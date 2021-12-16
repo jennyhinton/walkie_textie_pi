@@ -342,7 +342,8 @@ class Screen:
                 if self.screen[self.rowptr+r][self.colptr] == 1:
                     character_found = True
             self.colptr = self.colptr - 1
-        
+        if self.colptr == 0 :
+            return
         print('3')
         # Special case for the space
         if self.last_character == ' ':
@@ -369,6 +370,17 @@ class Screen:
         print('after updating binary values')
         self.render_pixels()
         print('after rendering pixels')
+    
+    def insert_enter(self):
+        self.rowptr = self.rowptr + 6
+        self.colptr = 0
+
+        # check vertical bounds - push all rows up
+        if self.rowptr + 5 > self.height:
+            self.rowptr = self.rowptr - 6
+            self.colptr = self.width
+            self.insert_character(Alphabet['Space'])
+            self.insert_backspace()
 
     # not really needed 
     def send_message(self):
