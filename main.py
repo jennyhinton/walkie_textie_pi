@@ -26,7 +26,7 @@ def on_press (key):
     except AttributeError:
         print("Key not defined yet/ keyboard error")
         if key in Special:
-            character = Special[key]
+            character = key
         else: 
            character = key.char 
         print('character: '+ str(character))
