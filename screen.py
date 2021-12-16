@@ -391,8 +391,12 @@ class Screen:
     def home_call(self):
         self.all_pixels_off()
         self.render_icons()
+        self.colptr= 0
+        self.rowptr= self.top_row
 
     def msg_call(self):
         self.send_message()
         self.all_pixels_off()
         self.render_icons()
+        self.colptr= 0
+        self.rowptr= self.top_row
