@@ -211,6 +211,10 @@ class Screen:
                 self.spi0.xfer3(location_commands)
                 GPIO.output(self.CD, GPIO.HIGH)
                 self.spi0.xfer3(pixeloff_commands)
+        for row in range(self.top_row, self.height):
+            for col in range(self.width):
+                self.screen[row][col] = 0
+
         
     def render_icons(self):
         # Render the Home and Message button
@@ -299,7 +303,7 @@ class Screen:
         # Render the screen
         self.render_pixels()
 
-        self.string = self.string + character
+        self.message = self.message + character
     
     def insert_icon(self, icon, row, col):
         icon_height = len(icon)
@@ -312,15 +316,34 @@ class Screen:
         self.render_pixels()
 
     def insert_backspace(self):
+        if len(self.message) == 0:
+            return
+
+        self.last_character = self.message[-1]
+        self.message = self.message[:-1]
         height = len(self.last_character)
         width = len(self.last_character[1])
+
+        if self.colptr == 0:
+            self.rowptr = self.rowptr-height
+            self.colptr = self.width
+
+        # find right most edge of character pixels
+        character_found = False
+        while not character_found:
+            for r in range(height):
+                if self.screen[self.rowptr+r][self.colptr] == 1:
+                    character_found = True
+            self.colptr = self.colptr - 1
+        
+        # Increment col ptr by two to get to right most edge of character
+        self.colptr = self.colptr + 2
 
         for r in range(height):                             
             for c in range(width):
                 self.screen[self.rowptr-r][self.colptr-c] = 0
                          
         self.colptr = self.colptr - width
-        self.rowptr = self.rowptr - height
         self.update_binary_values()
         self.render_pixels()
 
