@@ -19,14 +19,18 @@ def on_press (key):
                 print('in backspace if')
                 screen.insert_backspace()
                 print('after backspace was pressed')
+            elif character == 'Space':
+                screen.insert_character(Alphabet[character])
+                screen.message = screen.message + character
         else:
             print('check key.char') 
             character = key.char
             print('after checking key.char') 
-            
+
             if not buttons.isHomeSelected:
                 print('before insert character is called')
                 screen.insert_character(Alphabet[character])
+                screen.message = screen.message + character
                 print('after insert character is called')
         print('end of try')    
     except AttributeError:

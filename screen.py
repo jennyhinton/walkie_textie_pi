@@ -267,12 +267,10 @@ class Screen:
         self.insert_icon(vol_icon, vol_row, vol_col)
 
     #character is binary 2D array from dictionary in letters
-    def insert_character(self, character):
-        print('character = ' + str(character))
-        self.last_character = character
-        print('last_character = ' + str(self.last_character))
-        char_width = len(character[0])
-        char_height = len(character)
+    def insert_character(self, char_arr):
+        self.last_character = char_arr
+        char_width = len(char_arr[0])
+        char_height = len(char_arr)
 
         # check horizontal bounds - push character to next row as needed
         if char_width + self.colptr > self.width:
@@ -292,7 +290,7 @@ class Screen:
 
         for row in range(char_height):
             for col in range(char_width):
-                if character[row][col]:
+                if char_arr[row][col]:
                     #col ptr and row ptr are the top left position of character inserting
                     #col and row are the position of the specific character inserting
                     self.screen[self.rowptr + row][self.colptr + col] = 1
@@ -300,16 +298,10 @@ class Screen:
         self.colptr = self.colptr + char_width
 
        # Update our binary values array
-        print('Before updating the binary values')
         self.update_binary_values()
-        print('After updating the binary values')
 
         # Render the screen
-        print('Before rendering the pixels')
         self.render_pixels()
-        print('After rendering the pixels')
-
-        self.message = self.message + character
     
     def insert_icon(self, icon, row, col):
         icon_height = len(icon)
