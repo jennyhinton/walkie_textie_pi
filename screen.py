@@ -268,7 +268,9 @@ class Screen:
 
     #character is binary 2D array from dictionary in letters
     def insert_character(self, character):
+        print('character = ' + str(character))
         self.last_character = character
+        print('last_character = ' + str(self.last_character))
         char_width = len(character[0])
         char_height = len(character)
 
@@ -298,10 +300,14 @@ class Screen:
         self.colptr = self.colptr + char_width
 
        # Update our binary values array
+        print('Before updating the binary values')
         self.update_binary_values()
+        print('After updating the binary values')
 
         # Render the screen
+        print('Before rendering the pixels')
         self.render_pixels()
+        print('After rendering the pixels')
 
         self.message = self.message + character
     
