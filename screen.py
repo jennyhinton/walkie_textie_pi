@@ -316,6 +316,7 @@ class Screen:
         self.render_pixels()
 
     def insert_backspace(self):
+        print('in backspace')
         if len(self.message) == 0:
             return
 

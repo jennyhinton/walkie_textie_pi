@@ -16,6 +16,7 @@ def on_press (key):
         if key in Special:
             character = Special[key]
             if character == 'Backspace':
+                print('in backspace if')
                 screen.insert_backspace()
         else: 
            character = key.char 
