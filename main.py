@@ -22,6 +22,9 @@ def on_press (key):
             elif character == 'Space':
                 screen.insert_character(Alphabet[character])
                 screen.message = screen.message + ' '
+            elif character == 'Enter':
+                screen.insert_character(Alphabet[character])
+                screen.message = screen.message + '\n'
         else:
             print('check key.char') 
             character = key.char
