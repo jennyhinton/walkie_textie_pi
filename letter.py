@@ -315,14 +315,16 @@ Alphabet = {
 Special = {
         Key.space : 'Space',
         Key.backspace : 'Backspace',
+        Key.enter : '',
+        Key.tab : '',
+
         Key.delete : '',
+
         Key.tab : '',
         Key.end : '',
-        Key.enter : '',
         Key.esc : '',
         Key.home : '',
         Key.insert : '',
-
         Key.caps_lock : '',
         Key.shift : '',
         Key.alt : '',

@@ -184,11 +184,9 @@ class Buttons(object):
     GPIO.setwarnings(False)
 
     def power_callback(self, channel):
-        #shut down screen
-        print ("power ")  #button actions  
+        print ("power ")
     def ptt_callback(self, channel):
-        #self.screen
-        print ("ptt ")  #button actions  
+        print ("ptt ")   
     def up_callback(self, channel):
         print ("up ")
         self.isButtonSelected = True
@@ -209,13 +207,13 @@ class Buttons(object):
         self.isHomeSelected = False
         self.button_pressed = True
 
-
     def center_callback(self, channel):
         print("center ")
-        #screen.send_message() 
-        #screen.all_pixels_off()
-        #screen.render_icons()
-
+        if self.isButtonSelected:
+            if not self.isHomeSelected:
+                #screen.send_message() 
+            #screen.all_pixels_off()
+            #screen.render_icons()
 
     def vol_up_callback(self, channel):
         print ("volume up ")
@@ -247,9 +245,14 @@ class Buttons(object):
         self.isButtonSelected = False
         self.isHomeSelected = True
 
+        # binding variables
         self._button_pressed = False
         self.callbacks = []
 
+        self._home_pressed = False
+        self.home_callbacks = []
+        self._message_pressed = False
+        self.message_callbacks = []
 
         #set each button pin as input pulled low
 #        GPIO.setup(self.power, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -281,9 +284,18 @@ class Buttons(object):
         #GPIO.setup(self.vol_down, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #GPIO.add_event_detect(self.vol_down, GPIO.RISING, callback=self.vol_down_callback, bouncetime=500)
 
+    # binding setups
     @property
     def button_pressed(self):
         return self._button_pressed
+        
+    @property
+    def home_pressed(self):
+        return self._home_pressed
+
+    @property
+    def message_pressed(self):
+        return self._message_pressed
 
     @button_pressed.setter
     def button_pressed(self, value):
@@ -291,5 +303,25 @@ class Buttons(object):
         for callback in self.callbacks:
             callback()
 
-    def bind(self, callback):
-        self.callbacks.append(callback)
+    @home_pressed.setter
+    def home_pressed(self, value):
+        self._home_pressed = value
+        for callback in self.home_callbacks:
+            callback()
+
+    @message_pressed.setter
+    def message_pressed(self, value):
+        self._message_pressed = value
+        for callback in self.message_callbacks:
+            callback()
+
+    def bind(self, callback, type='btn'):
+        if type == 'btn':
+            self.callbacks.append(callback)
+        elif type == 'home':
+            self.home_callbacks.append(callback)
+        elif type == 'msg':
+            self.message_callbacks.append(callback)
+        else:
+            print('invalid type')
+        
