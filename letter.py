@@ -308,7 +308,7 @@ Alphabet = {
 Special = {
         Key.space : 'Space',
         Key.backspace : 'Backspace',
-        Key.enter : '',
+        Key.enter : 'Enter',
         Key.tab : '',
 
         Key.delete : '',
