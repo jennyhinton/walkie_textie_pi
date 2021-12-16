@@ -319,13 +319,13 @@ class Buttons(object):
         for callback in self.message_callbacks:
             callback()
 
-    def bind(self, callback, type='btn'):
-        if type == 'btn':
+    def bind(self, callback, b_type='btn'):
+        if b_type == 'btn':
             self.callbacks.append(callback)
-        elif type == 'home':
+        elif b_type == 'home':
             print('type of home = ' + str(type(callback)))
             self.home_callbacks.append(callback)
-        elif type == 'msg':
+        elif b_type == 'msg':
             print('type of message = ' + str(type(callback)))
             self.message_callbacks.append(callback)
         else:
