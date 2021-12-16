@@ -324,11 +324,13 @@ class Screen:
         print('Altered message = ' + str(self.message))
         height = len(self.last_character)
         width = len(self.last_character[1])
+        print('1')
 
         if self.colptr == 0:
             self.rowptr = self.rowptr-height
             self.colptr = self.width
 
+        print('2')
         # find right most edge of character pixels
         character_found = False
         while not character_found and self.colptr >= 0:
@@ -337,6 +339,7 @@ class Screen:
                     character_found = True
             self.colptr = self.colptr - 1
         
+        print('3')
         # Special case for the space
         if self.last_character == ' ':
             if self.colptr < self.width:
@@ -346,13 +349,16 @@ class Screen:
                 self.rowptr = self.rowptr + 1
             return
 
+        print('4')
         # Increment col ptr by two to get to right most edge of character
         self.colptr = self.colptr + 2
 
+        print('5')
         for r in range(height):                             
             for c in range(width):
                 self.screen[self.rowptr+r][self.colptr-c] = 0
                          
+        print('6')
         self.colptr = self.colptr - width
         print('before updating binary values')
         self.update_binary_values()
