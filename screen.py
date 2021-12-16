@@ -16,6 +16,7 @@ class Screen:
         self.all_binary_nums = [[0] * self.width for _ in range(self.num_pages)]
 
         self.last_character = None
+        self.message = ""
 
         GPIO.setwarnings(False)
         self.spi0 = spidev.SpiDev()
@@ -296,7 +297,7 @@ class Screen:
         # Render the screen
         self.render_pixels()
 
-        # append to string and when "send " send string to output file as well
+        self.string = self.string + character
     
     def insert_icon(self, icon, row, col):
         icon_height = len(icon)
@@ -312,10 +313,27 @@ class Screen:
         height = len(self.last_character)
         width = len(self.last_character[1])
 
-        for r in range(height):                             #idk ab this
+        for r in range(height):                             
             for c in range(width):
-                self.screen[self.rowptr][self.colptr] = 0
-                self.colptr - self.colptr - 1           
-            self.rowptr = self.rowptr - 1        
+                self.screen[self.rowptr-r][self.colptr-c] = 0
+                         
+        self.colptr = self.colptr - width
+        self.rowptr = self.rowptr - height
         self.update_binary_values()
         self.render_pixels()
+
+    # not really needed 
+    def send_message(self):
+        file = open('message.txt', 'w')
+        file.write(self.message)
+        file.close('message.txt')
+        self.message = ''
+
+    # for continuation of project
+    def read_message(self):
+        file = open('message.txt', 'r')
+        for line in file:
+            for character in line:
+                pass
+#               if buttons.isHomeSelected:
+#                   screen.insert_character(Alphabet[character])

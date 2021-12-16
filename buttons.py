@@ -212,9 +212,10 @@ class Buttons(object):
 
     def center_callback(self, channel):
         print("center ")
-        #send function  
+        #screen.send_message() 
         #screen.all_pixels_off()
         #screen.render_icons()
+
 
     def vol_up_callback(self, channel):
         print ("volume up ")
