@@ -328,7 +328,8 @@ class Screen:
     def send_message(self):
         file = open('message.txt', 'w')
         file.write(self.message)
-        file.close('message.txt')
+        file.write('\n\n')
+        file.close()
         self.message = ''
 
     # for continuation of project
