@@ -314,27 +314,22 @@ class Screen:
         self.render_pixels()
 
     def insert_backspace(self):
-        print('inside backspace function')
         if len(self.message) == 0:
             return
 
         self.last_character = self.message[-1]
-        print('last character = ' + str(self.last_character))
         self.message = self.message[:-1]
-        print('Altered message = ' + str(self.message))
 
         last_char = self.last_character
         if last_char == ' ':
             last_char = 'Space'
         height = len(Alphabet[last_char])
         width = len(Alphabet[last_char][1])
-        print('1')
 
         if self.colptr == 0:
             self.rowptr = self.rowptr-height
             self.colptr = self.width
 
-        print('2')
         # find right most edge of character pixels
         character_found = False
         while not character_found and self.colptr >= 0:
@@ -344,7 +339,6 @@ class Screen:
             self.colptr = self.colptr - 1
         if self.colptr == 0 :
             return
-        print('3')
         # Special case for the space
         if self.last_character == ' ':
             if self.colptr < self.width:
@@ -354,22 +348,16 @@ class Screen:
                 self.rowptr = self.rowptr + 1
             return
 
-        print('4')
         # Increment col ptr by two to get to right most edge of character
         self.colptr = self.colptr + 2
 
-        print('5')
         for r in range(height):                             
             for c in range(width):
                 self.screen[self.rowptr+r][self.colptr-c] = 0
                          
-        print('6')
         self.colptr = self.colptr - width
-        print('before updating binary values')
         self.update_binary_values()
-        print('after updating binary values')
         self.render_pixels()
-        print('after rendering pixels')
     
     def insert_enter(self):
         self.rowptr = self.rowptr + 6

@@ -23,7 +23,7 @@ def on_press (key):
                 screen.insert_character(Alphabet[character])
                 screen.message = screen.message + ' '
             elif character == 'Enter':
-                screen.insert_character(Alphabet[character])
+                screen.insert_enter()
                 screen.message = screen.message + '\n'
         else:
             print('check key.char') 
